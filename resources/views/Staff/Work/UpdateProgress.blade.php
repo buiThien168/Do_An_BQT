@@ -17,13 +17,13 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Job</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Công việc</h5>
 
                    <form id="form-add-department" method="post" action="{{url('workflow-management/update-progress')."/".$id}}">
                     @csrf
                     <div class="row m-0">  
                       <div class="col-12 col-sm-12 col-md-12 p-0 px-2 mb-2">
-                        <label class="fz85">Work progress</label>
+                        <label class="fz85">Tiến độ công việc</label>
                         <textarea class="form-control mr-2" name="work_progress" required>
 
                         </textarea>
@@ -31,9 +31,9 @@
                       </div> 
                       
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3 d-flex">
-                        <button class="btn bg text-white mr-2">Update progress</button>
+                        <button class="btn bg text-white mr-2">Cập nhật tiến độ</button>
                         <a href="{{url('workflow-management/complete-the-work')."/".$id}}">
-                          <div class="btn bg text-white">Complete</div>
+                          <div class="btn bg text-white">Hoàn thành</div>
                         </a>
                       </div>
                     </div>

@@ -4,26 +4,26 @@
 <div class="container-fluid p-0">
   <div class="row m-0">
     <div class="col-8 p-5 bg text-white">
-      <p class="text-center font-weight-bold mt-0 mb-5" style="font-size: 180%;">Building a work management and administration system</p>
+      <p class="text-center font-weight-bold mt-0 mb-5" style="font-size: 180%;">Xây dựng hệ thống quản lý và điều hành công việc</p>
       <div class="row m-0">
         <div class="col-6 p-0">
           <p class="font-weight-bold mt-4" style="font-size: 130%;">ADMIN</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Information manage</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Employee manager</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý thông tin</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Người lao động manager</p>
           <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>HRM</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Workflow management</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Salary and discipline management</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Time attendance management</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Send email, notification letter</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý công việc</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý tiền lương và kỷ luật</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý chấm công</p>
+          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Gửi email, thư thông báo</p>
         </div>
         <div class="col-6 p-0">
          <p class="font-weight-bold mt-4" style="font-size: 130%;">STAFF</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Information manage</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Workflow management</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Salary and discipline management</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Time attendance - Face recognition</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Identity data management</p>
-         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Face registration</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý thông tin</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý công việc</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý tiền lương và kỷ luật</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Chấm công - Nhận dạng khuôn mặt</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Quản lý dữ liệu nhận dạng</p>
+         <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3" aria-hidden="true"></i>Đăng ký khuôn mặt</p>
        </div>
      </div>
 

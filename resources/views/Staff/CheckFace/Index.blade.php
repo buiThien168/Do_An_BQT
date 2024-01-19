@@ -52,11 +52,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container" style="padding-top: 60px;">
       <div class="shadow-sm bg-white p-2 box" style="width: 360px; margin: auto;">
-        <p class="fz95 tx font-weight-bold text-center">Face recognition</p>
+        <p class="fz95 tx font-weight-bold text-center">Nhận dạng khuôn mặt</p>
         <div id="ok"></div>
         <video id="videoInput" width="338" height="240" muted controls></video>
         <p id="name-auth" class="d-none"></p>
-        <p id="status" class="fz95 tx mt-2 text-center">Face recognition</p>
+        <p id="status" class="fz95 tx mt-2 text-center">Nhận dạng khuôn mặt</p>
       </div>
     </div>
   </div>
@@ -118,7 +118,8 @@
           });
           $.ajax({
             type: 'POST',
-            url: '{{ url('face-recognition') }}',
+            // url: '{{ url('face-recognition') }}',
+            url: '/face-recognition',
             processData: false,
             contentType: false,
             data: data,
@@ -138,7 +139,7 @@
     const getUsers = @json($getUsers);
     const labels = [];
     @foreach($getUsers as $item)
-    labels.push("{{ $item->name }}");
+      labels.push("{{ $item->name }}");
     @endforeach
     return Promise.all(
       labels.map(async (label) => {

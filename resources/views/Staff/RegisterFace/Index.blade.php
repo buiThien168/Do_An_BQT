@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container bg-white" style="padding-top: 10px;">
       <div class="shadow-smbox" style="margin: auto;width: 660px;padding: 10px;">
-        <p class="fz95 tx font-weight-bold text-center">Face sampling</p>
+        <p class="fz95 tx font-weight-bold text-center">Lấy mẫu khuôn mặt</p>
         <div id="ok"></div>
         <video id="player" controls autoplay width="640px" height="480px">
         </video>
@@ -104,7 +104,8 @@
     $.ajax
     ({
       type: 'POST',
-      url: '{{url('register-faces')}}',
+      // url: '{{url('register-faces')}}',
+      url: '/register-faces',
       processData: false,
       contentType: false,
       data: data,

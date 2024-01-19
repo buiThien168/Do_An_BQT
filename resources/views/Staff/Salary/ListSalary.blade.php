@@ -29,12 +29,12 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Salary List</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách lương</h5>
                          <div class="float-right"> 
                           <div class="d-flex">
-                            <p>Wage: {{number_format($GetSalary)}}$ |</p>
-                            <p>| Total working hours: {{$time}} |</p>
-                            <p>| Temporary salary: {{number_format($salary)}}$</p>
+                            <p>Tiền công: {{number_format($GetSalary)}}$ |</p>
+                            <p>| Tổng số giờ làm việc: {{$time}} |</p>
+                            <p>| Lương tạm thời: {{number_format($salary)}}$</p>
                           </div>
                         </div>
                         <div style="clear: both;"></div>
@@ -42,11 +42,11 @@
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="20%">Date</th>
-                              <th width="20%">Hour in</th>
-                              <th width="20%">Hour out</th>
-                              <th width="20%">Recording time</th>
-                              <th width="27%">Temporary salary</th>
+                              <th width="20%">Ngày</th>
+                              <th width="20%">Giờ vào</th>
+                              <th width="20%">Giờ ra</th>
+                              <th width="20%">Thời gian</th>
+                              <th width="27%">Tlương tạm thời</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
@@ -54,19 +54,19 @@
                              <tr>
                               <td>{{$idup++}}</td>
                               <td>
-                                {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('America/Los_Angeles')->format('d/m/Y')}}
+                                {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('Asia/Ho_Chi_Minh')->format('d/m/Y')}}
                               </td>
                               <td>
-                               {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('America/Los_Angeles')->format('H:i')}}
+                               {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('Asia/Ho_Chi_Minh')->format('H:i')}}
                              </td>
                              <td>
-                              {{\Carbon\Carbon::parse($item['checkout'])->setTimezone('America/Los_Angeles')->format('H:i')}}
+                              {{\Carbon\Carbon::parse($item['checkout'])->setTimezone('Asia/Ho_Chi_Minh')->format('H:i')}}
                             </td>
                             <td>
                              {{$item['time']}}
                            </td>
                            <td>
-                            {{number_format($item['salary'])}}$
+                            {{number_format($item['salary'])}}đ
                            </td>
                          </tr>
                          @endforeach

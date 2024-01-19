@@ -105,9 +105,9 @@ class FaceController extends Controller
             );
             Session::put('first_name', $request->name);
             if($type == 0){
-                $time= $request->name." - Hour in ".Carbon::now('America/Los_Angeles');
+                $time= $request->name." - Hour in ".Carbon::now('Asia/Ho_Chi_Minh');
             }else{
-                $time= $request->name." - Hour out ".Carbon::now('America/Los_Angeles');
+                $time= $request->name." - Hour out ".Carbon::now('Asia/Ho_Chi_Minh');
             }
             
             echo $time;

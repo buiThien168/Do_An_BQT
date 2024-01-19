@@ -29,17 +29,16 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Disciplinary List</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách kỷ luật</h5>
                          
                         <div class="table-responsive">
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="4%">Code</th>
-                              
-                              <th width="25%">Content</th>
-                              <th width="15%">Value</th>
-                              <th width="15%">Date created</th>
+                              <th width="4%">Mã số</th>
+                              <th width="25%">Nội dung</th>
+                              <th width="15%">Giá trị</th>
+                              <th width="15%">Ngày tạo</th>
                              
                             </thead>
                             <tbody>

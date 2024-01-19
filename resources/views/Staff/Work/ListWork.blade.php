@@ -29,19 +29,19 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Work list</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách công việc</h5>
                          
                          <div class="table-responsive">
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="4%">Code</th>
+                              <th width="4%">Mã số</th>
                               
-                              <th width="18%">Job</th>
-                              <th width="18%">Date</th>
-                              <th width="10%">Status</th>
-                              <th width="10%">Date created</th>
-                              <th width="24%">Operation</th>
+                              <th width="18%">Công việc</th>
+                              <th width="18%">Ngày</th>
+                              <th width="10%">Trạng thái</th>
+                              <th width="10%">Ngày tạo</th>
+                              <th width="24%">Hoạt động</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
@@ -58,9 +58,9 @@
                              </td>
                              <td>
                                @if($item->status == 0)
-                               <span class="text-warning">Processing</span>
+                               <span class="text-warning">Xử lý</span>
                                @else
-                               <span class="text-success">Finished</span>
+                               <span class="text-success">Hoàn thành</span>
                                @endif
                              </td>
                              <td>
@@ -72,7 +72,7 @@
                               </a>
                               @if($item->status == 0)
                               <a href="{{url('workflow-management/update-progress')."/".$item->id}}">
-                                <button class="btn btn-success mr-2 text-white">Update progress</button>
+                                <button class="btn btn-success mr-2 text-white">Cập nhật tiến độ</button>
                               </a>                       
                               @endif         
                             </td>
@@ -82,19 +82,19 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Delete Employee Type</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Xóa Công việc</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>You Agree Delete Job?</p>
+                                 <p>Bạn đồng ý Xóa công việc?</p>
                                </div>
                                <div class="p-2">
-                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cancel</button>
+                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
                                  <a  href="{{url('admin/workflow-management/delete')."/".$item->id}}">
                                   <button type="button" class="btn btn-danger float-right mr-2">
-                                    Delete                
+                                    Xóa                
                                   </button>
                                 </a>
 

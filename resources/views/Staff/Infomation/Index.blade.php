@@ -17,20 +17,20 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-4">
-                    <h4 class="mb-4">Account information</h4>
+                    <h4 class="mb-4">Thông tin tài khoản</h4>
                     <form method="post" action="{{url('account-information/edit')}}">
                       @csrf
                       <div class="row m-0">
                         <div class="col-6 p-0 pl-2 mb-2 px-2">
-                          <label class="fz95">Full name</label>
+                          <label class="fz95">Họ và tên</label>
                           <input type="text" value="{{$getInfo->name}}" name="phone" class="form-control mr-2" disabled>
                         </div>
                         <div class="col-6 p-0 pr-2 mb-2 px-2">
-                          <label class="fz95">Email</label>
+                          <label class="fz95">E-mail</label>
                           <input type="text" value="{{$getInfo->email}}" name="email" class="form-control mr-2" required>
                         </div>
                         <div class="col-6 p-0 pl-2 mb-2 px-2">
-                          <label class="fz95">Phone</label>
+                          <label class="fz95">Điện thoại</label>
                           <input type="text" value="{{$getInfo->phone}}" name="phone" class="form-control mr-2" disabled>
                         </div>
                         <div class="col-12 p-0  text-center">
@@ -39,7 +39,7 @@
                           @endif
                         </div>
                         <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                          <button class="btn bg text-white">Change</button>
+                          <button class="btn bg text-white">Thay đổi</button>
                         </div>
                       </div>
                     </form>
