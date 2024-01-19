@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateChMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,14 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('ch_messages', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigIncrements('id');
             $table->string('type');
-            $table->bigInteger('from_id');
-            $table->bigInteger('to_id');
-            $table->string('body',5000)->nullable();
+            $table->bigInteger('from_id')->unsigned();
+            $table->bigInteger('to_id')->unsigned();
+            $table->string('body', 5000)->nullable();
             $table->string('attachment')->nullable();
-            $table->boolean('seen')->default(false);
+            $table->tinyInteger('seen')->default(0);
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
