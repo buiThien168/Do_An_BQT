@@ -112,6 +112,7 @@ class StaffManageController extends Controller
         return view('Admin.StaffManage.EditStaff',['getStaff'=>$getStaff,'employee_type'=>$employee_type,'level'=>$level,'specializes'=>$specializes,'rooms'=>$rooms,'positions'=>$positions,'id'=>$id]);
     }
     public function AddStaff(){
+        
         $employee_type = Employee_type::get();
         $level=Level::get();
         $specializes=Specialize::get();
