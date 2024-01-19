@@ -39,7 +39,7 @@
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Điện thoại</label>
-                        <input type="number" name="phone" value="{{$getStaff->phone}}" class="form-control mr-2" autocomplete="off" >
+                        <input type="number" name="phone" value="{{$getStaff->user->phone}}" class="form-control mr-2" autocomplete="off" >
                       </div>    
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Email</label>
