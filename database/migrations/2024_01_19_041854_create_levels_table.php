@@ -13,7 +13,7 @@ class CreateLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('level', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('qualification_name')->nullable();
             $table->text('note')->nullable();
@@ -32,6 +32,6 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('level');
+        Schema::dropIfExists('levels');
     }
 }

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin\StaffManage;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee_type;
+use App\Models\Level;
+use App\Models\Position;
+use App\Models\Room;
+use App\Models\Specialize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -107,11 +112,11 @@ class StaffManageController extends Controller
         return view('Admin.StaffManage.EditStaff',['getStaff'=>$getStaff,'employee_type'=>$employee_type,'level'=>$level,'specializes'=>$specializes,'rooms'=>$rooms,'positions'=>$positions,'id'=>$id]);
     }
     public function AddStaff(){
-        $employee_type = DB::table('employee_type')->get();
-        $level=DB::table('level')->get();
-        $specializes=DB::table('specializes')->get();
-        $rooms=DB::table('rooms')->get();
-        $positions=DB::table('positions')->get();
+        $employee_type = Employee_type::get();
+        $level=Level::get();
+        $specializes=Specialize::get();
+        $rooms=Room::get();
+        $positions=Position::get();
         return view('Admin.StaffManage.AddStaff',['employee_type'=>$employee_type,'level'=>$level,'specializes'=>$specializes,'rooms'=>$rooms,'positions'=>$positions]);
     }
 
