@@ -3,40 +3,40 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#tongquan" aria-expanded="false" aria-controls="tongquan">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Account</span>
+        <span class="menu-title">Tài khoản</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="tongquan">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('account-information')}}">Account information</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('change-password')}}">Change Password</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('account-information')}}">Thông tin tài khoản</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('change-password')}}">Đổi mật khẩu</a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url('workflow-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Workflow management</span>
+        <span class="menu-title">Quản lý công việc</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{{url('salary-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Salary Management</span>
+        <span class="menu-title">Quản lý tiền lương</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#khenthuong" aria-expanded="false" aria-controls="khenthuong">
         <i class="icon-grid-2 menu-icon"></i>
-        <span class="menu-title">Reward-discipline</span>
+        <span class="menu-title">Kỷ luật khen thưởng</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="khenthuong">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('bonus')}}">Bonus</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('discipline')}}">Discipline</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('bonus')}}">Thưởng</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('discipline')}}">Kỷ luật</a></li>
           
         </ul>
       </div>
@@ -44,13 +44,13 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url('identity-management')}}">
         <i class="icon-paper menu-icon"></i>
-        <span class="menu-title">Identity management</span>
+        <span class="menu-title">Quản lý danh tính</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url('register-faces')}}">
         <i class="icon-paper menu-icon"></i>
-        <span class="menu-title">Face registration</span>
+        <span class="menu-title">Đăng ký khuôn mặt</span>
       </a>
     </li>
   </ul>

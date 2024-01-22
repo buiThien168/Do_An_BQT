@@ -76,7 +76,7 @@
                                         <button class="btn bg mr-2 text-white">Xem chi tiết</button>
                                       </a>
                                       @if($item->active == 1)
-                                      <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalBlock{{$item->id}}">Bị khóa tạm thời</button>
+                                      <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalBlock{{$item->id}}">Khóa tạm thời</button>
                                       @elseif($item->active == 0)
                                       <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalUnLock{{$item->id}}">Mở khóa</button>
                                       @endif
@@ -98,7 +98,7 @@
                                           <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
                                           <a href="{{url('admin/user-management/lock-mine-employee')."/".$item->id}}">
                                             <button type="button" class="btn btn-danger float-right mr-2">
-                                              Nhìn
+                                              Khóa
                                             </button>
                                           </a>
 
