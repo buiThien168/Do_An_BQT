@@ -1,6 +1,6 @@
 (function($) {
   'use strict';
-  //Open submenu on hover in compact sidebar mode and horizontal menu mode
+  ///Mở menu con khi di chuột ở chế độ thanh bên nhỏ gọn và chế độ menu ngang
   $(document).on('mouseenter mouseleave', '.sidebar .nav-item', function(ev) {
     var body = $('body');
     var sidebarIconOnly = body.hasClass("sidebar-icon-only");

@@ -3,33 +3,24 @@
 namespace App\Http\Controllers\Admin\Level;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\LevelService;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\User_infomation;
 
 class LevelController extends Controller
 {   
-
+    protected $LevelService;
+    public function __construct(LevelService $LevelService)
+    {
+        $this->LevelService = $LevelService;
+    }
     public function ListStaff($id,Request $request){
-        $GetListStaffs = DB::table('user_infomations')
-        ->where('level',$id)
-        ->where('full_name','!=',null)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null)
-            ->orWhere('full_name',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null);
-        };
-        $GetListStaffs=$GetListStaffs->paginate(15);
-
+       $GetListStaffs = $this->LevelService->ListStaff($id,$request);
         return view('Admin.StaffManage.ListStaffDetail',
             [
                 'GetListStaffs'=>$GetListStaffs
@@ -39,29 +30,13 @@ class LevelController extends Controller
     }
 
     public function DeleteLevel($id){
-        DB::table('level')->where('id',$id)->update(
-            [   
-                'deleted'=>1,
-                'updated_at'=>time(),
-                'updater'=>Auth::user()->id,
-            ]
-        ); 
+        $this->LevelService->DeleteLevel($id);
         return redirect('admin/level-management');
     }
 
     public function ListLevel(Request $request){
-        $GetLevels = DB::table('level')
-        ->where('deleted',0)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetLevels=$GetLevels
-            ->where('qualification_name',$request->keyword);
-        }
-        $GetLevels=$GetLevels->paginate(15);
-
-        $getUsers = DB::table('user_infomations')->where('level','!=',null)->get('level');
-
+        $GetLevels = $this->LevelService->ListLevel($request);
+        $getUsers = $this->LevelService->getUsersListLevel($request);
         return view('Admin.Level.ListLevel',
             [
                 'GetLevels'=>$GetLevels,
@@ -78,19 +53,12 @@ class LevelController extends Controller
             'qualification_name' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('level')->insert(
-            [   
-                'qualification_name'=>$request->qualification_name,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->LevelService->PostAddLevel($request);
         return redirect('admin/level-management');
     }
 
     public function EditLevel($id){
-        $getLevel = DB::table('level')->where('id',$id)->first();
+        $getLevel = $this->LevelService->GetLevelID($id);
         return view('Admin.Level.EditLevel',['getLevel'=>$getLevel,'id'=>$id]);
     }
     public function PostEditLevel($id,Request $request){
@@ -98,14 +66,7 @@ class LevelController extends Controller
             'qualification_name' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('level')->where('id',$id)->update(
-            [   
-                'qualification_name'=>$request->qualification_name,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->LevelService->PostEditLevel($id,$request);
         return redirect('admin/level-management');
     }
 

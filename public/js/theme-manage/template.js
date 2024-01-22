@@ -7,8 +7,8 @@
     var footer = $('.footer');
     var sidebar = $('.sidebar');
 
-    //Add active class to nav-link based on url dynamically
-    //Active class can be hard coded directly in html file also as required
+    // Thêm lớp hoạt động vào liên kết điều hướng dựa trên url một cách linh hoạt
+    // Lớp hoạt động có thể được mã hóa cứng trực tiếp trong tệp html theo yêu cầu
 
     function addActiveClass(element) {
       if (current === "") {
@@ -17,7 +17,7 @@
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
-            element.addClass('active');
+             element.addClass('active');
           }
         }
       } else {
@@ -26,10 +26,10 @@
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
-            element.addClass('active');
+            // element.addClass('active');
           }
           if (element.parents('.submenu-item').length) {
-            element.addClass('active');
+            // element.addClass('active');
           }
         }
       }

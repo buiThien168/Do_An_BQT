@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Position;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\PositionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -11,25 +12,13 @@ use App\Models\User;
 
 class PositionController extends Controller
 {   
-
+    protected $PositionService;
+    public function __construct(PositionService $PositionService)
+    {
+        $this->PositionService = $PositionService;
+    }
     public function ListStaff($id,Request $request){
-        $GetListStaffs = DB::table('user_infomations')
-        ->where('positions',$id)
-        ->where('full_name','!=',null)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null)
-            ->orWhere('full_name',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null);
-        };
-        $GetListStaffs=$GetListStaffs->paginate(15);
-
+        $GetListStaffs= $this->PositionService->ListPosition($id,$request);
         return view('Admin.StaffManage.ListStaffDetail',
             [
                 'GetListStaffs'=>$GetListStaffs
@@ -39,29 +28,13 @@ class PositionController extends Controller
     }
 
     public function DeletePosition($id){
-        DB::table('positions')->where('id',$id)->update(
-            [   
-                'deleted'=>1,
-                'updated_at'=>time(),
-                'updater'=>Auth::user()->id,
-            ]
-        ); 
+        $this->PositionService->DeletePosition($id);
         return redirect('admin/position-management');
     }
 
     public function ListPosition(Request $request){
-        $GetPositions = DB::table('positions')
-        ->where('deleted',0)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetPositions=$GetPositions
-            ->where('name_position',$request->keyword);
-        }
-        $GetPositions=$GetPositions->paginate(15);
-
-        $getUsers = DB::table('user_infomations')->where('positions','!=',null)->get('positions');
-
+        $GetPositions = $this->PositionService->GetIFPostionList($request);
+        $getUsers = $this->PositionService->GetIFoUser();
         return view('Admin.Position.ListPosition',
             [
                 'GetPositions'=>$GetPositions,
@@ -78,19 +51,12 @@ class PositionController extends Controller
             'name_position' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('positions')->insert(
-            [   
-                'name_position'=>$request->name_position,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->PositionService->AddPosition($request);
         return redirect('admin/position-management');
     }
 
     public function EditPosition($id){
-        $getPosition = DB::table('positions')->where('id',$id)->first();
+        $getPosition = $this->PositionService->GetIFoPostion($id);
         return view('Admin.Position.EditPosition',['getPosition'=>$getPosition,'id'=>$id]);
     }
     public function PostEditPosition($id,Request $request){
@@ -98,14 +64,7 @@ class PositionController extends Controller
             'name_position' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('positions')->where('id',$id)->update(
-            [   
-                'name_position'=>$request->name_position,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->PositionService->PostEditPosition($id,$request);
         return redirect('admin/position-management');
     }
 

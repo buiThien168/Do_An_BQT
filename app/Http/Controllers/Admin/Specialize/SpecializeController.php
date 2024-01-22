@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Specialize;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\SpecializeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -11,24 +12,14 @@ use App\Models\User;
 
 class SpecializeController extends Controller
 {   
+    protected $SpecializeService;
+    public function __construct(SpecializeService $SpecializeService)
+    {
+        $this->SpecializeService = $SpecializeService;
+    }
     public function ListStaff($id,Request $request){
-        $GetListStaffs = DB::table('user_infomations')
-        ->where('specializes',$id)
-        ->where('full_name','!=',null)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null)
-            ->orWhere('full_name',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null);
-        };
-        $GetListStaffs=$GetListStaffs->paginate(15);
-
+       
+        $GetListStaffs= $this->SpecializeService->ListStaff($id,$request);
         return view('Admin.StaffManage.ListStaffDetail',
             [
                 'GetListStaffs'=>$GetListStaffs
@@ -38,29 +29,13 @@ class SpecializeController extends Controller
     }
 
     public function DeleteSpecialize($id){
-        DB::table('specializes')->where('id',$id)->update(
-            [   
-                'deleted'=>1,
-                'updated_at'=>time(),
-                'updater'=>Auth::user()->id,
-            ]
-        ); 
+       $this->SpecializeService->DeleteSpecialize($id);
         return redirect('admin/professional-management');
     }
 
     public function ListSpecialize(Request $request){
-        $GetSpecializes = DB::table('specializes')
-        ->where('deleted',0)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetSpecializes=$GetSpecializes
-            ->where('name_specializes',$request->keyword);
-        }
-        $GetSpecializes=$GetSpecializes->paginate(15);
-
-        $getUsers = DB::table('user_infomations')->where('specializes','!=',null)->get('specializes');
-
+        $GetSpecializes = $this->SpecializeService->ListSpecialize($request);
+        $getUsers =  $this->SpecializeService->getSpecializeUser();
         return view('Admin.Specialize.ListSpecialize',
             [
                 'GetSpecializes'=>$GetSpecializes,
@@ -76,20 +51,13 @@ class SpecializeController extends Controller
         $validate = $request->validate([
             'name_specializes' => 'required|max:255',
             'note'=>'max:255'
-        ]);
-        DB::table('specializes')->insert(
-            [   
-                'name_specializes'=>$request->name_specializes,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        ]); 
+        $this->SpecializeService->PostAddSpecialize($request);
         return redirect('admin/professional-management');
     }
 
     public function EditSpecialize($id){
-        $getSpecialize = DB::table('specializes')->where('id',$id)->first();
+        $getSpecialize = $this->SpecializeService->getEditSpecialize($id);
         return view('Admin.Specialize.EditSpecialize',['getSpecialize'=>$getSpecialize,'id'=>$id]);
     }
     public function PostEditSpecialize($id,Request $request){
@@ -97,16 +65,7 @@ class SpecializeController extends Controller
             'name_specializes' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('specializes')->where('id',$id)->update(
-            [   
-                'name_specializes'=>$request->name_specializes,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->SpecializeService->PostEditSpecialize($id,$request);
         return redirect('admin/professional-management');
     }
-
-    
 }

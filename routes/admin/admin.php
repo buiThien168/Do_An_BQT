@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'checkadmin'], function () {
         Route::get('log-out', [AccountController::class, 'Logout']);
-        Route::prefix('user-management')->group(function () {
+        // oki
+        Route::prefix('user-management')->group(function () { 
             Route::get('/', [StaffManageController::class, 'ListStaff']);
             Route::get('detail/{id}', [StaffManageController::class, 'StaffDetail']);
             Route::get('lock-mine-employee/{id}', [StaffManageController::class, 'BlockUnBlockUser']);
@@ -35,13 +36,14 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{id}', [StaffManageController::class, 'PostEditStaff']);
             Route::get('delete/{id}', [StaffManageController::class, 'DeleteStaff']);
         });
+         // oki
         Route::prefix('account-management')->group(function () {
             Route::get('/', [UserManageController::class, 'ListUser']);
             Route::get('detail/{id}', [UserManageController::class, 'StaffDetail']);
             Route::get('lock-mine-employee/{id}', [UserManageController::class, 'BlockUnBlockUser']);
             Route::get('search', [UserManageController::class, 'SearchUser']);
         });
-
+        // oki
         Route::prefix('department-manager')->group(function () {
             Route::get('/', [DepartmentController::class, 'ListDepartment']); 
             Route::get('/add', [DepartmentController::class, 'AddDepartment']); 
@@ -51,7 +53,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [DepartmentController::class, 'PostEditDepartment']);
             Route::get('/see-employee/{id}', [DepartmentController::class, 'ListStaff']);          
         });
-
+         // oki
         Route::prefix('position-management')->group(function () {
             Route::get('/', [PositionController::class, 'ListPosition']); 
             Route::get('/add', [PositionController::class, 'AddPosition']); 
@@ -61,6 +63,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [PositionController::class, 'PostEditPosition']); 
             Route::get('/see-employee/{id}', [PositionController::class, 'ListStaff']);         
         });
+         // oki
         Route::prefix('level-management')->group(function () {
             Route::get('/', [LevelController::class, 'ListLevel']); 
             Route::get('/add', [LevelController::class, 'AddLevel']); 

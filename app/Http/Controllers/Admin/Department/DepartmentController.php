@@ -3,32 +3,24 @@
 namespace App\Http\Controllers\Admin\Department;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\DepartmentsService;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\User_infomation;
 
 class DepartmentController extends Controller
 {   
+    protected $DepartmentsService;
+    public function __construct(DepartmentsService $DepartmentsService)
+    {
+        $this->DepartmentsService = $DepartmentsService;
+    }
     public function ListStaff($id,Request $request){
-        $GetListStaffs = DB::table('user_infomations')
-        ->where('rooms',$id)
-        ->where('full_name','!=',null)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null)
-            ->orWhere('full_name',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null);
-        };
-        $GetListStaffs=$GetListStaffs->paginate(15);
-
+        $GetListStaffs = $this->DepartmentsService->ListStaffDepartment($id,$request);
         return view('Admin.StaffManage.ListStaffDetail',
             [
                 'GetListStaffs'=>$GetListStaffs
@@ -37,29 +29,13 @@ class DepartmentController extends Controller
         );
     }
     public function DeleteDepartment($id){
-        DB::table('rooms')->where('id',$id)->update(
-            [   
-                'deleted'=>1,
-                'updated_at'=>time(),
-                'updater'=>Auth::user()->id,
-            ]
-        ); 
+        $this->DepartmentsService->DeleteDepartment($id);
         return redirect('admin/department-manager');
     }
 
     public function ListDepartment(Request $request){
-        $GetDepartments = DB::table('rooms')
-        ->where('deleted',0)
-        ->orderBy('id', 'DESC');
-
-        if(isset($request->keyword)){
-            $GetDepartments=$GetDepartments
-            ->where('room_name',$request->keyword);
-        }
-        $GetDepartments=$GetDepartments->paginate(15);
-
-        $getUsers = DB::table('user_infomations')->where('rooms','!=',null)->get('rooms');
-
+        $GetDepartments = $this->DepartmentsService->GetListDepartment($request);
+        $getUsers = $this->DepartmentsService->GetUsersRoom();
         return view('Admin.Department.ListDepartment',
             [
                 'GetDepartments'=>$GetDepartments,
@@ -76,19 +52,12 @@ class DepartmentController extends Controller
             'room_name' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('rooms')->insert(
-            [   
-                'room_name'=>$request->room_name,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->DepartmentsService->AddDepartment($request);
         return redirect('admin/department-manager');
     }
 
     public function EditDepartment($id){
-        $getDepartment = DB::table('rooms')->where('id',$id)->first();
+        $getDepartment = $this->DepartmentsService->GetIFoRoom($id);
         return view('Admin.Department.EditDepartment',['getDepartment'=>$getDepartment,'id'=>$id]);
     }
     public function PostEditDepartment($id,Request $request){
@@ -96,14 +65,7 @@ class DepartmentController extends Controller
             'room_name' => 'required|max:255',
             'note'=>'max:255'
         ]);
-        DB::table('rooms')->where('id',$id)->update(
-            [   
-                'room_name'=>$request->room_name,
-                'note'=>$request->note,
-                'created'=>time(),
-                'created_by'=>Auth::user()->id,
-            ]
-        ); 
+        $this->DepartmentsService->PostEditDepartment($id,$request);
         return redirect('admin/department-manager');
     }
 

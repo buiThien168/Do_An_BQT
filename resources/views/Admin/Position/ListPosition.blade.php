@@ -29,12 +29,12 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách vị trí</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách chức vụ</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
                               <a href="{{url('admin/position-management/add')}}">
-                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm vị trí</div>      
+                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm chức vụ</div>      
                               </a>                
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>

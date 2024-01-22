@@ -20,12 +20,12 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#nhanvien" aria-expanded="false" aria-controls="nhanvien">
         <i class="icon-layout menu-icon"></i>
-        <span class="menu-title">Vị trí phòng</span>
+        <span class="menu-title">Quản lý nhân sự</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="nhanvien">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/department-manager')}}">Phòng</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/department-manager')}}">Bộ phận</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/position-management')}}">Chức vụ</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/level-management')}}">Trình độ chuyên môn</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/professional-management')}}">Chuyên môn hóa</a></li>
@@ -66,7 +66,6 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/bonus')}}">Thưởng</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/discipline')}}">Kỷ luật</a></li>
-          
         </ul>
       </div>
     </li>

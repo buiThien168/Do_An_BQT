@@ -31,7 +31,7 @@
                       </div> 
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                        <button class="btn bg text-white">Chỉnh sửa vị trí</button>
+                        <button class="btn bg text-white">Chỉnh sửa chức vụ</button>
                       </div>
                     </div>
                   </form>
