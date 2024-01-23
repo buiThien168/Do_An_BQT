@@ -93,7 +93,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [TypeStaffController::class, 'PostEditTypeStaff']);
             Route::get('/see-employee/{id}', [TypeStaffController::class, 'ListStaff']);          
         });
-
+        // oki
         Route::prefix('salary-management')->group(function () {
             Route::get('/', [SalaryController::class, 'ListSalary']); 
             Route::get('/edit/{id}', [SalaryController::class, 'EditSalary']); 
@@ -101,6 +101,7 @@ Route::prefix('admin')->group(function () {
             Route::get('payroll', [SalaryController::class, 'ListSalaryStaff']);  
             Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']);        
         });
+        // oki
         Route::prefix('bonus')->group(function () {
             Route::get('/', [BonusController::class, 'ListBonus']);
             Route::get('/add', [BonusController::class, 'AddBonus']); 
@@ -126,7 +127,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [ChangePasswordController::class, 'ChangePassword']); 
             Route::post('/', [ChangePasswordController::class, 'PostChangePassword']);         
         });
-
+        // oki
         Route::prefix('workflow-management')->group(function () {
             Route::get('/', [WorkController::class, 'ListWork']);
             Route::get('/add', [WorkController::class, 'AddWork']); 

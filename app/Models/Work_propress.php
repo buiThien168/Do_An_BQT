@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Work_progress extends Model
+class Work_propress extends Model
 {
     use HasFactory;
 }
