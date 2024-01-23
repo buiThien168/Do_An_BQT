@@ -37,4 +37,40 @@ class Discipline_rewardService
         $GetDiscipline=$GetDiscipline->paginate(15);
         return $GetDiscipline;
     }
+    public function AddDiscipline(){
+        $getUsers = User::join('user_infomations','user_infomations.user_id','users.id')->where('role',2)->get();
+        return $getUsers;
+    }
+    public function PostAddDiscipline($request){
+        $PostAddDiscipline = Discipline_reward::insert([
+            'user_id'=>$request->user_id,
+            'note'=>$request->note,
+            'value'=>$request->value,
+            'type'=>1,
+            'created'=>time(),
+            'created_by'=>Auth::user()->id,
+        ]);
+        return $PostAddDiscipline;
+    }
+    public function DeleteDiscipline($id){
+        $DeleteDiscipline= Discipline_reward::where('id',$id)->delete();
+        return $DeleteDiscipline;
+    }
+    public function getDiscipline($id){
+        $getDiscipline = Discipline_reward::where('id',$id)->first();
+        return $getDiscipline;
+    }
+    public function PostEditDiscipline($id,$request){
+        $PostEditDiscipline = Discipline_reward::where('id',$id)->update(
+            [   
+                'note'=>$request->note,
+                'value'=>$request->value,
+                'type'=>1,
+                'updated_at'=>time(),
+                'updater'=>Auth::user()->id,
+            ]
+        ); 
+        return $PostEditDiscipline;
+
+    }
 }
