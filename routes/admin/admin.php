@@ -83,6 +83,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [SpecializeController::class, 'PostEditSpecialize']);  
             Route::get('/see-employee/{id}', [SpecializeController::class, 'ListStaff']);        
         });
+        // oki
         Route::prefix('manage-employee-type')->group(function () {
             Route::get('/', [TypeStaffController::class, 'ListTypeStaff']); 
             Route::get('/add', [TypeStaffController::class, 'AddTypeStaff']); 

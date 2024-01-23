@@ -13,7 +13,7 @@ class CreateUserTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_track', function (Blueprint $table) {
+        Schema::create('user_tracks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('type')->default(0);
@@ -31,6 +31,6 @@ class CreateUserTracksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_track');
+        Schema::dropIfExists('user_tracks');
     }
 }
