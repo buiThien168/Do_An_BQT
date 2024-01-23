@@ -29,7 +29,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách chuyên ngành</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách chuyên môn</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
