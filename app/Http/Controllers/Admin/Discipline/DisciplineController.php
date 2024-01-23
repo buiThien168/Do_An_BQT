@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Discipline;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Discipline_rewardService;
+use App\Models\Discipline_reward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -11,32 +13,13 @@ use App\Models\User;
 
 class DisciplineController extends Controller
 {   
+    protected $Discipline_rewardService;
+    public function __construct(Discipline_rewardService $Discipline_rewardService)
+    {
+        $this->Discipline_rewardService = $Discipline_rewardService;
+    }
     public function ListDiscipline(Request $request){
-        $GetDiscipline = DB::table('discipline_rewards')
-        ->leftJoin('users','users.id','discipline_rewards.user_id')
-        ->leftJoin('user_infomations','user_infomations.id','users.id')
-        ->leftJoin('positions','positions.id','user_infomations.positions')
-        ->leftJoin('level','level.id','user_infomations.level')
-        ->select('user_infomations.full_name','positions.name_position','discipline_rewards.*')
-        ->orderBy('discipline_rewards.id', 'DESC')
-        ->where('discipline_rewards.type',1)
-        ->where('discipline_rewards.deleted',0)
-        ;
-
-        if(isset($request->keyword)){
-            $GetDiscipline=$GetDiscipline
-            ->where('users.phone',$request->keyword)
-            ->orWhere('user_infomations.full_name',$request->keyword)
-            ->where('discipline_rewards.type',1)
-            ->where('discipline_rewards.deleted',0)
-            ->orWhere('user_infomations.id_number',$request->keyword)
-            ->where('discipline_rewards.type',1)
-            ->where('discipline_rewards.deleted',0);
-        }
-        $GetDiscipline=$GetDiscipline->paginate(15);
-
-        
-
+        $GetDiscipline=  $this->Discipline_rewardService->ListDiscipline($request);
         return view('Admin.Discipline.ListDiscipline',
             [
                 'GetDiscipline'=>$GetDiscipline,
@@ -45,9 +28,6 @@ class DisciplineController extends Controller
         );
     }
     
-
-    
-
     public function EditDiscipline($id){
         $getDiscipline = DB::table('discipline_rewards')->where('id',$id)->first();
         return view('Admin.Discipline.EditDiscipline',['getDiscipline'=>$getDiscipline,'id'=>$id]);

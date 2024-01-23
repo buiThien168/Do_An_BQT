@@ -29,15 +29,15 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">List of Rewards</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách khen thưởng</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
                               <a href="{{url('admin/bonus/add')}}">
-                                <div class="btn btn-success mr-2" style="width: 140px;">Create rewards</div>      
+                                <div class="btn btn-success mr-2" style="width: 140px;">Tạo khen thưởng</div>      
                               </a> 
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
-                              <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Search</button>
+                              <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                             </div>
                           </form> 
                         </div>
@@ -46,13 +46,13 @@
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="4%">Code</th>
-                              <th width="15%">Name</th>
-                              <th width="15%">Position</th>
-                              <th width="15%">Content</th>
-                              <th width="15%">Value</th>
-                              <th width="15%">Date created</th>
-                              <th width="20%">Operation</th>
+                              <th width="4%">Mã số</th>
+                              <th width="15%">Tên</th>
+                              <th width="15%">Chức vụ</th>
+                              <th width="15%">Nội dung</th>
+                              <th width="15%">Giá trị</th>
+                              <th width="15%">Ngày tạo</th>
+                              <th width="20%">Hoạt động</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
@@ -77,9 +77,9 @@
                              </td>
                              <td>
                               <a href="{{url('admin/bonus/edit')."/".$item->id}}">
-                                <button class="btn btn-success mr-2 text-white">Edit</button>
+                                <button class="btn btn-success mr-2 text-white">Sửa</button>
                               </a>                       
-                              <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModalUnLock{{$item->id}}">Delete</button>              
+                              <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModalUnLock{{$item->id}}">Xóa</button>              
                             </td>
                           </tr>
 
@@ -93,13 +93,13 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Do you Agree Delete Bonus?</p>
+                                 <p>Bạn có đồng ý Xóa khen thưởng?</p>
                                </div>
                                <div class="p-2">
-                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cancel</button>
+                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
                                  <a  href="{{url('admin/bonus/delete')."/".$item->id}}">
                                   <button type="button" class="btn btn-danger float-right mr-2">
-                                    Delete                
+                                    Xóa                
                                   </button>
                                 </a>
 
