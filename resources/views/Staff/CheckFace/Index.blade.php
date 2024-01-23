@@ -77,22 +77,27 @@
   }
 
   async function recognizeFaces() {
+    // tải dữ liệu hình ảnh và mô tả khuân mặt
     const labeledDescriptors = await loadLabeledImages()
+    // đưa ra quyêt định xác định 1 khuân mặt dùng thư viện faceapi
     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
     video.play();
     video.addEventListener('play', async () => {
+      // Tạo một đối tượng canvas từ video để vẽ các kết quả nhận diện lên.
       const canvas = faceapi.createCanvasFromMedia(video)
+      // Xác định kích thước hiển thị cho canvas
       const displaySize = {
         width: video.width,
         height: video.height
       }
+      // Đảm bảo kích thước của canvas phù hợp với kích thước hiển thị.
       faceapi.matchDimensions(canvas, displaySize)
-
+      //lặp lại việc nhận diện khuôn mặt và vẽ kết quả lên canvas mỗi 5 giây.
       setInterval(async () => {
+        // để phát hiện tất cả khuôn mặt trong video, cùng với thông tin landmarks và mô tả của khuôn mặt
         const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
         const resizedDetections = faceapi.resizeResults(detections, displaySize)
-
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
         const results = resizedDetections.map((d) => {

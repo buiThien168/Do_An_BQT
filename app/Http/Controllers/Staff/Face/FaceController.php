@@ -82,6 +82,37 @@ class FaceController extends Controller
     }
 
     public function PostRecordFace(Request $request){
+
+        // $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
+        // if (Session::get('first_name') != $request->name) {
+        //     // $checkType = DB::table('user_track')->where('user_id',$getUser->user_id)->orderBy('id','desc')->first();
+        //     $checkType = User_track::where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
+        //     if($checkType){
+        //         $checkTimestamp = $checkType->created_at->timestamp;
+        //         $currentTime = now()->timestamp;
+        //         if (Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) > (30 * 60)) {
+        //             $type = 1;
+        //             User_track::where('user_id', $getUser->user_id)->update([
+        //                 'user_id' => $getUser->user_id,
+        //                 'type' => $type,
+        //                 'updated_at' => now()
+        //             ]);
+        //         } else {
+        //             $type = 1;
+        //             User_track::insert([
+        //                 'user_id' => $getUser->user_id,
+        //                 'type' => $type,
+        //                 'created_at' => now()
+        //             ]);
+        //         }
+        //         Session::put('first_name', $request->name);
+        //         if ($type == 0) {
+        //             $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
+        //         } else {
+        //             $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+        //         }
+        //     }
+
         $getUser = DB::table('user_infomations')->where('full_name',$request->name)->first('user_id');
         if(Session::get('first_name') != $request->name){
             $checkType = DB::table('user_track')->where('user_id',$getUser->user_id)->orderBy('id','desc')->first();
