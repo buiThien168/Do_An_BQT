@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Staff\Account\AccountController;
+use App\Http\Controllers\Staff\Attendance\CalenderController;
 use App\Http\Controllers\Staff\Infomation\InfomationController;
 use App\Http\Controllers\Staff\ChangePassword\ChangePasswordController;
 use App\Http\Controllers\Staff\Face\FaceController;
@@ -42,6 +43,10 @@ Route::group(['middleware' => 'checkuser'], function () {
     });
     Route::prefix('salary-management')->group(function () {
         Route::get('/', [SalaryController::class, 'ListSalary']); 
+
+    });
+    Route::prefix('attendance')->group(function () {
+        Route::get('/', [CalenderController::class, 'Calender']); 
 
     });
 

@@ -22,50 +22,62 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css" integrity="sha512-72McA95q/YhjwmWFMGe8RI3aZIMCTJWPBbV8iQY3jy1z9+bi6+jHnERuNrDPo/WGYEzzNs4WdHNyyEr/yXJ9pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-</head>
-<body style="background:#F5F7FF">
-   <style type="text/css">
-      @media only screen and (max-width: 991px) {
-        .side-bar-box{
-          width: 0% !important;
-        }
-        
-      }
-      @media only screen and (max-width: 770px) {
-        .col-12{
-          padding: 0 !important;
-        }
-      }
-      .table td{
-        line-height: 20px;
-      }
-   </style>
-    
-    @section('Content')
-    @show
 
-  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+
+</head>
+
+<body style="background:#F5F7FF">
+  <style type="text/css">
+    @media only screen and (max-width: 991px) {
+      .side-bar-box {
+        width: 0% !important;
+      }
+
+    }
+
+    @media only screen and (max-width: 770px) {
+      .col-12 {
+        padding: 0 !important;
+      }
+    }
+
+    .table td {
+      line-height: 20px;
+    }
+  </style>
+
+  @section('Content')
+  @show
+
+
 </body>
 <!-- plugins:js -->
-  <script src="{{ asset('vendors/js/vendor.bundle.base.js')}}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="{{ asset('vendors/chart.js/Chart.min.js')}}"></script>
-{{--   <script src="{{ asset('vendors/datatables.net/jquery.dataTables.js')}}"></script> --}}
-  <script src="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/dataTables.select.min.js')}}"></script>
+<script src="{{ asset('vendors/js/vendor.bundle.base.js')}}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="{{ asset('vendors/chart.js/Chart.min.js')}}"></script>
+{{-- <script src="{{ asset('vendors/datatables.net/jquery.dataTables.js')}}"></script> --}}
+<script src="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{ asset('js/theme-manage/dataTables.select.min.js')}}"></script>
 
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="{{ asset('js/theme-manage/off-canvas.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/hoverable-collapse.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/template.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/settings.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/todolist.js')}}"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="{{ asset('js/theme-manage/dashboard.js')}}"></script>
-  <script src="{{ asset('js/theme-manage/Chart.roundedBarCharts.js')}}"></script>
-  <!-- End custom js for this page-->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="{{ asset('js/theme-manage/off-canvas.js')}}"></script>
+<script src="{{ asset('js/theme-manage/hoverable-collapse.js')}}"></script>
+<script src="{{ asset('js/theme-manage/template.js')}}"></script>
+<script src="{{ asset('js/theme-manage/settings.js')}}"></script>
+<script src="{{ asset('js/theme-manage/todolist.js')}}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{{ asset('js/theme-manage/dashboard.js')}}"></script>
+<script src="{{ asset('js/theme-manage/Chart.roundedBarCharts.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+<script src="{{ asset('js/calender/calender.js')}}"></script>
+<!-- End custom js for this page-->
+
 </html>
-
