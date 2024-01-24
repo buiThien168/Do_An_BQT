@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\ChangePassword;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\InfomationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -11,6 +12,11 @@ use DB;
 
 class ChangePasswordController extends Controller
 {   
+    protected $InfomationService;
+    public function __construct(InfomationService $InfomationService)
+    {
+        $this->InfomationService = $InfomationService;
+    }
     public function ChangePassword(){
         return view('Admin.ChangePassword.Index');
     }
@@ -21,8 +27,7 @@ class ChangePasswordController extends Controller
         $passwordNewRe =  $request['passwordNewRe'];
         $CheckPassword = User::where('id',Auth::user()->id)->first();
         if($passwordNew == $passwordNewRe && $passwordNow == $CheckPassword->password){
-            DB::table('users')->where('id',Auth::user()->id)->update(['password'=>md5($passwordNew)]);
-           
+            $this->InfomationService->PostChangePassword($passwordNew);
             return redirect()->back()->with('msg', 'Change Password Successfully'); 
         }else{
             return redirect()->back()->with('msg', 'Old password is not correct');
