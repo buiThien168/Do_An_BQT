@@ -13,7 +13,7 @@ class CreateAdminMailConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_mail_config', function (Blueprint $table) {
+        Schema::create('admin_mail_configs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('mail_drive')->nullable();
             $table->char('mail_host', 50)->nullable();
@@ -37,6 +37,6 @@ class CreateAdminMailConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_mail_config');
+        Schema::dropIfExists('admin_mail_configs');
     }
 }

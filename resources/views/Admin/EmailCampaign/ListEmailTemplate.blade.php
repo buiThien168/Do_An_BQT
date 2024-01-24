@@ -69,7 +69,7 @@
                                 <a href="{{url('/admin/email-marketing/email-template/edit')."/".$item->id}}">
                                   <button class="btn btn-primary">Sửa</button>    
                                 </a>
-                                @if($item->id >2 )
+                                @if($item->id > 1 )
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalBlock{{$item->id}}">Xóa</button>    
                                 @endif
                               </td>

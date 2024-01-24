@@ -11,6 +11,9 @@ use Illuminate\Queue\SerializesModels;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\WelcomeEmail;
+use App\Models\Admin_mail_campaign_detail;
+use App\Models\Admin_mail_config;
+use App\Models\Admin_mail_template;
 use DB;
 
 
@@ -36,12 +39,10 @@ class SendEmailCampaignNow implements ShouldQueue
      */
     public function handle(){
 
-        $getMailSend = DB::table('admin_mail_campaign_detail')->where('receipt_status',0)->get();
-        $getEmailConfig = DB::table('admin_mail_config')->where('id',1)->first();
+        $getMailSend = Admin_mail_campaign_detail::where('receipt_status',0)->get();
+        $getEmailConfig = Admin_mail_config::where('id',1)->first();
         foreach ($getMailSend as $items) {
-            $getEmailTemplate = DB::table('admin_mail_template')
-            ->where('id','=',$items->admin_template_id)
-            ->first();
+            $getEmailTemplate = Admin_mail_template::where('id','=',$items->admin_template_id)->first();
             try{
                 //Bỏ thông tin mail config vào swift smtp
                 $transport = (new \Swift_SmtpTransport($getEmailConfig->mail_host,$getEmailConfig->mail_port))
@@ -59,10 +60,10 @@ class SendEmailCampaignNow implements ShouldQueue
                 $mailer->send($message);
             }catch (\Swift_TransportException $transportExp){
                 //update Status gửi thất bại
-                DB::table('admin_mail_campaign_detail')->where('id', $items->id)->update(['receipt_status' => 2,'receipt_time' => strtotime('now'),]);
+                Admin_mail_campaign_detail::where('id', $items->id)->update(['receipt_status' => 2,'receipt_time' => strtotime('now'),]);
             }
             //update Status gửi thành công
-            DB::table('admin_mail_campaign_detail')->where('id', $items->id)->update(['receipt_status' => 1,'receipt_time' => strtotime('now'),]);
+            Admin_mail_campaign_detail::where('id', $items->id)->update(['receipt_status' => 1,'receipt_time' => strtotime('now'),]);
         }         
     }
 }

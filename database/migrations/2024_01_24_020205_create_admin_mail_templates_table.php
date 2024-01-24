@@ -13,7 +13,7 @@ class CreateAdminMailTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_mail_template', function (Blueprint $table) {
+        Schema::create('admin_mail_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('template_title', 250)->nullable();
             $table->text('template_content')->nullable();
@@ -34,6 +34,6 @@ class CreateAdminMailTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_mail_template');
+        Schema::dropIfExists('admin_mail_templates');
     }
 }

@@ -157,6 +157,7 @@ Route::prefix('admin')->group(function () {
                 Route::post('add', [EmailCampaignController::class, 'PostAddEmailCampaign']);
             });   
         }); 
+        // oki
         Route::prefix('identity-management')->group(function () {
             Route::get('/', [FaceController::class, 'ListFaceStaff']);
             Route::get('/view-data/{id}', [FaceController::class, 'FaceStaffDetail']);

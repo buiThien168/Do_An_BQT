@@ -13,7 +13,7 @@ class CreateAdminMailCampaignDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_mail_campaign_detail', function (Blueprint $table) {
+        Schema::create('admin_mail_campaign_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('admin_template_id')->nullable();
             $table->bigInteger('admin_mail_config_id')->nullable();
@@ -33,6 +33,6 @@ class CreateAdminMailCampaignDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_mail_campaign_detail');
+        Schema::dropIfExists('admin_mail_campaign_details');
     }
 }

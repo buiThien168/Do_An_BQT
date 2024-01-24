@@ -23,19 +23,19 @@
                       <div class="row m-0">
                         <div class="col-12 p-0 mb-2">
                           <label class="fz95">Máy chủ email</label>
-                          <input type="text" name="mail_host" class="form-control mr-2" value="{{$getEmailConfig->mail_host}}" required>
+                          <input type="text" name="mail_host" class="form-control mr-2" value="{{$getEmailConfig->mail_host ?? ''}}" required>
                         </div>
                         <div class="col-12 p-0 mb-2">
                           <label class="fz95">Cổng</label>
-                          <input type="text" name="mail_port" class="form-control mr-2"  value="{{$getEmailConfig->mail_port}}" required>
+                          <input type="text" name="mail_port" class="form-control mr-2"  value="{{$getEmailConfig->mail_port ?? ''}}" required>
                         </div>
                         <div class="col-12 p-0 mb-2">
                           <label class="fz95">Email</label>
-                          <input type="text" name="mail_username" class="form-control mr-2" required  value="{{$getEmailConfig->mail_username}}">
+                          <input type="text" name="mail_username" class="form-control mr-2" required  value="{{$getEmailConfig->mail_username ?? ''}}">
                         </div> 
                         <div class="col-12 p-0 mb-2">
                           <label class="fz95">Mật khẩu (tên miền) / mật khẩu ứng dụng (gmail)</label>
-                          <input type="text" name="mail_password" class="form-control mr-2" required  value="{{$getEmailConfig->mail_password}}">
+                          <input type="text" name="mail_password" class="form-control mr-2" required  value="{{$getEmailConfig->mail_password ?? ''}}">
                         </div>  
                         <div class="col-12 p-0  text-center">
                           @if (\Session::has('msg'))
