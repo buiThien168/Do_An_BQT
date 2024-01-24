@@ -18,11 +18,11 @@
   <div class="container-fluid page-body-wrapper">
     <div class="theme-setting-wrapper">
     </div>
-    <div class="side-bar-box" style="width: 250px;">
+    <div class="sidebar sidebar-offcanvas">
       <x-admin.layouts.side-bar/>
     </div>
     <div class="main-panel">
-      <div class="content-wrapper p-3">
+      <div class="content-wrapper">
         <div class="row">
           <div class="col-md-12 grid-margin">
             <div class="row bg-white p-3">

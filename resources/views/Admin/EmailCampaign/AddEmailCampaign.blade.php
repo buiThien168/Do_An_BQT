@@ -11,11 +11,11 @@
   <div class="container-fluid page-body-wrapper">
     <div class="theme-setting-wrapper">
     </div>
-    <div class="side-bar-box" style="width: 250px;">
+    <div class="sidebar sidebar-offcanvas">
       <x-admin.layouts.side-bar/>
     </div>
     <div class="main-panel">
-     <div class="content-wrapper px-0 py-3">
+     <div class="content-wrapper">
         <div class="row m-0">
           <div class="col-md-12 grid-margin p-0">
             <div class="row m-0">
