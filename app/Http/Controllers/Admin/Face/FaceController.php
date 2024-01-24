@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Face;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\FaceService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -10,13 +11,18 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class FaceController extends Controller
-{   
+{  
+    protected $FaceService;
+    public function __construct(FaceService $FaceService)
+    {
+        $this->FaceService = $FaceService;
+    } 
     public function ResetFaceStaff($id){
-        DB::table('user_face')->where('user_id',$id)->delete();
+        $this->FaceService->ResetFaceStaff($id);
         return back();
     }
     public function FaceStaffDetail($id){
-        $getImages= DB::table('user_face')->where('user_id',$id)->get();
+        $getImages =  $this->FaceService->FaceStaffDetail($id);
         return view('Admin.Face.FaceStaffDetail',
             [
                 'getImages'=>$getImages,
@@ -24,20 +30,8 @@ class FaceController extends Controller
         );
     }
     public function ListFaceStaff(Request $request){
-        $GetListStaffs = DB::table('user_infomations')
-        ->where('full_name','!=',null)
-        ->orderBy('id', 'DESC');
-
-
-        if(isset($request->keyword)){
-            $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->orWhere('full_name',$request->keyword);
-        }
-        $GetListStaffs=$GetListStaffs->paginate(15);
-
-
+        
+        $GetListStaffs =  $this->FaceService->ListFaceStaff($request);
         return view('Admin.Face.ListFaceStaff',
             [
                 'GetListStaffs'=>$GetListStaffs,

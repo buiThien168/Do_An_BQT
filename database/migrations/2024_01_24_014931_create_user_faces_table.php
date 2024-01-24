@@ -13,7 +13,7 @@ class CreateUserFacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_face', function (Blueprint $table) {
+        Schema::create('user_faces', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('image')->nullable();
@@ -31,6 +31,6 @@ class CreateUserFacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_face');
+        Schema::dropIfExists('user_faces');
     }
 }
