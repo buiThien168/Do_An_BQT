@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff\Work;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Staff\StaffWorkService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -12,40 +13,23 @@ use Mail;
 
 class WorkController extends Controller
 {   
-
+    protected $StaffWorkService;
+    public function __construct(StaffWorkService $StaffWorkService)
+    {
+        $this->StaffWorkService = $StaffWorkService;
+    }
     public function FinishWork($id){
-        DB::table('works')->where('id',$id)->update(['status'=>1]);
+        $this->StaffWorkService->FinishWork($id);
         return redirect('workflow-management');
     }
 
     public function WorkDetail($id){
-        $GetWork = DB::table('works')->where('id',$id)->first();
-        $GetWorkDetail= DB::table('work_progress')->where('works',$id)->get();
-        
-
+        $GetWork = $this->StaffWorkService->GetWork($id);
+        $GetWorkDetail= $this->StaffWorkService->GetWorkDetail($id);
         return view('Staff.Work.WorkDetail',['GetWork'=>$GetWork,'GetWorkDetail'=>$GetWorkDetail]);
     }
     public function ListWork(Request $request){
-        $GetWork = DB::table('works')
-        ->leftJoin('users','users.id','works.user_id')
-        ->leftJoin('user_infomations','user_infomations.id','users.id')
-        ->leftJoin('positions','positions.id','user_infomations.positions')
-        ->leftJoin('level','level.id','user_infomations.level')
-        ->select('user_infomations.full_name','positions.name_position','works.*')
-        ->orderBy('works.id', 'DESC')
-        ->where('works.user_id',Auth::user()->id)
-        ->where('works.deleted',0);
-        if(isset($request->keyword)){
-            $GetWork=$GetWork
-            ->where('users.phone',$request->keyword)
-            ->orWhere('user_infomations.full_name',$request->keyword)
-            ->where('works.user_id',Auth::user()->id)
-            ->where('works.deleted',0)
-            ->orWhere('user_infomations.id_number',$request->keyword)
-            ->where('works.user_id',Auth::user()->id)
-            ->where('works.deleted',0);
-        }
-        $GetWork=$GetWork->paginate(15);
+        $GetWork =  $this->StaffWorkService->ListWork($request);
         return view('Staff.Work.ListWork',
             [
                 'GetWork'=>$GetWork,
@@ -57,8 +41,8 @@ class WorkController extends Controller
     
 
     public function EditWork($id){
-        $getWork = DB::table('works')->where('id',$id)->first();
-        return view('Staff.Work.EditWork',['getWork'=>$getWork,'id'=>$id]);
+        $GetWork = $this->StaffWorkService->GetWork($id);
+        return view('Staff.Work.EditWork',['getWork'=>$GetWork,'id'=>$id]);
     }
     public function PostEditWork($id,Request $request){
         $validate = $request->validate([
@@ -67,8 +51,9 @@ class WorkController extends Controller
             'from' => 'required',
             'to' => 'required',
         ]);
-        $getWork = DB::table('works')->where('id',$id)->first();
-        $request->user_id=$getWork->user_id;
+        $getWork = $this->StaffWorkService->GetWork($id);
+        dd($request);
+        // $request->user_id=$getWork->user_id;
         if(isset($request->email_notification)){
             $getEmailUser = DB::table('user_infomations')->where('user_id',$request->user_id)->first();
 
@@ -92,38 +77,19 @@ class WorkController extends Controller
                 $mailer->send($message);
             }catch (\Swift_TransportException $transportExp){
             }
-            DB::table('works')->where('works.id',$id)->update(
-                [
-                    'work_name'=>$request->work_name,
-                    'note'=>$request->note,
-                    'from'=>date(strtotime($request->from)),
-                    'to'=>date(strtotime($request->to)),
-                    'updated_at'=>time(),
-                    'updater'=>Auth::user()->id
-                ]
-            );
+            $this->StaffWorkService->PostEditWork($id,$request);
             return redirect('Staff/workflow-management');
         }
     }
 
     public function UpdateProgress($id){
-        
-
         return view('Staff.Work.UpdateProgress',['id'=>$id]);
     }
     public function PostUpdateProgress($id,Request $request){
         $validate = $request->validate([
             'work_progress' => 'required',
         ]);
-        DB::table('work_progress')->insert(
-            [
-                'user_id'=>Auth::user()->id,
-                'works'=>$id,
-                'content'=>$request->work_progress,
-                'created_at'=>time(),
-                'created_by'=>Auth::user()->id
-            ]
-        );
+        $this->StaffWorkService->PostUpdateProgress($id,$request);
         return redirect('workflow-management/job-details/'.$id);
     }
 

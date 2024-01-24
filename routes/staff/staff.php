@@ -20,7 +20,7 @@ Route::group(['middleware' => 'checkuser'], function () {
         Route::get('/', [ChangePasswordController::class, 'ChangePassword']); 
         Route::post('/', [ChangePasswordController::class, 'PostChangePassword']);         
     });
-
+    //
     Route::prefix('workflow-management')->group(function () {
         Route::get('/', [WorkController::class, 'ListWork']); 
         Route::get('/job-details/{id}', [WorkController::class, 'WorkDetail']);     

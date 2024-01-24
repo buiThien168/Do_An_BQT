@@ -65,7 +65,7 @@
 
                         <div class="comments">
                           @foreach($GetWorkDetail as $item)
-                          <p>{{\Carbon\Carbon::parse($item->created_at)->format('Y/m/d h:i')}} - {{$item->content}}</p>
+                          <p>{{\Carbon\Carbon::parse($item->created_at)->setTimezone('Asia/Ho_Chi_Minh')->format('Y/m/d h:i')}} - {{$item->content}}</p>
                           @endforeach
 
                         </div>

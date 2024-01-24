@@ -68,7 +68,7 @@
                              </td>
                              <td>
                               <a href="{{url('workflow-management/job-details')."/".$item->id}}">
-                                <button class="btn btn-success mr-2 text-white">See</button>
+                                <button class="btn btn-success mr-2 text-white">Chi tiết</button>
                               </a>
                               @if($item->status == 0)
                               <a href="{{url('workflow-management/update-progress')."/".$item->id}}">
