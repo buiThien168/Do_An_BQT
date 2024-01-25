@@ -72,7 +72,7 @@ class SalaryController extends Controller
             $total = 0;
             for ($j = 1; $j < count($GetTime); $j++) {
                 if ($GetTime[$j]->type == 1) {
-                    $total += ($GetTime[$j]->created_at->timestamp  - $GetTime[$j - 1]->created_at->timestamp ) / 60 / 60 * $GetSalary->hourly_salary;
+                    $total += ($GetTime[$j]->created_at->timestamp  - $GetTime[$j - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary;
                 }
             }
             array_push($checktime, [
@@ -105,5 +105,15 @@ class SalaryController extends Controller
         ]);
         $this->SalaryService->PostEditSalary($id, $request);
         return redirect('admin/salary-management');
+    }
+    public function Wage()
+    {
+        $Wage = $this->SalaryService->Wage();
+        return view(
+            'Admin.Salary.Wage',
+            [
+                'Wage'=>$Wage,
+            ]
+        );
     }
 }

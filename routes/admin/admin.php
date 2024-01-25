@@ -99,7 +99,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{id}', [SalaryController::class, 'EditSalary']); 
             Route::post('/edit/{id}', [SalaryController::class, 'PostEditSalary']);
             Route::get('payroll', [SalaryController::class, 'ListSalaryStaff']);  
-            Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']);        
+            Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']); 
+            Route::get('wage', [SalaryController::class, 'Wage']);       
         });
         // oki
         Route::prefix('bonus')->group(function () {

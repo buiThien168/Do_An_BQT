@@ -7,6 +7,7 @@ use App\Models\Salary;
 use App\Models\User;
 use App\Models\User_infomation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SalaryService
 {
@@ -71,5 +72,36 @@ class SalaryService
             ->orderBy('users.id', 'desc')
             ->paginate(15);
         return  $getStaff;
+    }
+    public function Wage()
+    {
+        $getStaff = User::leftJoin('user_infomations', 'users.id', '=', 'user_infomations.user_id')
+            ->leftJoin('salary', 'users.id', '=', 'salary.user_id')
+            ->leftJoin('positions', 'user_infomations.positions', '=', 'positions.id')
+            ->leftJoin(
+                DB::raw('(SELECT user_id, SUM(value) as total_bonuses FROM bonuses GROUP BY user_id) as bonuses'),
+                'users.id',
+                '=',
+                'bonuses.user_id'
+            )
+            ->leftJoin(
+                DB::raw('(SELECT user_id, SUM(value) as total_disciplines FROM disciplines GROUP BY user_id) as disciplines'),
+                'users.id',
+                '=',
+                'disciplines.user_id'
+            )
+            ->select(
+                'users.id',
+                'user_infomations.full_name',
+                'salary.hourly_salary',
+                'positions.name_position',
+                DB::raw('IFNULL(bonuses.total_bonuses, 0) as total_bonuses'),
+                DB::raw('IFNULL(disciplines.total_disciplines, 0) as total_disciplines')
+            )
+            ->where('users.role', 2)
+            ->orderBy('users.id', 'desc')
+            ->paginate(15);
+
+        return $getStaff;
     }
 }

@@ -44,11 +44,11 @@
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="4%">Mã số</th>
+                              <th width="5%">Mã NV</th>
                               <th width="15%">Tên</th>
                               <th width="15%">Chức vụ</th>
                               <th width="15%">Trình độ chuyên môn</th>
-                              <th width="15%">Tiền công</th>
+                              <th width="15%">Lương cơ bản</th>
                               <th width="15%">Ngày tạo</th>
                               <th width="20%">Hoạt động</th>
                             </thead>
@@ -75,7 +75,7 @@
                                 @if($item->hourly_salary == null)
                                 Not update
                                 @else
-                                {{number_format($item->hourly_salary)}}$ / hour
+                                {{number_format($item->hourly_salary)}} VND
                                 @endif
                               </td>
                               <td>

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\User_infomation;
+use App\Models\User_track;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 // use Session;
@@ -75,13 +77,12 @@ class FaceController extends Controller
     public function RecordFace()
     {
         Session::put('first_name', "ok");
-        $getUsers = DB::table('users')
-            ->leftJoin('user_face', 'user_face.user_id', 'users.id')
+        $getUsers = User::leftJoin('user_faces', 'user_faces.user_id', 'users.id')
             ->where('users.role', 2)
             ->where('users.is_deleted', 0)
-            ->select('user_face.name')
-            ->where('user_face.name', '!=', null)
-            ->groupBy('user_face.name')
+            ->select('user_faces.name')
+            ->where('user_faces.name', '!=', null)
+            ->groupBy('user_faces.name')
             ->get();
         $getUsersJson = json_encode($getUsers);
         return view('Staff.CheckFace.Index', ['getUsers' => $getUsers]);
@@ -89,68 +90,73 @@ class FaceController extends Controller
 
     public function PostRecordFace(Request $request)
     {
+        $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
 
+        if (Session::get('first_name') != $request->name) {
+            $checkType = User_track::where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
+
+            if ($checkType) {
+                $checkTimestamp = $checkType->created_at->timestamp;
+                $currentTime = now()->timestamp;
+
+                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (30 * 60)) {
+                    // Kiểm tra nếu bản ghi là type = 0, thuộc ngày hôm nay, và chênh lệch thời gian nhỏ hơn 30 phút
+                    echo "Staff " . $request->name . " tồn tại";
+                    return;
+                } else {
+                    // Nếu không đúng điều kiện trên, tạo một bản ghi mới
+                    $type = 1;
+                    // User_track::insert([
+                    //     'user_id' => $getUser->user_id,
+                    //     'type' => $type,
+                    //     'created_at' => now()
+                    // ]);
+                    Session::put('first_name', $request->name);
+                    $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+                    echo $time;
+                }
+            } else {
+                // Nếu không có bản ghi theo dõi, tạo một bản ghi mới
+                $type = 1;
+                // User_track::insert([
+                //     'user_id' => $getUser->user_id,
+                //     'type' => $type,
+                //     'created_at' => now()
+                // ]);
+                Session::put('first_name', $request->name);
+                $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+                echo $time;
+            }
+        }
         // $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
         // if (Session::get('first_name') != $request->name) {
-        //     // $checkType = DB::table('user_track')->where('user_id',$getUser->user_id)->orderBy('id','desc')->first();
-        //     $checkType = User_track::where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
-        //     if($checkType){
-        //         $checkTimestamp = $checkType->created_at->timestamp;
-        //         $currentTime = now()->timestamp;
-        //         if (Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) > (30 * 60)) {
+        //    $checkType = User_track::where ('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
+
+        //     if ($checkType == null) {
+        //         $type = 0;
+        //     } else {
+        //         if ($checkType->type == 0) {
         //             $type = 1;
-        //             User_track::where('user_id', $getUser->user_id)->update([
-        //                 'user_id' => $getUser->user_id,
-        //                 'type' => $type,
-        //                 'updated_at' => now()
-        //             ]);
-        //         } else {
-        //             $type = 1;
-        //             User_track::insert([
-        //                 'user_id' => $getUser->user_id,
-        //                 'type' => $type,
-        //                 'created_at' => now()
-        //             ]);
-        //         }
-        //         Session::put('first_name', $request->name);
-        //         if ($type == 0) {
-        //             $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
-        //         } else {
-        //             $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+        //         } else if ($checkType->type == 1) {
+        //             $type = 0;
         //         }
         //     }
 
-        $getUser = DB::table('user_infomations')->where('full_name', $request->name)->first('user_id');
-        if (Session::get('first_name') != $request->name) {
-            $checkType = DB::table('user_track')->where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
+        //     User_track::insert([
+        //         'user_id' => $getUser->user_id,
+        //         'type' => $type,
+        //         'created_at' => time()
+        //     ]);
+        //     Session::put('first_name', $request->name);
+        //     if ($type == 0) {
+        //         $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
+        //     } else {
+        //         $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+        //     }
 
-            if ($checkType == null) {
-                $type = 0;
-            } else {
-                if ($checkType->type == 0) {
-                    $type = 1;
-                } else if ($checkType->type == 1) {
-                    $type = 0;
-                }
-            }
-
-            DB::table('user_track')->insert(
-                [
-                    'user_id' => $getUser->user_id,
-                    'type' => $type,
-                    'created_at' => time()
-                ]
-            );
-            Session::put('first_name', $request->name);
-            if ($type == 0) {
-                $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
-            } else {
-                $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
-            }
-
-            echo $time;
-        } else {
-            echo "Staff " . $request->name . " successfully identified, please invite the next person";
-        }
+        //     echo $time;
+        // } else {
+        //     echo "Staff " . $request->name . " successfully identified, please invite the next person";
+        // }
     }
 }

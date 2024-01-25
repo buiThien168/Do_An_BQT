@@ -43,7 +43,8 @@
       <div class="collapse" id="salary">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management')}}">Lương</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management/payroll')}}">Lương bổng</a></li>  
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management/payroll')}}">Công việc</a></li>  
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management/wage')}}">Bảng lương</a></li> 
         </ul>
       </div>
     </li>

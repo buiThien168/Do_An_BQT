@@ -14,15 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::updateOrInsert(
+        User::insert(
             [
-                "name"=>"admin", 
-                "phone"=>"0395865097", 
-                "password"=>md5("123456"),
-                "active"=>1,
-                "role"=>1,
-                "created_at"=>2147483647,
-                "is_deleted"=>0,
+                "name" => "admin",
+                "phone" => "0395865097",
+                "password" => md5("123456"),
+                "active" => 1,
+                "role" => 1,
+                "is_deleted" => 0,
             ]
         );
     }

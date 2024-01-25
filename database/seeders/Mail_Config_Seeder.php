@@ -14,7 +14,7 @@ class Mail_Config_Seeder extends Seeder
      */
     public function run()
     {
-        Admin_mail_config::updateOrInsert(
+        Admin_mail_config::insert(
             [
                 "mail_drive" => null,
                 "mail_host" => "smtp.gmail.com",
@@ -25,7 +25,7 @@ class Mail_Config_Seeder extends Seeder
                 "total_send" => 0,
                 "created_by" => 1,
                 'is_deleted' => 0,
-                "created_at" => 1651818848,
+                "created_at" => time(),
                 "updated_at" => null
             ]
         );
