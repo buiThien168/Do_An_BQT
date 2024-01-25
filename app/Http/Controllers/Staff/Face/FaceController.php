@@ -91,43 +91,49 @@ class FaceController extends Controller
     public function PostRecordFace(Request $request)
     {
         $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
-
         if (Session::get('first_name') != $request->name) {
             $checkType = User_track::where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
-
             if ($checkType) {
                 $checkTimestamp = $checkType->created_at->timestamp;
                 $currentTime = now()->timestamp;
-
                 if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (30 * 60)) {
-                    // Kiểm tra nếu bản ghi là type = 0, thuộc ngày hôm nay, và chênh lệch thời gian nhỏ hơn 30 phút
-                    echo "Staff " . $request->name . " tồn tại";
+                    Session::put('first_name', "da_hop_le");
+                    echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
-                } else {
-                    // Nếu không đúng điều kiện trên, tạo một bản ghi mới
+                } else if($checkType->type == 1 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (30 * 60)){
+                    Session::put('first_name', "da_hop_le");
+                    echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
+                    return;
+                }else {
                     $type = 1;
-                    // User_track::insert([
-                    //     'user_id' => $getUser->user_id,
-                    //     'type' => $type,
-                    //     'created_at' => now()
-                    // ]);
+                    User_track::insert([
+                        'user_id' => $getUser->user_id,
+                        'type' => $type,
+                        'created_at' => time()
+                    ]);
                     Session::put('first_name', $request->name);
                     $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
                     echo $time;
+                    sleep(1);
+                    return;
                 }
             } else {
-                // Nếu không có bản ghi theo dõi, tạo một bản ghi mới
-                $type = 1;
-                // User_track::insert([
-                //     'user_id' => $getUser->user_id,
-                //     'type' => $type,
-                //     'created_at' => now()
-                // ]);
+                $type = 0;
+                User_track::insert([
+                    'user_id' => $getUser->user_id,
+                    'type' => $type,
+                    'created_at' => time()
+                ]);
                 Session::put('first_name', $request->name);
-                $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+                $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
                 echo $time;
+                sleep(1);
+                return;
             }
+        }else{
+            echo "Staff " . $request->name . " successfully identified, please invite the next person";
         }
+        // create a new 
         // $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
         // if (Session::get('first_name') != $request->name) {
         //    $checkType = User_track::where ('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();

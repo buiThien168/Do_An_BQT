@@ -54,13 +54,13 @@
                              <tr>
                               <td>{{$idup++}}</td>
                               <td>
-                                {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('America/Los_Angeles')->format('Y/m/d')}}
+                                {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('Asia/Ho_Chi_Minh')->format('Y/m/d')}}
                               </td>
                               <td>
-                               {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('America/Los_Angeles')->format('H:i')}}
+                               {{\Carbon\Carbon::parse($item['checkin'])->setTimezone('Asia/Ho_Chi_Minh')->format('H:i')}}
                              </td>
                              <td>
-                              {{\Carbon\Carbon::parse($item['checkout'])->setTimezone('America/Los_Angeles')->format('H:i')}}
+                              {{\Carbon\Carbon::parse($item['checkout'])->setTimezone('Asia/Ho_Chi_Minh')->format('H:i')}}
                             </td>
                             <td>
                              {{$item['time']}}
