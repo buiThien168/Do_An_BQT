@@ -32,7 +32,7 @@
       <div class="collapse" id="khenthuong">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('/time-keeping')}}">Điểm danh khuân mặt</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('attendance')}}">Điểm danh</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('/attendance')}}">Điểm danh</a></li>
           
         </ul>
       </div>

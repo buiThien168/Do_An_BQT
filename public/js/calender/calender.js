@@ -6,19 +6,24 @@ $(document).ready(function () {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        events: '/',
+        events: '/attendance',
         selectable: true,
         selectHelper: true,
+        eventRender: function (event, element) {
+            if(event.title===null){
+                element.css('background-color', 'red');
+            }else{
+                element.css('background-color', 'green');
+            }
+        },
         select: function (start, end, allDay) {
-            var title = prompt('Event Title:');
-
+             var title = prompt('Nội dung công việc:');
             if (title) {
                 var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-
                 var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
 
                 $.ajax({
-                    url: "",
+                    url: "/attendance/post-calender",
                     type: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -43,7 +48,7 @@ $(document).ready(function () {
             var title = event.title;
             var id = event.id;
             $.ajax({
-                url: "",
+                url: "/attendance/post-calender",
                 type: "POST",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -67,7 +72,7 @@ $(document).ready(function () {
             var title = event.title;
             var id = event.id;
             $.ajax({
-                url: "",
+                url: "/attendance/post-calender",
                 type: "POST",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -89,7 +94,7 @@ $(document).ready(function () {
             if (confirm("Are you sure you want to remove it?")) {
                 var id = event.id;
                 $.ajax({
-                    url: "",
+                    url: "/attendance/post-calender",
                     type: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -106,4 +111,17 @@ $(document).ready(function () {
             }
         }
     });
+    function getBirthdayListFromServer() {
+        var birthdayList = [];
+        $.ajax({
+            url: '/attendance',
+            type: 'GET',
+            async: false,
+            success: function (data) {
+                birthdayList = data;
+            },
+        });
+        return birthdayList;
+    }
+    getBirthdayListFromServer();
 });

@@ -47,7 +47,7 @@ Route::group(['middleware' => 'checkuser'], function () {
     });
     Route::prefix('attendance')->group(function () {
         Route::get('/', [CalenderController::class, 'Calender']); 
-
+        Route::post('/post-calender', [CalenderController::class, 'PostCalender']); 
     });
 
     Route::get('/register-faces', [FaceController::class, 'RegisterFace']);
