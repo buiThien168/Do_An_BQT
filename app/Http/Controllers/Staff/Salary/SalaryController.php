@@ -28,12 +28,12 @@ class SalaryController extends Controller
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
                 if ($GetTime[$i]->type == 1) {
-                    $countTime += $GetTime[$i]->created_at - $GetTime[$i - 1]->created_at;
+                    $countTime += $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp;
                     array_push($checktime, [
-                        'checkin' => $GetTime[$i - 1]->created_at,
-                        'checkout' => $GetTime[$i]->created_at,
-                        'time' => gmdate("H:i:s", $GetTime[$i]->created_at - $GetTime[$i - 1]->created_at),
-                        'salary' => ($GetTime[$i]->created_at - $GetTime[$i - 1]->created_at) / 60 / 60 * $GetSalary->hourly_salary
+                        'checkin' => $GetTime[$i - 1]->created_at->timestamp,
+                        'checkout' => $GetTime[$i]->created_at->timestamp,
+                        'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
+                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary
                     ]);
                 }
             }
