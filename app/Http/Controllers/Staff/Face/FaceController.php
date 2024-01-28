@@ -92,15 +92,15 @@ class FaceController extends Controller
     {
         $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
         if (Session::get('first_name') != $request->name) {
-            $checkType = User_track::where('user_id', $getUser->user_id)->orderBy('id', 'desc')->first();
-            if ($checkType) {
+            $checkType = User_track::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
+            if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
                 $checkTimestamp = $checkType->created_at->timestamp;
                 $currentTime = now()->timestamp;
-                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (30 * 60)) {
-                    Session::put('first_name', "da_hop_le");
+                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (5 * 60)) {
+                    Session::put('first_name', "da_hop_le_");
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
-                } else if($checkType->type == 1 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (30 * 60)){
+                } else if($checkType->type == 1 && Carbon::today()->isSameDay($checkType->created_at)){
                     Session::put('first_name', "da_hop_le");
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
