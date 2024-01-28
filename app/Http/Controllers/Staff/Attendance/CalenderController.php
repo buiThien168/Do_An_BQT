@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff\Attendance;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\User_infomation;
+use App\Models\User_track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,8 @@ class CalenderController extends Controller
     }
     public function PostCalender(Request $request)
     {
+        $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
+        $checkType = User_track::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
         switch ($request->type) {
             case 'add':
                 $event = Event::insert([
