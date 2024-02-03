@@ -10,7 +10,6 @@ $(document).ready(function () {
         selectable: true,
         selectHelper: true,
         eventRender: function (event, element) {
-            console.log(event);
             if (event.type === 1) {
                 element.css('background-color', 'yellow');
             } else if(event.type === 2) {
@@ -29,7 +28,6 @@ $(document).ready(function () {
             var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
             submitBtn.addEventListener('click', function () {
                 var selectOption = $('#selectOption').val();
-                var selectAttendes = $('#selectAttendes').val();
                 var selectBreaks = $('#selectBreaks').val();
                 var inputAttendes = $('#inputAttendes').val();
                 var inputBreaks = $('#inputBreaks').val();
@@ -41,7 +39,6 @@ $(document).ready(function () {
                     },
                     data: {
                         selectOption: selectOption,
-                        selectAttendes: selectAttendes,
                         selectBreaks: selectBreaks,
                         inputAttendes: inputAttendes,
                         inputBreaks: inputBreaks,
@@ -51,7 +48,7 @@ $(document).ready(function () {
                     },
                     success: function (data) {
                         calendar.fullCalendar('refetchEvents');
-                        alert("Event created");
+                        alert("Điểm danh thành công");
                     }
                 })
                 $('#myModal').modal('hide');

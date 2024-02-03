@@ -50,19 +50,12 @@
                 <div class="form-group">
                     <label for="selectOption">Điểm danh:</label>
                     <select class="form-control" id="selectOption" name="selectOption">
-                        <option value="0">Điểm danh</option>
+                        <option value="0" selected>Điểm danh</option>
                         <option value="1">Xin nghỉ</option>
                     </select>
                 </div>
                 {{-- diểm danh --}}
-                <div style="display: none" id="attendes">
-                    <div class="form-group">
-                        <label for="selectAttendes">Thời gian điểm danh:</label>
-                        <select class="form-control" id="selectAttendes" name="selectAttendes">
-                            <option value="0">Giờ vào</option>
-                            <option value="1">Giờ ra</option>
-                        </select>
-                    </div>
+                <div style="display: block" id="attendes">
                     <div class="form-group" >
                         <label for="inputAttendes">Nội dung công việc</label>
                         <input type="text" class="form-control" id="inputAttendes" name="inputAttendes"
