@@ -80,5 +80,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 <script src="{{ asset('js/calender/calender.js')}}"></script>
 <!-- End custom js for this page-->
-
+@section('js')
 </html>

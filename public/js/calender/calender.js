@@ -10,18 +10,29 @@ $(document).ready(function () {
         selectable: true,
         selectHelper: true,
         eventRender: function (event, element) {
-            if(event.title===null){
+            console.log(event);
+            if (event.type === 1) {
+                element.css('background-color', 'yellow');
+            } else if(event.type === 2) {
                 element.css('background-color', 'red');
             }else{
                 element.css('background-color', 'green');
             }
+
         },
         select: function (start, end, allDay) {
-             var title = prompt('Nội dung công việc:');
-            if (title) {
-                var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-                var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-
+            let exampleModal = new bootstrap.Modal(document.getElementById('myModals'));
+            exampleModal.show();
+            var submitBtn = document.getElementById('submitBtn');
+            // Corrected typo in addEventListener
+            var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
+            var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
+            submitBtn.addEventListener('click', function () {
+                var selectOption = $('#selectOption').val();
+                var selectAttendes = $('#selectAttendes').val();
+                var selectBreaks = $('#selectBreaks').val();
+                var inputAttendes = $('#inputAttendes').val();
+                var inputBreaks = $('#inputBreaks').val();
                 $.ajax({
                     url: "/attendance/post-calender",
                     type: "POST",
@@ -29,7 +40,11 @@ $(document).ready(function () {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     data: {
-                        title: title,
+                        selectOption: selectOption,
+                        selectAttendes: selectAttendes,
+                        selectBreaks: selectBreaks,
+                        inputAttendes: inputAttendes,
+                        inputBreaks: inputBreaks,
                         start: start,
                         end: end,
                         type: 'add'
@@ -39,7 +54,8 @@ $(document).ready(function () {
                         alert("Event created");
                     }
                 })
-            }
+                $('#myModal').modal('hide');
+            })
         },
         editable: true,
         eventResize: function (event, delta) {
@@ -111,17 +127,16 @@ $(document).ready(function () {
             }
         }
     });
-    function getBirthdayListFromServer() {
-        var birthdayList = [];
-        $.ajax({
-            url: '/attendance',
-            type: 'GET',
-            async: false,
-            success: function (data) {
-                birthdayList = data;
-            },
-        });
-        return birthdayList;
-    }
-    getBirthdayListFromServer();
+    let selectOption = document.getElementById('selectOption');
+    let breaks = document.getElementById('breaks');
+    let attendes = document.getElementById('attendes');
+    selectOption.addEventListener('change', function(){
+        if(selectOption.value ==='0'){
+            breaks.style.display="none";
+            attendes.style.display="block";
+        }else if(selectOption.value==='1'){
+            breaks.style.display="block";
+            attendes.style.display="none";
+        }
+    })   
 });
