@@ -53,11 +53,11 @@ p::after {
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold mt-2 tx">Job Information</h5>
+                   <h5 class="card-title mb-4 font-weight-bold mt-2 tx">Thông tin công việc</h5>
                    <p><i class="fa fa-briefcase mr-2 tx" aria-hidden="true"></i>{{$GetWork->work_name}} - {{$GetWork->note}} - @if($GetWork->status == 0)
-                              Processing
+                               Đang xử lý
                                @else
-                                <Finished
+                                <Hoàn thành
                                @endif</p>
                    
                    <div class="comments">

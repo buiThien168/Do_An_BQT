@@ -73,18 +73,18 @@
                               
                               <td>
                                 @if($item->status == 0)
-                                Working
+                                Đang làm việc
                                 @elseif($item->status == 1)
-                                Quit one's job
+                                Bỏ việc
                                 @elseif($item->status == 2)
-                                Take a break
+                                Nghỉ phép
                                 @endif
                               </td>
                               <td>
-                                <a href="{{url('admin/identity-management/view-data')."/".$item->id}}">
+                                <a href="{{url('admin/identity-management/view-data')."/".$item->user_id}}">
                                   <button class="btn bg mr-2 text-white">Xem dữ liệu</button>
                                 </a>
-                                <a href="{{url('admin/identity-management/register-again')."/".$item->id}}">
+                                <a href="{{url('admin/identity-management/register-again')."/".$item->user_id}}">
                                   <button class="btn btn-danger mr-2">Đăng ký lại</button>
                                 </a>
                                                        

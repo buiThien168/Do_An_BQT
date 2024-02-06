@@ -16,7 +16,7 @@ class WorkService
     public function ListWork($request)
     {
         $GetWork =  Work::leftJoin('users', 'users.id', '=', 'works.user_id')
-            ->leftJoin('user_infomations', 'user_infomations.id', '=', 'users.id')
+            ->leftJoin('user_infomations', 'user_infomations.user_id', '=', 'users.id')
             ->leftJoin('positions', 'positions.id', '=', 'user_infomations.positions')
             ->leftJoin('levels', 'levels.id', '=', 'user_infomations.level')
             ->select('user_infomations.full_name', 'positions.name_position', 'works.*')
