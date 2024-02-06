@@ -8,7 +8,6 @@
     }
   }
 </style>
-
 <div class="container-scroller">
   <x-admin.layouts.header-dashboard />
   <div class="container-fluid page-body-wrapper">
