@@ -6,7 +6,7 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#tongquan" aria-expanded="false" aria-controls="tongquan">
         <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Overview</span>
+        <span class="menu-title">Dashboard</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="tongquan">
