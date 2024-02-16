@@ -80,10 +80,10 @@
                                   <td>{{$item->place_of_birth}}</td>
                                   <td>{{$item->id_number}}</td>
                                   <td>
-                                    <a href="{{url('admin/user-management/detail')."/".$item->id}}">
+                                    <a href="{{url('admin/user-management/detail')."/".$item->user_id}}">
                                       <button class="btn bg mr-2 text-white">Xem chi tiết</button>
                                     </a>
-                                    <a href="{{url('admin/user-management/edit')."/".$item->id}}">
+                                    <a href="{{url('admin/user-management/edit')."/".$item->user_id}}">
                                       <button class="btn btn-danger mr-2">Sửa</button>
                                     </a>
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalBlock{{$item->id}}">Xóa</button>
@@ -104,7 +104,7 @@
                                       </div>
                                       <div class="p-2">
                                         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
-                                        <a href="{{url('admin/user-management/delete')."/".$item->id}}">
+                                        <a href="{{url('admin/user-management/delete')."/".$item->user_id}}">
                                           <button type="button" class="btn btn-danger float-right mr-2">
                                             Đồng ý
                                           </button>

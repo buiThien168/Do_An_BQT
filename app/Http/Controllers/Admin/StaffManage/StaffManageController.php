@@ -78,7 +78,7 @@ class StaffManageController extends Controller
     // edit nhân viên
     public function EditStaff($id)
     {
-        $getStaff = User_infomation::with('user')->where('id', $id)->first();
+        $getStaff = User_infomation::with('user')->where('user_id', $id)->first();
         $employee_type = Employee_type::get();
         $level = Level::get();
         $specializes = Specialize::get();

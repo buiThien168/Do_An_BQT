@@ -84,7 +84,7 @@ class UserService
                 'positions.name_position as positions',
                 'users.phone as phone'
             )
-            ->where('user_infomations.id', $id)
+            ->where('user_infomations.user_id', $id)
             ->first();
         return $GetStaffs;
     }

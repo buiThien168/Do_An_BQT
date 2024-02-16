@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('Title')</title>
+  @section('styles_')
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css')}}">
   <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css')}}">
@@ -23,10 +24,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css" integrity="sha512-72McA95q/YhjwmWFMGe8RI3aZIMCTJWPBbV8iQY3jy1z9+bi6+jHnERuNrDPo/WGYEzzNs4WdHNyyEr/yXJ9pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-
+  
 </head>
 
 <body style="background:#F5F7FF">
@@ -48,11 +47,8 @@
       line-height: 20px;
     }
   </style>
-
   @section('Content')
   @show
-
-
 </body>
 <!-- plugins:js -->
 <script src="{{ asset('vendors/js/vendor.bundle.base.js')}}"></script>

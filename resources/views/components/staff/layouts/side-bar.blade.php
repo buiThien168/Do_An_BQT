@@ -24,12 +24,12 @@
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">Điểm danh</span>
       </a> --}}
-      <a class="nav-link" data-toggle="collapse" href="#khenthuong" aria-expanded="false" aria-controls="khenthuong">
+      <a class="nav-link" data-toggle="collapse" href="#diemdanh" aria-expanded="false" aria-controls="diemdanh">
         <i class="icon-grid-2 menu-icon"></i>
         <span class="menu-title">Điểm danh</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="khenthuong">
+      <div class="collapse" id="diemdanh">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('/time-keeping')}}">Điểm danh khuân mặt</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('/attendance')}}">Điểm danh</a></li>
