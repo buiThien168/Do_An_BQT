@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\User_infomation;
-
+use Illuminate\Support\Facades\Log;
 class StaffManageController extends Controller
 {
     protected $UserService;
@@ -41,15 +41,15 @@ class StaffManageController extends Controller
             'date_of_birth' => 'required|date',
             'place_of_birth' => 'required|max:255',
             'marital_status' => 'required|integer',
-            'id_number' => 'required|integer',
-            'date_range' => 'required|date',
-            'passport_issuer' => 'required|max:255',
-            'hometown' => 'required|max:255',
-            'nationality' => 'required|max:255',
-            'nation' => 'required|max:255',
-            'religion' => 'required|max:255',
-            'permanent_residence' => 'required|max:255',
-            'staying' => 'required|max:255',
+            'id_number' => 'nullable|integer',
+            'date_range' => 'nullable|date',
+            'passport_issuer' => 'nullable|max:255',
+            'hometown' => 'nullable|max:255',
+            'nationality' => 'nullable|max:255',
+            'nation' => 'nullable|max:255',
+            'religion' => 'nullable|max:255',
+            'permanent_residence' => 'nullable|max:255',
+            'staying' => 'nullable|max:255',
             'employee_type' => 'required|integer',
             'level' => 'required|integer',
             'specializes' => 'required|integer',
@@ -72,6 +72,7 @@ class StaffManageController extends Controller
             DB::commit();
             return redirect('admin/user-management');
         }catch(\Exception $e){
+            Log::error('Error occurred: ' . $e->getMessage());
             DB::rollBack();
         }
     }
@@ -112,14 +113,14 @@ class StaffManageController extends Controller
             'place_of_birth' => 'required|max:255',
             'marital_status' => 'required|integer',
             'id_number' => 'required|integer',
-            'date_range' => 'required|date',
-            'passport_issuer' => 'required|max:255',
-            'hometown' => 'required|max:255',
-            'nationality' => 'required|max:255',
-            'nation' => 'required|max:255',
-            'religion' => 'required|max:255',
-            'permanent_residence' => 'required|max:255',
-            'staying' => 'required|max:255',
+            'date_range' => 'nullable|date',
+            'passport_issuer' => 'nullable|max:255',
+            'hometown' => 'nullable|max:255',
+            'nationality' => 'nullable|max:255',
+            'nation' => 'nullable|max:255',
+            'religion' => 'nullable|max:255',
+            'permanent_residence' => 'nullable|max:255',
+            'staying' => 'nullable|max:255',
             'employee_type' => 'required|integer',
             'level' => 'required|integer',
             'specializes' => 'required|integer',
@@ -144,6 +145,7 @@ class StaffManageController extends Controller
                     return redirect('admin/user-management');
                 }catch(\Exception $e){
                     DB::rollBack();
+                    Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with('msg', 'Error');
                 }
             } else {

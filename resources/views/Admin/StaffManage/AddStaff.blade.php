@@ -111,7 +111,7 @@
                         <input type="text" name="permanent_residence" class="form-control mr-2" autocomplete="off" >
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Ở lại</label>
+                        <label class="fz85">Chỗ ở hiện tại</label>
                         <input type="text" name="staying" class="form-control mr-2" autocomplete="off" >
                       </div> 
                       <div class="col-12 px-2 mt-3">

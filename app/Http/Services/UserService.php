@@ -34,7 +34,11 @@ class UserService
         $userInformation->place_of_birth = $request->place_of_birth;
         $userInformation->marital_status = $request->marital_status;
         $userInformation->id_number = $request->id_number;
-        $userInformation->date_range = date(strtotime($request->date_range));
+        if ($request->date_range !== null) {
+            $userInformation->date_range = date(strtotime($request->date_range));
+        } else {
+            $userInformation->date_range = null;
+        }
         $userInformation->passport_issuer = $request->passport_issuer;
         $userInformation->hometown = $request->hometown;
         $userInformation->nationality = $request->nationality;
@@ -90,6 +94,11 @@ class UserService
     }
     public function EditStaffService($id, $request)
     {
+        if ($request->date_range !== null) {
+            $date_ranges = date(strtotime($request->date_range));
+        } else {
+            $date_ranges = null;
+        }
         $EditStaffService = User_infomation::where('id', $id)->update([
             'nick_name' => $request->nick_name,
             'email' => $request->email,
@@ -98,7 +107,7 @@ class UserService
             'place_of_birth' => $request->place_of_birth,
             'marital_status' => $request->maritalstatus,
             'id_number' => $request->id_number,
-            'date_range' => date(strtotime($request->date_range)),
+            'date_range' => $date_ranges,
             'passport_issuer' => $request->passport_issuer,
             'hometown' => $request->hometown,
             'nationality' => $request->nationality,
@@ -113,6 +122,7 @@ class UserService
             'positions' => $request->positions
 
         ]);
+        
         return $EditStaffService;
     }
     public function DeleteStaffService($id)

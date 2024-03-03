@@ -57,34 +57,34 @@ $("#form-edit-steff").validate({
             maxlength: 20,
         },
         date_range:{
-            required : true,
+            required : false,
         },
         passport_issuer:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         hometown:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         nationality:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         nation:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         religion:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         permanent_residence:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         staying:{
-            required : true,
+            required : false,
             maxlength: 255,
         }
     },
@@ -164,7 +164,7 @@ $("#form-add-steff").validate({
             maxlength: 255,
         },
         nick_name:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         image:{
@@ -199,34 +199,34 @@ $("#form-add-steff").validate({
             maxlength: 20,
         },
         date_range:{
-            required : true,
+            required : false,
         },
         passport_issuer:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         hometown:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         nationality:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         nation:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         religion:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         permanent_residence:{
-            required : true,
+            required : false,
             maxlength: 255,
         },
         staying:{
-            required : true,
+            required : false,
             maxlength: 255,
         }
     },
