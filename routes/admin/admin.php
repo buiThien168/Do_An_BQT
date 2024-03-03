@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Bonus\BonusController;
 use App\Http\Controllers\Admin\Discipline\DisciplineController;
 use App\Http\Controllers\Admin\Infomation\InfomationController;
 use App\Http\Controllers\Admin\ChangePassword\ChangePasswordController;
+use App\Http\Controllers\Admin\Dashboard\DoashboardControler;
 use App\Http\Controllers\Admin\Work\WorkController;
 use App\Http\Controllers\Admin\EmailCampaign\EmailCampaignController;
 use App\Http\Controllers\Admin\Face\FaceController;
