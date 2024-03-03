@@ -99,7 +99,7 @@ class UserService
         } else {
             $date_ranges = null;
         }
-        $EditStaffService = User_infomation::where('id', $id)->update([
+        $EditStaffService = User_infomation::where('user_id', $id)->update([
             'nick_name' => $request->nick_name,
             'email' => $request->email,
             'sex' => $request->sex,

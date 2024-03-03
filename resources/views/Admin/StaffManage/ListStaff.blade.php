@@ -112,7 +112,7 @@
                                 <th width="3%">#</th>
                                 <th width="4%">Mã số</th>
                                 <th width="5%">Avatar</th>
-                                <th width="15%">Tên</th>
+                                <th width="15%">Họ tên</th>
                                 <th width="6%">Giới tính</th>
                                 <th width="6%">Ngày sinh</th>
                                 <th width="15%">Nơi sinh</th>
@@ -127,12 +127,12 @@
                                   <td>NV{{$item->user_id}}</td>
                                   <td>
                                     @if(isset($item->image))
-                                    <img src="{{ asset('images/staff')." /".$item->image}}">
+                                    <img src="{{ asset('images/staff')."/".$item->image}}">
                                     @else
                                     <img src="{{ asset('images/staff/default.png')}}">
                                     @endif
                                   </td>
-                                  <td>{{$item->full_name}}</td>
+                                  <td>{{$item->nick_name}}</td>
                                   <td>
                                     @if($item->sex == 0)
                                     Male
@@ -144,24 +144,19 @@
                                   <td>{{$item->place_of_birth}}</td>
                                   <td>{{$item->id_number}}</td>
                                   <td>
-                                    <<<<<<< HEAD <a href="{{url('admin/user-management/detail')." /".$item->user_id}}">
+                                    <a href="{{url('admin/user-management/detail')."/".$item->user_id}}">
                                       <button class="btn bg mr-2 text-white">Xem chi tiết</button>
-                                      </a>
-                                      <a href="{{url('admin/user-management/edit')." /".$item->user_id}}">
-                                        =======
-                                        <a href="{{url('admin/user-management/detail')." /".$item->id}}">
-                                          <button class="btn bg mr-2 text-white">Xem chi tiết</button>
-                                        </a>
-                                        <a href="{{url('admin/user-management/edit')." /".$item->id}}">
-                                          >>>>>>> V1-01
-                                          <button class="btn btn-danger mr-2">Sửa</button>
-                                        </a>
-                                        <button class="btn btn-danger" data-toggle="modal"
-                                          data-target="#exampleModalBlock{{$item->id}}">Xóa</button>
+                                    </a>
+                                    <a href="{{url('admin/user-management/edit')."/".$item->user_id}}">
+                                      <button class="btn btn-danger mr-2">Sửa</button>
+                                    </a>
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                      data-target="#exampleModalBlock{{$item->user_id}}">Xóa
+                                    </button>
                                   </td>
                                 </tr>
 
-                                <div class="modal fade mt-5" id="exampleModalBlock{{$item->id}}" tabindex="-1"
+                                <div class="modal fade mt-5" id="exampleModalBlock{{$item->user_id}}" tabindex="-1"
                                   role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">

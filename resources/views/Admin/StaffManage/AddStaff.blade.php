@@ -25,11 +25,11 @@
                         <p class="font-weight-bold">| Thông tin cá nhân</p>
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Full name</label>
+                        <label class="fz85">Account</label>
                         <input type="text" name="full_name" class="form-control mr-2"  autocomplete="off">
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Nickname</label>
+                        <label class="fz85">Full Name</label>
                         <input type="text" name="nick_name" class="form-control mr-2"  autocomplete="off" >
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
