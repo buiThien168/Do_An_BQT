@@ -53,7 +53,7 @@
                               <th width="6%">Ngày sinh</th>
                               <th width="15%">Nơi sinh</th>
                               <th width="6%">ID number</th>
-                              <th width="10%">Trạng thái</th>
+                              {{-- <th width="10%">Trạng thái</th> --}}
                               <th width="15%">Hoạt động</th>
                             </thead>
                             <tbody>
@@ -89,21 +89,21 @@
                               <td>
                                 {{$item->id_number}}
                               </td>
-                              <td>
+                              {{-- <td>
                                 @if($item->status == 0)
-                                Working
+                                Đang làm việc
                                 @elseif($item->status == 1)
-                                Quit one's job
+                                Nghỉ việc
                                 @elseif($item->status == 2)
-                                Take a break
+                                Nghỉ phép
                                 @endif
-                              </td>
+                              </td> --}}
                               <td>
-                                <a href="{{url('admin/user-management/detail')."/".$item->id}}">
+                                <a href="{{url('admin/user-management/detail')."/".$item->user_id}}">
                                   <button class="btn bg mr-2 text-white">Xem chi tiết</button>
                                 </a>
-                                <a href="{{url('admin/user-management/edit')."/".$item->id}}">
-                                  <button class="btn btn-danger mr-2">Biên tập</button>
+                                <a href="{{url('admin/user-management/edit')."/".$item->user_id}}">
+                                  <button class="btn btn-danger mr-2">Sửa</button>
                                 </a>
                                                        
                               </td>

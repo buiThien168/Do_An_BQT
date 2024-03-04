@@ -24,14 +24,13 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div>
-
                     <div class="bg-white">
                       <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body px-0">
                             <h5 class="card-title float-left mb-2 tx">Quản lý tài khoản</h5>
                             <div class="float-right">
-                              <form method="get">
+                              <form method="get" action="{{route('account-management-search')}}">
                                 <div class="form-group mb-3" style="display: flex">
                                   <input type="text" class="form-control" placeholder="Enter ID / Code / Name" name="keyword">
                                   <button type="submit" class="btn bg text-white ml-2" style="width: 100px;">Tìm kiếm</button>
@@ -67,9 +66,9 @@
                                     <td>{{$item->phone}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>
-                                      @if($item->role ==2) Regular account @elseif($item->role ==1) Admin @endif
+                                      @if($item->role ==2) User @elseif($item->role ==1) Admin @endif
                                     </td>
-                                    <td>@if($item->active ==1)Active @else Temporarily locked @endif</td>
+                                    <td>@if($item->active ==1)Active @else Locked @endif</td>
 
                                     <td>
                                       <a href="{{url('admin/user-management/detail')."/".$item->id}}">
@@ -128,16 +127,12 @@
                                               Mở khóa
                                             </button>
                                           </a>
-
-
                                           <div style="clear: both"></div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                   @endforeach
-
-
                                 </tbody>
                               </table>
                             </div>

@@ -62,9 +62,8 @@
               <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                 <div class="card card-light-blue">
                   <div class="card-body">
-                    <p class="mb-4">Kỷ luật</p>
-                    <p class="fs-30 mb-2">34040</p>
-                    <p>2.00% (30 days)</p>
+                    <p class="mb-4">Nhân Viên</p>
+                    <p class="fs-30 mb-2">20 User</p>
                   </div>
                 </div>
               </div>
@@ -135,12 +134,14 @@
                                   <td>{{$item->nick_name}}</td>
                                   <td>
                                     @if($item->sex == 0)
-                                    Male
+                                    Nam
                                     @else
-                                    Female
+                                    Nữ
                                     @endif
                                   </td>
-                                  <td>{{\Carbon\Carbon::parse($item->date_of_birth)->format('d/m/Y')}}</td>
+                                  <td>
+                                    {{\Carbon\Carbon::parse($item->date_of_birth)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}
+                                  </td>
                                   <td>{{$item->place_of_birth}}</td>
                                   <td>{{$item->id_number}}</td>
                                   <td>
@@ -167,16 +168,16 @@
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <p>Khi bạn xóa một nhân viên {{$item->full_name}}, {{$item->full_name}} sẽ không
+                                        <p>Khi bạn xóa một nhân viên {{$item->nick_name}}, {{$item->nick_name}} sẽ không
                                           thể đăng nhập vào hệ thống.</p>
                                       </div>
                                       <div class="p-2">
 
-                                        <a href="{{url('admin/user-management/delete')." /".$item->user_id}}">
+                                        <a href="{{url('admin/user-management/delete')."/".$item->user_id}}">
                                           <button type="button" class="btn btn-secondary float-right"
                                             data-dismiss="modal">Hủy bỏ</button>
                                         </a>
-                                        <a href="{{url('admin/user-management/delete')." /".$item->id}}">
+                                        <a href="{{url('admin/user-management/delete')."/".$item->user_id}}">
                                           <button type="button" class="btn btn-danger float-right mr-2">
                                             Đồng ý
                                           </button>

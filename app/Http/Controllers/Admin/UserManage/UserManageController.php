@@ -55,6 +55,8 @@ class UserManageController extends Controller
                     'GetUsers'=>$GetUsers,
                 ]
             );
+        }else{
+           return $this->ListUser();
         }
     }
     

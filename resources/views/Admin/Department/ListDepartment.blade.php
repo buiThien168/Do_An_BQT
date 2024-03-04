@@ -36,7 +36,7 @@
                                   <a href="{{url('admin/department-manager/add')}}">
                                     <div class="btn btn-success mr-2" style="width: 120px;">Thêm bộ phận</div>
                                   </a>
-                                  <input type="text" class="form-control" placeholder="Name department" name="keyword">
+                                  <input type="text" class="form-control" placeholder="Name" name="keyword">
                                   <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                                 </div>
                               </form>

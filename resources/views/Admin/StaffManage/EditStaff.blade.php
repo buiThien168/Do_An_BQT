@@ -60,7 +60,7 @@
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Ngày sinh</label>
-                        <input type="date" value="{{\Carbon\Carbon::parse($getStaff->date_of_birth)->setTimezone('America/Los_Angeles')->format('Y-m-d')}}" name="date_of_birth" class="form-control mr-2" autocomplete="off" >
+                        <input type="date" value="{{\Carbon\Carbon::parse($getStaff->date_of_birth)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" name="date_of_birth" class="form-control mr-2" autocomplete="off" >
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Nơi sinh</label>
@@ -79,7 +79,7 @@
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">ngày hộ chiếu</label>
-                        <input type="date" value="{{\Carbon\Carbon::parse($getStaff->date_range)->setTimezone('America/Los_Angeles')->format('Y-m-d')}}" name="date_range" class="form-control mr-2" autocomplete="off" >
+                        <input type="date" value="{{\Carbon\Carbon::parse($getStaff->date_range)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" name="date_range" class="form-control mr-2" autocomplete="off" >
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Cơ quan cấp hộ chiếu</label>

@@ -37,14 +37,14 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{id}', [StaffManageController::class, 'PostEditStaff']);
             Route::get('delete/{id}', [StaffManageController::class, 'DeleteStaff']);
         });
-         // oki
+         // quản lí tài khoản
         Route::prefix('account-management')->group(function () {
             Route::get('/', [UserManageController::class, 'ListUser']);
             Route::get('detail/{id}', [UserManageController::class, 'StaffDetail']);
             Route::get('lock-mine-employee/{id}', [UserManageController::class, 'BlockUnBlockUser']);
-            Route::get('search', [UserManageController::class, 'SearchUser']);
+            Route::get('search', [UserManageController::class, 'SearchUser'])->name('account-management-search');
         });
-        // oki
+        // quản lí nhân sự
         Route::prefix('department-manager')->group(function () {
             Route::get('/', [DepartmentController::class, 'ListDepartment']); 
             Route::get('/add', [DepartmentController::class, 'AddDepartment']); 
