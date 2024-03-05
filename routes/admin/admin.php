@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
             Route::get('lock-mine-employee/{id}', [UserManageController::class, 'BlockUnBlockUser']);
             Route::get('search', [UserManageController::class, 'SearchUser'])->name('account-management-search');
         });
-        // quản lí nhân sự
+        // quản lí bộ phận
         Route::prefix('department-manager')->group(function () {
             Route::get('/', [DepartmentController::class, 'ListDepartment']); 
             Route::get('/add', [DepartmentController::class, 'AddDepartment']); 
@@ -54,7 +54,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [DepartmentController::class, 'PostEditDepartment']);
             Route::get('/see-employee/{id}', [DepartmentController::class, 'ListStaff']);          
         });
-         // oki
+         // quản lí chức vụ
         Route::prefix('position-management')->group(function () {
             Route::get('/', [PositionController::class, 'ListPosition']); 
             Route::get('/add', [PositionController::class, 'AddPosition']); 
@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [PositionController::class, 'PostEditPosition']); 
             Route::get('/see-employee/{id}', [PositionController::class, 'ListStaff']);         
         });
-         // oki
+         // quản lí trình độ chuyên môn
         Route::prefix('level-management')->group(function () {
             Route::get('/', [LevelController::class, 'ListLevel']); 
             Route::get('/add', [LevelController::class, 'AddLevel']); 
@@ -74,7 +74,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [LevelController::class, 'PostEditLevel']);  
             Route::get('/see-employee/{id}', [LevelController::class, 'ListStaff']);           
         });
-          // oki
+          // chuyên môn hóa
         Route::prefix('professional-management')->group(function () {
             Route::get('/', [SpecializeController::class, 'ListSpecialize']); 
             Route::get('/add', [SpecializeController::class, 'AddSpecialize']); 
@@ -84,7 +84,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [SpecializeController::class, 'PostEditSpecialize']);  
             Route::get('/see-employee/{id}', [SpecializeController::class, 'ListStaff']);        
         });
-        // oki
+        // quản lí loại nhân viên
         Route::prefix('manage-employee-type')->group(function () {
             Route::get('/', [TypeStaffController::class, 'ListTypeStaff']); 
             Route::get('/add', [TypeStaffController::class, 'AddTypeStaff']); 
@@ -129,7 +129,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [ChangePasswordController::class, 'ChangePassword']); 
             Route::post('/', [ChangePasswordController::class, 'PostChangePassword']);         
         });
-        // oki
+        // quản lí công việc
         Route::prefix('workflow-management')->group(function () {
             Route::get('/', [WorkController::class, 'ListWork']);
             Route::get('/add', [WorkController::class, 'AddWork']); 

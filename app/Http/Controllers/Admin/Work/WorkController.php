@@ -37,7 +37,6 @@ class WorkController extends Controller
         return view('Admin.Work.EditWork',['getWork'=>$getWork,'id'=>$id]);
     }
     public function PostEditWork($id,Request $request){
-       
         $validate = $request->validate([
             'work_name' => 'required',
             'note' => 'required',
@@ -47,7 +46,7 @@ class WorkController extends Controller
         $getWork = $this->WorkService->getWork($id);
         // $request->user_id=$getWork->user_id;
         if(isset($request->email_notification)){
-            $this->WorkService->sendMailWorks($getWork->user_id);
+            $this->WorkService->sendMailWorks($getWork->user_id,$request);
             $this->WorkService->PostEditWork($id,$request);
             return redirect('admin/workflow-management');
         }else{

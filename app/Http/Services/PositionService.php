@@ -50,8 +50,7 @@ class PositionService
     {
         $GetPositions = Position::where('deleted', 0)->orderBy('id', 'DESC');
         if (isset($request->keyword)) {
-            $GetPositions = $GetPositions
-                ->where('name_position', $request->keyword);
+            $GetPositions = $GetPositions->where('name_position','like', "%$request->keyword%");
         }
         $GetPositions = $GetPositions->paginate(15);
         return $GetPositions;

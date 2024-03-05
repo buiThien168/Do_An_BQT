@@ -14,7 +14,7 @@ class TypeStaffService
         $GetTypeStaffs = Employee_type::where('deleted', 0)->orderBy('id', 'DESC');
         if (isset($request->keyword)) {
             $GetTypeStaffs = $GetTypeStaffs
-                ->where('name', $request->keyword);
+                ->where('name','like', "%$request->keyword%");
         }
         $GetTypeStaffs = $GetTypeStaffs->paginate(15);
         return $GetTypeStaffs;

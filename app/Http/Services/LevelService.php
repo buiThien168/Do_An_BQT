@@ -19,7 +19,7 @@ class LevelService
 
         if (isset($request->keyword)) {
             $GetLevels = $GetLevels
-                ->where('qualification_name', $request->keyword);
+                ->where('qualification_name','like', "%$request->keyword%");
         }
         $GetLevels = $GetLevels->paginate(15);
         return $GetLevels;

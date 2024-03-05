@@ -71,7 +71,7 @@
                                 {{$item->work_name}}
                               </td>
                               <td>
-                               From {{\Carbon\Carbon::parse($item->from)->format('d/m/Y')}} To {{\Carbon\Carbon::parse($item->to)->format('d/m/Y')}}
+                               From {{\Carbon\Carbon::parse($item->from)->setTimezone('Asia/Ho_Chi_Minh')->format('d-m-Y')}} To {{\Carbon\Carbon::parse($item->to)->setTimezone('Asia/Ho_Chi_Minh')->format('d-m-Y')}}
                               </td>
                               <td>
                                @if($item->status == 0)

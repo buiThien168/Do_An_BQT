@@ -14,7 +14,7 @@ class SpecializeService
             ->orderBy('id', 'DESC');
         if (isset($request->keyword)) {
             $GetSpecializes = $GetSpecializes
-                ->where('name_specializes', $request->keyword);
+                ->where('name_specializes','like', "%$request->keyword%");
         }
         $GetSpecializes = $GetSpecializes->paginate(15);
         return $GetSpecializes;

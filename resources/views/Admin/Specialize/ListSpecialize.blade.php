@@ -114,7 +114,7 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Bạn đồng ý Xóa Chuyên ngành {{$item->name_specializes}}?</p>
+                                 <p>Bạn đồng ý Xóa Chuyên môn {{$item->name_specializes}}?</p>
                                </div>
                                <div class="p-2">
                                  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>

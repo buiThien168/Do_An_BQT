@@ -26,9 +26,8 @@ class WorkService
         if (isset($request->keyword)) {
             $GetWork = $GetWork
                 ->where('users.phone', $request->keyword)
-                ->orWhere('user_infomations.full_name', $request->keyword)
-                ->where('works.deleted', 0)
-                ->orWhere('user_infomations.id_number', $request->keyword)
+                ->orWhere('user_infomations.full_name','like', "%$request->keyword%")
+                ->orWhere('user_infomations.positions','like', "%$request->keyword%")
                 ->where('works.deleted', 0);
         }
         $GetWork = $GetWork->paginate(15);
@@ -72,11 +71,11 @@ class WorkService
                 ->setUsername($getEmailConfig->mail_username)->setPassword($getEmailConfig->mail_password)->setEncryption($getEmailConfig->mail_encryption);
             $mailer = new \Swift_Mailer($transport);
             //thiết lập Title, Content mail gửi
-            $message = (new \Swift_Message($getEmailTemplate->template_title))
+            $message = (new \Swift_Message($request->work_name))
                 ->setFrom($getEmailConfig->mail_username)
                 ->setTo($getEmailUser->email)
                 ->addPart(
-                    $getEmailTemplate->template_content,
+                    $request->note,
                     'text/html'
                 );
             $mailer->send($message);
@@ -91,7 +90,7 @@ class WorkService
         $getWork = Work::where('id',$id)->first();
         return $getWork;
     }
-    public function sendMailWorks($id){
+    public function sendMailWorks($id,$request){
         $getEmailUser = User_infomation::where('user_id',$id)->first();
         $getEmailTemplate = Admin_mail_template::where('id', '=', 2)->first();
         $getEmailConfig = Admin_mail_config::where('id', '=', 1)->first();
@@ -101,11 +100,11 @@ class WorkService
             ->setUsername($getEmailConfig->mail_username)->setPassword($getEmailConfig->mail_password)->setEncryption($getEmailConfig->mail_encryption);
             $mailer = new \Swift_Mailer($transport);
             //thiết lập Title, Content mail gửi
-            $message = (new \Swift_Message($getEmailTemplate->template_title))
+            $message = (new \Swift_Message($request->work_name))
             ->setFrom($getEmailConfig->mail_username)
             ->setTo($getEmailUser->email)
             ->addPart(
-              $getEmailTemplate->template_content,
+              $request->note,
               'text/html'
           );
             $mailer->send($message);
