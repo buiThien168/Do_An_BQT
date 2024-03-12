@@ -31,11 +31,11 @@
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Từ</label>
-                        <input type="date" value="{{\Carbon\Carbon::parse($getWork->from)->setTimezone('America/Los_Angeles')->format('Y-m-d')}}" name="from" class="form-control mr-2" autocomplete="off" required>
+                        <input type="date" value="{{\Carbon\Carbon::parse($getWork->from)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" name="from" class="form-control mr-2" autocomplete="off" required>
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Đến</label>
-                        <input type="date" value="{{\Carbon\Carbon::parse($getWork->to)->setTimezone('America/Los_Angeles')->format('Y-m-d')}}" name="to" class="form-control mr-2" autocomplete="off" required>
+                        <input type="date" value="{{\Carbon\Carbon::parse($getWork->to)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" name="to" class="form-control mr-2" autocomplete="off" required>
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2 pt-4">
                         <div class="form-check">

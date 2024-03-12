@@ -63,13 +63,8 @@ class TypeStaffService
         ->orderBy('id', 'DESC');
         if(isset($request->keyword)){
             $GetListStaffs=$GetListStaffs
-            ->where('user_id',$request->keyword)
-            ->orWhere('id_number',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null)
-            ->orWhere('full_name',$request->keyword)
-            ->where('rooms',$id)
-            ->where('full_name','!=',null);
+            ->Where('nick_name','like','%'.$request->keyword.'%')
+            ->where('employee_type',$id);
         };
         $GetListStaffs=$GetListStaffs->paginate(15);
         return $GetListStaffs;

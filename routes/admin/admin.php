@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'checkadmin'], function () {
         Route::get('log-out', [AccountController::class, 'Logout']);
-        // quản lí tài khoản
+        // ===  quản lí tài khoản
         Route::prefix('user-management')->group(function () { 
             Route::get('/', [StaffManageController::class, 'ListStaff']);
             Route::get('detail/{id}', [StaffManageController::class, 'StaffDetail']);

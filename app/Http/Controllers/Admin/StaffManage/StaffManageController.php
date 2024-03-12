@@ -68,6 +68,9 @@ class StaffManageController extends Controller
             if (isset($request->password)) {
                 $this->UserService->UpdatePasswordService($request,$id);
             }
+            if(isset($request->phone)){
+                $this->UserService->UpdatePhoneService($request,$id);
+            }
             $this->UserService->EditStaffService($id,$request);
             DB::commit();
             return redirect('admin/user-management');
@@ -112,7 +115,7 @@ class StaffManageController extends Controller
             'date_of_birth' => 'required|date',
             'place_of_birth' => 'required|max:255',
             'marital_status' => 'required|integer',
-            'id_number' => 'required|integer',
+            'id_number' => 'nullable',
             'date_range' => 'nullable|date',
             'passport_issuer' => 'nullable|max:255',
             'hometown' => 'nullable|max:255',

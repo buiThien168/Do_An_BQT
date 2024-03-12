@@ -42,11 +42,11 @@
                               <table class="table table-hover table-striped">
                                 <thead>
                                   <th width="3%">#</th>
-                                  <th width="4%">Mã số</th>
+                                  <th width="5%">Mã số</th>
 
-                                  <th width="12%">Tên</th>
+                                  <th width="8%">Tài khoản</th>
                                   <th width="8%">Điện thoại</th>
-                                  <th width="10%">Email</th>
+                                  <th width="12%">Email</th>
                                   <th width="10%">Kiểu tài khoản</th>
                                   <th width="10%">Trạng thái</th>
                                   <th width="17%">Hoạt động</th>

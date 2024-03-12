@@ -109,13 +109,13 @@
                             <table class="table table-hover table-striped">
                               <thead>
                                 <th width="3%">#</th>
-                                <th width="4%">Mã số</th>
+                                <th width="5%">Mã số</th>
                                 <th width="5%">Avatar</th>
                                 <th width="15%">Họ tên</th>
                                 <th width="6%">Giới tính</th>
-                                <th width="6%">Ngày sinh</th>
-                                <th width="15%">Nơi sinh</th>
-                                <th width="6%">ID number</th>
+                                <th width="10%">Ngày sinh</th>
+                                <th width="10%">Nơi sinh</th>
+                                <th width="10%">Chức vụ</th>
                                 <th width="18%">Hoạt động</th>
                               </thead>
                               <tbody>
@@ -143,7 +143,7 @@
                                     {{\Carbon\Carbon::parse($item->date_of_birth)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}
                                   </td>
                                   <td>{{$item->place_of_birth}}</td>
-                                  <td>{{$item->id_number}}</td>
+                                  <td>{{$item->position}}</td>
                                   <td>
                                     <a href="{{url('admin/user-management/detail')."/".$item->user_id}}">
                                       <button class="btn bg mr-2 text-white">Xem chi tiết</button>

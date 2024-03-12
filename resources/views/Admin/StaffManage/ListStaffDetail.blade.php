@@ -48,7 +48,7 @@
                               <th width="3%">#</th>
                               <th width="4%">Mã số</th>
                               <th width="5%">Hình</th>
-                              <th width="15%">Tên</th>
+                              <th width="15%">Name</th>
                               <th width="6%">Giới tính</th>
                               <th width="6%">Ngày sinh</th>
                               <th width="15%">Nơi sinh</th>
@@ -71,7 +71,7 @@
                                 @endif
                               </td>
                               <td>
-                                {{$item->full_name}}
+                                {{$item->nick_name}}
                               </td>
                               <td>
                                 @if($item->sex == 0)

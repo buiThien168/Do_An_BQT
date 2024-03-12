@@ -61,16 +61,11 @@ class DepartmentsService
         $ListStaffDepartment = User_infomation::where('rooms', $id)
             ->where('full_name', '!=', null)
             ->orderBy('id', 'DESC');
-
         if (isset($request->keyword)) {
             $ListStaffDepartment = $ListStaffDepartment
-                ->where('user_id', $request->keyword)
-                ->orWhere('id_number', $request->keyword)
-                ->where('rooms', $id)
-                ->where('full_name', '!=', null)
-                ->orWhere('full_name', $request->keyword)
-                ->where('rooms', $id)
-                ->where('full_name', '!=', null);
+                ->Where('id_number', $request->keyword)
+                ->orWhere('nick_name','like', '%'.$request->keyword.'%')
+                ->where('rooms', $id);
         };
         $ListStaffDepartment =  $ListStaffDepartment->paginate(15);
         return $ListStaffDepartment;

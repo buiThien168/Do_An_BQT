@@ -52,7 +52,7 @@ $("#form-edit-steff").validate({
             maxlength: 255,
         },
         id_number:{
-            required : true,
+            required : false,
             digits:true,
             maxlength: 20,
         },
@@ -194,7 +194,7 @@ $("#form-add-steff").validate({
             maxlength: 255,
         },
         id_number:{
-            required : true,
+            required : false,
             digits:true,
             maxlength: 20,
         },

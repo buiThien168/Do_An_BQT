@@ -56,14 +56,13 @@ class UserService
     }
     public function ListStaffService($request)
     {
-        $GetListStaffs = User_infomation::where('full_name', '!=', null)
-            ->where('is_deleted', 0)
-            ->orderBy('id', 'DESC');
+        $GetListStaffs = User_infomation::leftJoin('positions', 'positions.id', '=', 'user_infomations.positions')
+        ->select('user_infomations.*','positions.name_position as position')->where('is_deleted', 0)->orderBy('id', 'DESC');
         if (isset($request->keyword)) {
             $GetListStaffs->where(function ($query) use ($request) {
                 $query->where('user_id', $request->keyword)
                     ->orWhere('id_number', $request->keyword)
-                    ->orWhere('full_name', 'LIKE', "%{$request->keyword}%")
+                    ->orWhere('nick_name', 'LIKE', "%{$request->keyword}%")
                     ->where('full_name', '!=', null)
                     ->where('is_deleted', 0);
             });
@@ -105,7 +104,7 @@ class UserService
             'sex' => $request->sex,
             'date_of_birth' => date(strtotime($request->date_of_birth)),
             'place_of_birth' => $request->place_of_birth,
-            'marital_status' => $request->maritalstatus,
+            'marital_status' => $request->marital_status,
             'id_number' => $request->id_number,
             'date_range' => $date_ranges,
             'passport_issuer' => $request->passport_issuer,
@@ -137,7 +136,7 @@ class UserService
     }
     public function UpdateImageStaffService($id, $images)
     {
-        $images = User_infomation::where('id', $id)->update([
+        $images = User_infomation::where('user_id', $id)->update([
             'image' => $images
         ]);
         return $images;
@@ -148,6 +147,13 @@ class UserService
             'password' => md5($request->password)
         ]);
         return $password;
+    }
+    public function UpdatePhoneService($request, $id)
+    {
+        $phone = User::where('id', $id)->update([
+            'phone' => $request->phone
+        ]);
+        return $phone;
     }
     public function ListUserServices()
     {
