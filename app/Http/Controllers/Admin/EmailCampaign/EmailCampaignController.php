@@ -11,6 +11,7 @@ use App\Models\shop;
 use App\Models\products;
 use Illuminate\Support\Facades\Redirect;
 use App\Jobs\SendEmailCampaignNow;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class EmailCampaignController extends Controller
@@ -29,15 +30,31 @@ class EmailCampaignController extends Controller
     public function PostAddEmailCampaign(Request $request)
     {
         if (isset($request->send_email_all)) {
-            $this->EmailService->PostAddEmailCampaign($request);
-            SendEmailCampaignNow::dispatch(1);
+            try{
+                DB::beginTransaction();
+                $this->EmailService->PostAddEmailCampaignAllUser($request);
+                $this->EmailService->sendMail($request);
+                DB::commit();
+                return redirect()->back()->with('msg', 'Gửi thư thành công');
+            }catch(Exception $e){
+                DB::rollBack();
+                return redirect()->back()->with('msg', 'Error');
+            }
+          
         } else {
-            $id = $this->EmailService->PostAddEmailCampaigns($request);
-            SendEmailCampaignNow::dispatch(1);
+            try{
+                DB::beginTransaction();
+                $this->EmailService->sendMail($request);
+                $this->EmailService->PostAddEmailCampaign($request);
+                DB::commit();
+                return redirect()->back()->with('msg', 'Gửi thư thành công');
+            }catch(Exception $e){
+                DB::rollBack();
+                return redirect()->back()->with('msg', 'Error');
+            }
         }
-        return redirect()->back()->with('msg', 'Gửi thư thành công');
+       
     }
-
     // public function ListEmailCampaign(){
     //     $getEmailCampaign = DB::table('admin_mail_campaign')
     //     ->leftJoin('admin_mail_template','admin_mail_template.id','admin_mail_campaign.mail_template_id')

@@ -94,7 +94,41 @@ class EmailService
         $template =  Admin_mail_template::orderBy('id', 'desc')->get();
         return $template;
     }
-    public function PostAddEmailCampaign($request)
+    public function sendMail($request)
+    {
+        $id_template = $request->admin_template_id;
+        $getEmailTemplate = Admin_mail_template::where('id', '=', $id_template)->first();
+        $getEmailConfig = Admin_mail_config::where('id', '=', 1)->first();
+        $getAllUser = User::leftJoin('user_infomations', 'user_infomations.user_id', 'users.id')
+        ->where('users.role', 2)
+        ->select('users.id', 'user_infomations.email')->get();
+        if($request->send_email_all){
+            $userAll = $getAllUser;
+        }else{
+            $userAll = $request->list_users;
+        }
+        foreach ($userAll as $value) {
+            dd($value);
+            $getEmailUser = User_infomation::where('user_id', $value)->first();
+            try {
+                //Bỏ thông tin mail config vào swift smtp
+                $transport = (new \Swift_SmtpTransport($getEmailConfig->mail_host, $getEmailConfig->mail_port))
+                    ->setUsername($getEmailConfig->mail_username)->setPassword($getEmailConfig->mail_password)->setEncryption($getEmailConfig->mail_encryption);
+                $mailer = new \Swift_Mailer($transport);
+                //thiết lập Title, Content mail gửi
+                $message = (new \Swift_Message($getEmailTemplate->template_title))
+                    ->setFrom($getEmailConfig->mail_username)
+                    ->setTo($getEmailUser->email)
+                    ->addPart(
+                        $getEmailTemplate->template_content,
+                        'text/html'
+                    );
+                $mailer->send($message);
+            } catch (\Swift_TransportException $transportExp) {
+            }
+        }
+    }
+    public function PostAddEmailCampaignAllUser($request)
     {
         $getAllUser = User::leftJoin('user_infomations', 'user_infomations.user_id', 'users.id')
             ->where('users.role', 2)
@@ -110,8 +144,25 @@ class EmailService
                 'created_by' => Auth::user()->id
             ]);
         }
+        return $insertMailSend;
     }
-    public function DeleteEmailTemplate($id){
+    public function PostAddEmailCampaign($request)
+    {
+        foreach ($request->list_users as $value) {
+            $getIdUserMail = User_infomation::where('user_id', '=', $value)->first();
+            $insertMailSend = Admin_mail_campaign_detail::insert([
+                'admin_template_id' => $request->admin_template_id,
+                'admin_mail_config_id' => 1,
+                'user_id' => $getIdUserMail->user_id,
+                'user_email' => $getIdUserMail->email,
+                'created_at' => time(),
+                'created_by' => Auth::user()->id
+            ]);
+        }
+        return $insertMailSend;
+    }
+    public function DeleteEmailTemplate($id)
+    {
         $DeleteEmailTemplate = Admin_mail_template::where('id', $id)->delete();
         return $DeleteEmailTemplate;
     }
