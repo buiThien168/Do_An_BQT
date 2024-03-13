@@ -47,6 +47,7 @@ class EmailService
                 ]
             );
         }
+        return $insertMailSend;
     }
     public function EditEmailTemplate($id)
     {

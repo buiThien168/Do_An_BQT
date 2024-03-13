@@ -32,10 +32,10 @@ class EmailCampaignController extends Controller
             $this->EmailService->PostAddEmailCampaign($request);
             SendEmailCampaignNow::dispatch(1);
         } else {
-            $this->EmailService->PostAddEmailCampaigns($request);
+            $id = $this->EmailService->PostAddEmailCampaigns($request);
             SendEmailCampaignNow::dispatch(1);
         }
-        return redirect()->back()->with('msg', 'Send mail Success');
+        return redirect()->back()->with('msg', 'Gửi thư thành công');
     }
 
     // public function ListEmailCampaign(){
@@ -66,9 +66,9 @@ class EmailCampaignController extends Controller
             $result = $mailer->send($message);
 
             $this->EmailService->PostEditEmailConfig($request);
-            return redirect()->back()->with('msg', 'Change email information successfully');
+            return redirect()->back()->with('msg', 'Thay đổi thông tin email thành công');
         } catch (\Swift_TransportException $transportExp) {
-            return redirect()->back()->with('msg', 'The setting information is incorrect, please check again');
+            return redirect()->back()->with('msg', 'Thông tin cài đặt không chính xác, vui lòng kiểm tra lại');
         }
     }
     public function EmailConfig()

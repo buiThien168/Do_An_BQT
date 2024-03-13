@@ -22,13 +22,13 @@ class BonusService
             ->leftJoin('user_infomations', 'user_infomations.user_id', '=', 'users.id')
             ->leftJoin('positions', 'positions.id', '=', 'user_infomations.positions')
             ->leftJoin('levels', 'levels.id', '=', 'user_infomations.level')
-            ->select('user_infomations.full_name', 'positions.name_position', 'bonuses.*')
+            ->select('user_infomations.nick_name', 'positions.name_position', 'bonuses.*')
             ->orderBy('bonuses.id', 'DESC')
             ->where('bonuses.deleted', 0);
         if (isset($request->keyword)) {
             $getBonus = $getBonus->where(function ($query) use ($request) {
                 $query->where('users.phone', $request->keyword)
-                    ->orWhere('user_infomations.full_name', $request->keyword)
+                    ->orWhere('user_infomations.nick_name','like','%'.$request->keyword.'%')
                     ->orWhere('user_infomations.id_number', $request->keyword);
             });
         }

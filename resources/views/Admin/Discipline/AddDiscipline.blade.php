@@ -26,17 +26,17 @@
                         <label class="fz85">Chọn người dùng</label>
                         <select name="user_id" class="form-control" id="exampleFormControlSelect1">
                           @foreach($getUsers as $item)
-                          <option value="{{$item->user_id}}">{{$item->full_name}}</option>
+                          <option value="{{$item->user_id}}">{{$item->nick_name}}</option>
                           @endforeach
 
                         </select>
                       </div>  
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Chi tiết</label>
+                        <label class="fz85">Nội dung</label>
                         <input type="text" name="note" class="form-control mr-2" autocomplete="off" required>
                       </div> 
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Giá trị</label>
+                        <label class="fz85">Tiền phạt</label>
                         <input type="number" name="value" class="form-control mr-2" autocomplete="off" required>
                       </div> 
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">

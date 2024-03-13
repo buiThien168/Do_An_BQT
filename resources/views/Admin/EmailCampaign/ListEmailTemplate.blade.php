@@ -84,7 +84,7 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                   <p>Bạn đồng ý Xóa các mẫu Email này?</p>
+                                   <p>Bạn đồng ý Xóa mẫu Email này?</p>
                                  </div>
                                  <div class="p-2">
                                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>

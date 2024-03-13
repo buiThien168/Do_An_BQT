@@ -26,7 +26,7 @@
                       <input type="text" name="note" class="form-control mr-2" autocomplete="off"  value="{{ $getDiscipline != null ? $getDiscipline->note : ""}}" required>
                     </div> 
                     <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                      <label class="fz85">Mức độ kỷ luật</label>
+                      <label class="fz85">Tiền phạt</label>
                       <input type="text" name="value" class="form-control mr-2" value="{{ $getDiscipline != null ? $getDiscipline->value : ""}}" autocomplete="off" required>
                     </div>  
 

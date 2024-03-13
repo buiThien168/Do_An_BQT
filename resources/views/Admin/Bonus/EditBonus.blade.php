@@ -17,22 +17,22 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Update Bonus</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Sửa khen thưởng</h5>
                    <form  method="post" action="{{url('admin/bonus/edit')."/".$id}}">
                     @csrf
                     <div class="row m-0">
                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                      <label class="fz85">Detail</label>
+                      <label class="fz85">Nội dung</label>
                       <input type="text" name="note" class="form-control mr-2" autocomplete="off"  value="{{ $getBonus != null ? $getBonus->note : ""}}" required>
                     </div> 
                     <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                      <label class="fz85">Bonus Level</label>
+                      <label class="fz85">Tiền thưởng</label>
                       <input type="text" name="value" class="form-control mr-2" value="{{ $getBonus != null ? $getBonus->value : ""}}" autocomplete="off" required>
                     </div>  
 
 
                     <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                      <button class="btn bg text-white">Update Bonus</button>
+                      <button class="btn bg text-white">Cập nhật</button>
                     </div>
                   </div>
                 </form>

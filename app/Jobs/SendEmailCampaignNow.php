@@ -38,7 +38,6 @@ class SendEmailCampaignNow implements ShouldQueue
      * @return void
      */
     public function handle(){
-
         $getMailSend = Admin_mail_campaign_detail::where('receipt_status',0)->get();
         $getEmailConfig = Admin_mail_config::where('id',1)->first();
         foreach ($getMailSend as $items) {

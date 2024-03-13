@@ -61,7 +61,7 @@
                               <td>{{$idup++}}</td>
                               <td>KT{{$item->id}}</td>
                               <td>
-                                {{$item->full_name}}
+                                {{$item->nick_name}}
                               </td>
                               <td>
                                 {{$item->name_position}}
@@ -70,7 +70,7 @@
                                 {{$item->note}}
                               </td>
                               <td>
-                                {{number_format($item->value)}}$ 
+                                {{number_format($item->value)}}đ 
                               </td>
                               <td>
                                {{\Carbon\Carbon::parse($item->created)->format('d/m/Y')}}
@@ -87,13 +87,13 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Xóa loại nhân viên</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Xóa kỷ luật</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Bạn có đồng ý Xóa kỷ luật?</p>
+                                 <p>Bạn có đồng ý Xóa kỷ luật <span class="text-danger">{{$item->nick_name}}</span>?</p>
                                </div>
                                <div class="p-2">
                                  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
