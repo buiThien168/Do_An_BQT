@@ -32,10 +32,7 @@
                          <h5 class="card-title float-left mb-2 tx">Quản lý danh tính</h5>
                          <div class="float-right"> 
                           <form method="get">    
-                            <div class="form-group mb-3" style="display: flex"> 
-                              <a href="{{url('admin/user-management/add-employees')}}">
-                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm người dùng</div>      
-                              </a>                
+                            <div class="form-group mb-3" style="display: flex">
                               <input type="text" class="form-control"  placeholder="Enter ID / Code / Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                             </div>
@@ -67,7 +64,7 @@
                                 @endif
                               </td>
                               <td>
-                                {{$item->full_name}}
+                                {{$item->nick_name}}
                               </td>
                               
                               

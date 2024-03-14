@@ -47,7 +47,7 @@
                               <th width="15%">Tên</th>
                                <th width="15%">Chức vụ</th>
                               <th width="15%">Tiền công</th>
-                              <th width="15%">Lương tạm thời</th>
+                              <th width="15%">Công</th>
                               <th width="20%">Hoạt động</th>
                             </thead>
                             <tbody>
@@ -69,7 +69,7 @@
                               <td>
                                @foreach($checktime as $item2)
                               @if($item->id == $item2['id'])
-                              {{number_format($item2['salary'])}}$
+                              {{$item2['salary']}} /công
                               @endif
                               @endforeach
                               </td>

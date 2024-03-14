@@ -31,7 +31,7 @@ class FaceService
             $GetListStaffs=$GetListStaffs
             ->where('user_id',$request->keyword)
             ->orWhere('id_number',$request->keyword)
-            ->orWhere('full_name',$request->keyword);
+            ->orWhere('nick_name','like','%'.$request->keyword.'%');
         }
         $GetListStaffs=$GetListStaffs->paginate(15);
         return $GetListStaffs;

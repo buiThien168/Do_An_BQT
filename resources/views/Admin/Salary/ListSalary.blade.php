@@ -29,11 +29,10 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách lương</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách lương cơ bản</h5>
                          <div class="float-right"> 
                           <form method="get">    
-                            <div class="form-group mb-3" style="display: flex"> 
-                                             
+                            <div class="form-group mb-3" style="display: flex">               
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                             </div>
@@ -59,7 +58,7 @@
                               <td>{{$idup++}}</td>
                               <td>L{{$item->id}}</td>
                               <td>
-                                {{$item->full_name}}
+                                {{$item->nick_name}}
                               </td>
                               <td>
                                 

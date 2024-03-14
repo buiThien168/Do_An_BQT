@@ -94,9 +94,9 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [TypeStaffController::class, 'PostEditTypeStaff']);
             Route::get('/see-employee/{id}', [TypeStaffController::class, 'ListStaff']);          
         });
-        // oki
+        // quản lí tiền lương
         Route::prefix('salary-management')->group(function () {
-            Route::get('/', [SalaryController::class, 'ListSalary']); 
+            Route::get('/', [SalaryController::class, 'ListSalary']);   
             Route::get('/edit/{id}', [SalaryController::class, 'EditSalary']); 
             Route::post('/edit/{id}', [SalaryController::class, 'PostEditSalary']);
             Route::get('payroll', [SalaryController::class, 'ListSalaryStaff']);  
@@ -139,7 +139,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete/{id}', [WorkController::class, 'DeleteWork']);  
             Route::get('/job-details/{id}', [WorkController::class, 'WorkDetail']);      
         });
-
+         // quản lí email
         Route::prefix('email-marketing')->group(function () {
             Route::prefix('email-template')->group(function () {
                 Route::get('/', [EmailCampaignController::class, 'ListEmailTemplate']);
@@ -159,7 +159,7 @@ Route::prefix('admin')->group(function () {
                 Route::post('add', [EmailCampaignController::class, 'PostAddEmailCampaign']);
             });   
         }); 
-        // oki
+        // quản lí danh tính
         Route::prefix('identity-management')->group(function () {
             Route::get('/', [FaceController::class, 'ListFaceStaff']);
             Route::get('/view-data/{id}', [FaceController::class, 'FaceStaffDetail']);

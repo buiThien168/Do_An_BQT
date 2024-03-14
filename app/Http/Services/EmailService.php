@@ -104,12 +104,12 @@ class EmailService
         ->select('users.id', 'user_infomations.email')->get();
         if($request->send_email_all){
             $userAll = $getAllUser;
+          
         }else{
             $userAll = $request->list_users;
         }
         foreach ($userAll as $value) {
-            dd($value);
-            $getEmailUser = User_infomation::where('user_id', $value)->first();
+            $getEmailUser = User_infomation::where('user_id', $value->id)->first();
             try {
                 //Bỏ thông tin mail config vào swift smtp
                 $transport = (new \Swift_SmtpTransport($getEmailConfig->mail_host, $getEmailConfig->mail_port))

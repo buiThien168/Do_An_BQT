@@ -61,9 +61,9 @@ class SalaryController extends Controller
             ]);
         }
     }
-
     public function ListSalaryStaff()
     {
+        // / 60 / 60 * $GetSalary->hourly_salary;
         $getStaff = $this->SalaryService->ListSalaryStaff();
         $checktime = array();
         for ($i = 0; $i < $getStaff->total(); $i++) {
@@ -72,7 +72,19 @@ class SalaryController extends Controller
             $total = 0;
             for ($j = 1; $j < count($GetTime); $j++) {
                 if ($GetTime[$j]->type == 1) {
-                    $total += ($GetTime[$j]->created_at->timestamp  - $GetTime[$j - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary;
+                    $timeDifference = $GetTime[$j]->created_at->timestamp - $GetTime[$j - 1]->created_at->timestamp;
+                    $hoursDifference = $timeDifference / (60 * 60);
+                    if ($hoursDifference >= 4) {
+                        $total += 1;
+                    } else {
+                        $total += 0.5;
+                    }
+
+                    // if(($GetTime[$j]->created_at->timestamp  - $GetTime[$j - 1]->created_at->timestamp)){
+                    //     $total += 1;
+                    // }else{
+                    //     $total += 0.5;
+                    // }
                 }
             }
             array_push($checktime, [

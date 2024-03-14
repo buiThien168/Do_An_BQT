@@ -45,7 +45,8 @@
                                                                     <th width="5%">Mã NV</th>
                                                                     <th width="10%">Tên</th>
                                                                     <th width="10%">Chức vụ</th>
-                                                                    <th width="15%">Lương cơ bản</th>
+                                                                    <th width="12%">Lương cơ bản</th>
+                                                                    <th width="8%">Số công</th>
                                                                     <th width="10%">Tiền thưởng</th>
                                                                     <th width="10%">Tiền Phạt</th>
                                                                     <th width="15%">Tổng</th>
@@ -70,6 +71,7 @@
                                                                             {{number_format($item->hourly_salary)}} VND
                                                                             @endif
                                                                         </td>
+                                                                        <td>30 / tháng</td>
                                                                         <td>
                                                                         {{$item->total_bonuses}} VND
                                                                         </td>

@@ -55,20 +55,6 @@ class EmailCampaignController extends Controller
         }
        
     }
-    // public function ListEmailCampaign(){
-    //     $getEmailCampaign = DB::table('admin_mail_campaign')
-    //     ->leftJoin('admin_mail_template','admin_mail_template.id','admin_mail_campaign.mail_template_id')
-    //     ->where('admin_mail_campaign.is_deleted',0)
-    //     ->select('admin_mail_campaign.*','admin_mail_template.template_title')
-    //     ->orderBy('admin_mail_campaign.id','desc')->paginate(20);
-
-    //     return view('Admin.EmailCampaign.ListEmailCampaign',
-    //         [
-    //             'getEmailCampaign'=>$getEmailCampaign,
-    //         ]
-    //     );
-    // }
-
 
     public function PostEditEmailConfig(Request $request)
     {

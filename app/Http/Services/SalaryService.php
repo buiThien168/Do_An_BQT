@@ -14,11 +14,11 @@ class SalaryService
     public function ListSalary($request)
     {
         $GetSalarys = User::leftJoin('salary', 'users.id', '=', 'salary.user_id')
-            ->leftJoin('user_infomations', 'users.id', '=', 'user_infomations.id')
+            ->leftJoin('user_infomations', 'users.id', '=', 'user_infomations.user_id')
             ->leftJoin('positions', 'user_infomations.positions', '=', 'positions.id')
             ->leftJoin('levels', 'user_infomations.level', '=', 'levels.id')
             ->select(
-                'user_infomations.full_name',
+                'user_infomations.nick_name',
                 'users.id',
                 'positions.name_position',
                 'salary.hourly_salary',
@@ -29,9 +29,7 @@ class SalaryService
             ->where('user_infomations.full_name', '!=', null);
         if (isset($request->keyword)) {
             $GetSalarys = $GetSalarys
-                ->where('users.phone', $request->keyword)
-                ->orWhere('user_infomations.full_name', $request->keyword)
-                ->orWhere('user_infomations.id_number', $request->keyword);
+                ->where('user_infomations.nick_name','like', '%'.$request->keyword.'%');
         }
         $GetSalarys = $GetSalarys->paginate(15);
         return $GetSalarys;
