@@ -40,14 +40,14 @@ class AccountController extends Controller
                     Auth::login($user,true);
                     return Redirect::to('/account-information');
                 }else{
-                   return redirect()->back()->with('msg', 'Your account is temporarily locked'); 
+                   return redirect()->back()->with('msg', 'Tài khoản của bạn đang bị khóa tạm thời'); 
                 }
                 
             }else{
-                return redirect()->back()->with('msg', 'Wrong account or password');
+                return redirect()->back()->with('msg', 'Mật khẩu hoặc tài khoản không chính xác');
             }
         }else{
-            return redirect()->back()->with('msg', 'Wrong account or password'); 
+            return redirect()->back()->with('msg', 'Mật khẩu hoặc tài khoản không chính xác'); 
         }  
 
  }

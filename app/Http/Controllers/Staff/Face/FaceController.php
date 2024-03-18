@@ -49,7 +49,7 @@ class FaceController extends Controller
         if ($checkHaveFace == null) {
             return view('Staff.RegisterFace.Index');
         } else {
-            return redirect('account-information');
+            return redirect('identity-management');
         }
     }
 
@@ -112,7 +112,7 @@ class FaceController extends Controller
                         'created_at' => time()
                     ]);
                     Session::put('first_name', $request->name);
-                    $time = $request->name . " - Hour out " . Carbon::now('Asia/Ho_Chi_Minh');
+                    $time = $request->name . " - Giờ ra " . Carbon::now('Asia/Ho_Chi_Minh');
                     echo $time;
                     sleep(1);
                     return;
@@ -125,13 +125,13 @@ class FaceController extends Controller
                     'created_at' => time()
                 ]);
                 Session::put('first_name', $request->name);
-                $time = $request->name . " - Hour in " . Carbon::now('Asia/Ho_Chi_Minh');
+                $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');
                 echo $time;
                 sleep(1);
                 return;
             }
         }else{
-            echo "Staff " . $request->name . " successfully identified, please invite the next person";
+            echo "Staff " . $request->name . "Đã xác định thành công, vui lòng mời người tiếp theo";
         }
         // create a new 
         // $getUser = User_infomation::where('full_name', $request->name)->first('user_id');

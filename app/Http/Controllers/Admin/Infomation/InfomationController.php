@@ -30,6 +30,6 @@ class InfomationController extends Controller
         ]);
 
         $this->InfomationService->PostEditInfomation($request);
-        return redirect()->back()->with('msg', 'Successful change of information');
+        return redirect()->back()->with('msg', 'Thay đổi thông tin thành công');
     }
 }

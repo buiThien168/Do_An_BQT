@@ -28,9 +28,9 @@ class ChangePasswordController extends Controller
         $CheckPassword = $this->InfoUserService->CheckPassword();
         if($passwordNew == $passwordNewRe && $passwordNow == $CheckPassword->password){
            $this->InfoUserService->PostChangePassword($passwordNew);
-            return redirect()->back()->with('msg', 'Change Password Successfully'); 
+            return redirect()->back()->with('msg', 'Đổi mật khẩu thành công'); 
         }else{
-            return redirect()->back()->with('msg', 'Old password is not correct');
+            return redirect()->back()->with('msg', 'Mật khẩu cũ không đúng');
         }
         
     }

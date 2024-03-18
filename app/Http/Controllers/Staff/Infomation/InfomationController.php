@@ -26,7 +26,7 @@ class InfomationController extends Controller
             'email'=>'required|email',
         ]);
         $this->InfoUserService->PostEditInfomation($request);
-        return redirect()->back()->with('msg', 'Successful change of information'); 
+        return redirect()->back()->with('msg', 'Thay đổi thông tin thành công'); 
     }
 
     

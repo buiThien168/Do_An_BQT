@@ -38,10 +38,10 @@ class AccountController extends Controller
                 Auth::login($user,true);
                 return Redirect::to('/admin/user-management');
             }else{
-                return redirect()->back()->with('msg', 'Wrong account or password');
+                return redirect()->back()->with('msg', 'Mật khẩu hoặc tài khoản không chính xác');
             }
         }else{
-             return redirect()->back()->with('msg', 'Wrong account or password'); 
+             return redirect()->back()->with('msg', 'Mật khẩu hoặc tài khoản không chính xác'); 
         }  
 
     }

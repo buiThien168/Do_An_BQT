@@ -52,7 +52,7 @@
                                 {{$item->note}}
                               </td>
                               <td>
-                                {{number_format($item->value)}}$ 
+                                {{number_format($item->value)}}đ 
                               </td>
                               <td>
                                {{\Carbon\Carbon::parse($item->created)->format('d/m/Y')}}

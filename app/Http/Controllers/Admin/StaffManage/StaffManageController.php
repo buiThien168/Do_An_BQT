@@ -152,7 +152,7 @@ class StaffManageController extends Controller
                     return redirect()->back()->with('msg', 'Error');
                 }
             } else {
-                return redirect()->back()->with('msg', 'Phone already exists');
+                return redirect()->back()->with('msg', 'Điện thoại đã tồn tại');
             }
         }
     }

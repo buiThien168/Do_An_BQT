@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Closure;
 use Illuminate\Http\Request;
