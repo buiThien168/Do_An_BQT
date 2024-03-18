@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\User_track;
-
+use Carbon\Carbon;
 class SalaryController extends Controller
 {
 
@@ -23,6 +23,7 @@ class SalaryController extends Controller
     public function ListSalaryStaffDetail($id)
     {
         $GetTime = User_track::where('user_id', $id)->get();
+        // $GetTime = User_track::where('user_id', $id)->latest()->orderBy('id', 'desc')->first();
         $GetSalary = Salary::where('user_id', $id)->first('hourly_salary');
         if ($GetSalary) {
             $countTime = 0;
@@ -34,7 +35,8 @@ class SalaryController extends Controller
                         'checkin' => $GetTime[$i - 1]->created_at,
                         'checkout' => $GetTime[$i]->created_at,
                         'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
-                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary
+                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary,
+                        'work_month' => $GetTime[$i]->work_month
                     ]);
                 }
             }
@@ -79,12 +81,6 @@ class SalaryController extends Controller
                     } else {
                         $total += 0.5;
                     }
-
-                    // if(($GetTime[$j]->created_at->timestamp  - $GetTime[$j - 1]->created_at->timestamp)){
-                    //     $total += 1;
-                    // }else{
-                    //     $total += 0.5;
-                    // }
                 }
             }
             array_push($checktime, [

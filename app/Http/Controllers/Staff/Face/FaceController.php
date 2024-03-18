@@ -96,7 +96,7 @@ class FaceController extends Controller
             if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
                 $checkTimestamp = $checkType->created_at->timestamp;
                 $currentTime = now()->timestamp;
-                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (5 * 60)) {
+                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (1 * 60)) {
                     Session::put('first_name', "da_hop_le_");
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
@@ -106,10 +106,17 @@ class FaceController extends Controller
                     return;
                 }else {
                     $type = 1;
+                    $work_month = 0;
+                    if (Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp > 4 * 3600)) {
+                        $work_month = 1;
+                    } else {
+                        $work_month = 2;
+                    }
                     User_track::insert([
                         'user_id' => $getUser->user_id,
                         'type' => $type,
-                        'created_at' => time()
+                        'created_at' => time(),
+                        'work_month' => $work_month
                     ]);
                     Session::put('first_name', $request->name);
                     $time = $request->name . " - Giờ ra " . Carbon::now('Asia/Ho_Chi_Minh');
@@ -122,7 +129,8 @@ class FaceController extends Controller
                 User_track::insert([
                     'user_id' => $getUser->user_id,
                     'type' => $type,
-                    'created_at' => time()
+                    'created_at' => time(),
+                    'work_month' => 0
                 ]);
                 Session::put('first_name', $request->name);
                 $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');

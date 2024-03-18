@@ -42,12 +42,10 @@
                         <div class="table-responsive">
                           <table class="table table-hover table-striped">
                             <thead>
-                              <th width="3%">#</th>
-                              <th width="4%">Mã số</th>
-                              <th width="15%">Tên</th>
-                               <th width="15%">Chức vụ</th>
-                              <th width="15%">Tiền công</th>
-                              <th width="15%">Công</th>
+                              <th width="5%">#</th>
+                              <th width="10%">Mã số</th>
+                              <th width="20%">Tên</th>
+                              <th width="20%">Chức vụ</th>
                               <th width="20%">Hoạt động</th>
                             </thead>
                             <tbody>
@@ -62,18 +60,6 @@
                               <td>
                                 {{$item->name_position}}
                              </td>
-                              <td>
-                               {{number_format($item->hourly_salary)}}$
-                             </td>
-
-                              <td>
-                               @foreach($checktime as $item2)
-                              @if($item->id == $item2['id'])
-                              {{$item2['salary']}} /công
-                              @endif
-                              @endforeach
-                              </td>
-                            
                              <td>
                               <a href="{{url('/admin/salary-management/payroll/detail')."/".$item->id}}">
                                 <button class="btn bg mr-2 text-white">Xem chi tiết</button>
