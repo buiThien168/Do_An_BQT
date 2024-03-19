@@ -130,6 +130,7 @@ class StaffManageController extends Controller
             'rooms' => 'required|integer',
             'positions' => 'required|integer',
         ]);
+        
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         } else {

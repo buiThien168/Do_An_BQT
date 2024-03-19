@@ -44,7 +44,7 @@ class BonusService
     }
     public function PostAddBonus($request)
     {
-        $PostAddBonus = Bonus::insert([
+        $PostAddBonus = Bonus::create([
             'user_id' => $request->user_id,
             'note' => $request->note,
             'value' => $request->value,

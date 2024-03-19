@@ -94,9 +94,11 @@ class FaceController extends Controller
         if (Session::get('first_name') != $request->name) {
             $checkType = User_track::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
             if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
-                $checkTimestamp = $checkType->created_at->timestamp;
-                $currentTime = now()->timestamp;
-                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp) < (1 * 60)) {
+                // $checkTimestamp = $checkType->created_at;
+                $checkTimestamp = Carbon::parse($checkType->created_at);
+                $currentTime =  Carbon::now();
+                $minutesDifference = $currentTime->diffInMinutes($checkTimestamp);
+                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && $minutesDifference > 30) {
                     Session::put('first_name', "da_hop_le_");
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
@@ -107,15 +109,15 @@ class FaceController extends Controller
                 }else {
                     $type = 1;
                     $work_month = 0;
-                    if (Carbon::today()->isSameDay($checkType->created_at) && ($currentTime - $checkTimestamp > 4 * 3600)) {
+                    $hoursDifference = $currentTime->diffInHours($checkTimestamp);
+                    if (Carbon::today()->isSameDay($checkType->created_at) && ($hoursDifference > 4)) {
                         $work_month = 1;
                     } else {
                         $work_month = 2;
                     }
-                    User_track::insert([
+                    User_track::create([
                         'user_id' => $getUser->user_id,
                         'type' => $type,
-                        'created_at' => time(),
                         'work_month' => $work_month
                     ]);
                     Session::put('first_name', $request->name);
@@ -126,11 +128,11 @@ class FaceController extends Controller
                 }
             } else {
                 $type = 0;
-                User_track::insert([
+                $work_month = 0;
+                User_track::create([
                     'user_id' => $getUser->user_id,
                     'type' => $type,
-                    'created_at' => time(),
-                    'work_month' => 0
+                    'work_month' => $work_month
                 ]);
                 Session::put('first_name', $request->name);
                 $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');

@@ -20,7 +20,7 @@ class CreateBonusesTable extends Migration
             $table->bigInteger('value')->nullable();
             $table->bigInteger('created')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updater')->nullable();
             $table->bigInteger('deleted')->default(0);
         });

@@ -23,9 +23,8 @@ class CreateAdminMailConfigsTable extends Migration
             $table->char('mail_encryption', 50)->nullable();
             $table->bigInteger('total_send')->default(0);
             $table->bigInteger('is_deleted')->default(0);
-            $table->bigInteger('created_at')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updated_by')->nullable();
         });
     }

@@ -26,7 +26,7 @@
                         <label class="fz85">Chọn nhân viên</label>
                         <select name="user_id" class="form-control" id="exampleFormControlSelect1">
                           @foreach($getUsers as $item)
-                          <option value="{{$item->user_id}}">{{$item->nick_name}}</option>
+                          <option value="{{$item->user_id}}">{{$item->full_name}}</option>
                           @endforeach
 
                         </select>

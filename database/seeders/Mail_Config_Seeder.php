@@ -25,8 +25,6 @@ class Mail_Config_Seeder extends Seeder
                 "total_send" => 0,
                 "created_by" => 1,
                 'is_deleted' => 0,
-                "created_at" => time(),
-                "updated_at" => null
             ]
         );
     }

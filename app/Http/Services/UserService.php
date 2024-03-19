@@ -10,7 +10,7 @@ class UserService
     public function addUser($request)
     {
         $user = new User();
-        $user->name = $request->full_name;
+        $user->name = $request->nick_name;
         $user->phone = $request->phone;
         $user->password = md5($request->password);
         $user->active = 1;

@@ -43,19 +43,17 @@ class SalaryService
     {
         $getSalary = $this->EditSalary($id);
         if ($getSalary == null) {
-            Salary::insert([
+            Salary::create([
                 'user_id' => $id,
                 'hourly_salary' => $request->hourly_salary,
                 'created' => time(),
                 'created_by' => Auth::user()->id,
-                'updated_at' => null,
                 'updater' => null,
             ]);
         } else {
             Salary::where('user_id', $id)->update([
                 'user_id' => $id,
                 'hourly_salary' => $request->hourly_salary,
-                'updated_at' => time(),
                 'updater' => Auth::user()->id,
             ]);
         }

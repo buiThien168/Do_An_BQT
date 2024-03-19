@@ -19,9 +19,8 @@ class CreateAdminMailTemplatesTable extends Migration
             $table->text('template_content')->nullable();
             $table->bigInteger('total_send')->default(0);
             $table->tinyInteger('is_deleted')->default(0);
-            $table->bigInteger('created_at')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updated_by')->nullable();
             $table->bigInteger('show_order')->default(0);
         });

@@ -23,7 +23,7 @@ class CreateWorksTable extends Migration
             $table->bigInteger('status')->default(0);
             $table->bigInteger('created')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updater')->nullable();
             $table->bigInteger('deleted')->default(0);
         });

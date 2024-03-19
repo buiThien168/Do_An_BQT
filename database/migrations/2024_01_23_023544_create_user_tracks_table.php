@@ -17,9 +17,8 @@ class CreateUserTracksTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('type')->default(0);
-            $table->bigInteger('created_at')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updated_by')->nullable();
         });
     }

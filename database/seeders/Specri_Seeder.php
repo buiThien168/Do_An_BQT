@@ -21,7 +21,6 @@ class Specri_Seeder extends Seeder
                 "created_by" => null,
                 "created" => null,
                 "updater" => null,
-                "updated_at" => null,
                 "deleted" => 0,
             ]
         );

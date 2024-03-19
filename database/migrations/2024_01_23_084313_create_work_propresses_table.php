@@ -18,9 +18,8 @@ class CreateWorkPropressesTable extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('works')->nullable();
             $table->string('content')->nullable();
-            $table->bigInteger('created_at')->nullable();
             $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('updated_by')->nullable();
         });
     }

@@ -20,7 +20,6 @@ class EmployType_Seeder extends Seeder
                 "note" => "Thực Tập",
                 "created" => null,
                 "created_by" => null,
-                "updated_at" => null,
                 "updater" => null,
                 "deleted" => 0,
             ]

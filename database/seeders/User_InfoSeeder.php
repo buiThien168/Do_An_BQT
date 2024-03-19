@@ -16,7 +16,7 @@ class User_InfoSeeder extends Seeder
     {
         User_infomation::insert(
             [
-                "user_id " => 1,
+                "user_id" => 1,
                 "full_name" => "Admin",
                 "nick_name" => "Admin",
                 "email" => "Admin@gmail.com",

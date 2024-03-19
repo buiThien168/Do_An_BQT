@@ -16,11 +16,10 @@ class RoomsSeeder extends Seeder
     {
         Room::insert(
             [
-                "room_name " => "VP DEV",
+                "room_name" => "VP DEV",
                 "note" => "",
                 "created" => null,
                 "created_by" => null,
-                "updated_at" => null,
                 "updater" => null,
                 "deleted" => 0,
             ]

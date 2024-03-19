@@ -28,25 +28,25 @@ class SalaryController extends Controller
     public function ListSalaryStaffDetail(Request $request,$id)
     {
         if (isset($request->keyword)) {
-            $keyword = strtotime($request->keyword);
-            dd( $keyword);
+            $keyword = $request->keyword;
             $GetTime = User_track::where('user_id', $id)->whereDate('created_at', $keyword)->get();
         }else{
             $GetTime = User_track::where('user_id', $id)->get();
         }
-        // $GetTime = User_track::where('user_id', $id)->latest()->orderBy('id', 'desc')->first();
         $GetSalary = Salary::where('user_id', $id)->first('hourly_salary');
         if ($GetSalary) {
             $countTime = 0;
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
-                if ($GetTime[$i]->type == 1) {
-                    $countTime += $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp;
+                if ($GetTime[$i]->type === 1) {
+                    $timestamp1 = $GetTime[$i]->created_at->timestamp;
+                    $timestamp2 = $GetTime[$i - 1]->created_at->timestamp;
+                    $countTime += ($timestamp1 - $timestamp2);
                     array_push($checktime, [
                         'checkin' => $GetTime[$i - 1]->created_at,
                         'checkout' => $GetTime[$i]->created_at,
-                        'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
-                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary,
+                        'time' => gmdate("H:i:s", $countTime),
+                        'salary' => 0,
                         'work_month' => $GetTime[$i]->work_month
                     ]);
                 }

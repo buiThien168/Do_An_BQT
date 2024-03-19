@@ -19,8 +19,7 @@ class CreateUserFacesTable extends Migration
             $table->string('image')->nullable();
             $table->bigInteger('order_by')->nullable();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('created_at')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

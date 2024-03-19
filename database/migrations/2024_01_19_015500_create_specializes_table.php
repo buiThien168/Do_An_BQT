@@ -20,7 +20,7 @@ class CreateSpecializesTable extends Migration
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('created')->nullable();
             $table->bigInteger('updater')->nullable();
-            $table->bigInteger('updated_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('deleted')->default(0);
         });
     }

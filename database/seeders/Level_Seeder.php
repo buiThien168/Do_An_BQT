@@ -16,13 +16,12 @@ class Level_Seeder extends Seeder
     {
         Level::insert(
             [
-                "qualification_name " =>"Đại học",
-                "note " =>"Đại học",
-                "created " =>null,
-                "created_by " =>null,
-                "updated_at " =>null,
-                "updater " =>null,
-                "deleted " =>0,
+                "qualification_name" =>"Đại học",
+                "note" => "Đại học",
+                "created" => null,
+                "created_by" =>null,
+                "updater" =>null,
+                "deleted" =>0,
             ]
         );
     }

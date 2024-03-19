@@ -27,13 +27,19 @@ class StaffFaceService
         return $getFullName;
     }
     public function PostRegisterFace($imageName,$getFullName,$getMax){
-        $PostRegisterFace = User_face::insert([
-            'image'=>$imageName,
-            'name'=>$getFullName->full_name,
-            'order_by'=>$getMax,
-            'created_at'=>time(),
-            'user_id'=>Auth::user()->id
+        $PostRegisterFace = User_face::create([
+            'image' => $imageName,
+            'name' => $getFullName->full_name,
+            'order_by' => $getMax,
+            'user_id' => Auth::user()->id
         ]);
         return $PostRegisterFace;
+        // $PostRegisterFace = User_face::insert([
+        //     'image'=>$imageName,
+        //     'name'=>$getFullName->full_name,
+        //     'order_by'=>$getMax,
+        //     'user_id'=>Auth::user()->id
+        // ]);
+        // return $PostRegisterFace;
     }
 }

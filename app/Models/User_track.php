@@ -12,9 +12,9 @@ class User_track extends Model
     protected $fillable = [
         'user_id',
         'type',
-        'created_at',
         'created_by',
-        'updated_at',
         'updated_by',
+        'work_month',
+        'created_at'
     ];
 }

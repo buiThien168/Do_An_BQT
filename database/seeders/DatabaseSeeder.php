@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(UserSeeder::class);
         $this->call(Mail_Config_Seeder::class);
-        $this->call(User_InfoSeeder::class);
+        // $this->call(User_InfoSeeder::class);
         $this->call(RoomsSeeder::class);
         $this->call(Positon_Seeder::class);
         $this->call(Level_Seeder::class);

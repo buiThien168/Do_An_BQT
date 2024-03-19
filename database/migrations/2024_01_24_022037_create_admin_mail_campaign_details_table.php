@@ -21,7 +21,7 @@ class CreateAdminMailCampaignDetailsTable extends Migration
             $table->string('user_email')->nullable();
             $table->tinyInteger('receipt_status')->default(0);
             $table->bigInteger('receipt_time')->nullable();
-            $table->bigInteger('created_at')->nullable();
+            $table->timestamps();
             $table->bigInteger('created_by')->nullable();
         });
     }

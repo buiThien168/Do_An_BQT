@@ -21,7 +21,6 @@ class Positon_Seeder extends Seeder
                 "luong_ngay" =>null,
                 "created_by" =>null,
                 "created" =>null,
-                "updated_at" =>null,
                 "updater" =>null,
                 "deleted" =>0,
             ]

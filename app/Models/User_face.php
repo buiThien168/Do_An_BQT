@@ -15,7 +15,5 @@ class User_face extends Model
         'image',
         'order_by',
         'user_id',
-        'created_at',
-        'updated_at',
     ];
 }
