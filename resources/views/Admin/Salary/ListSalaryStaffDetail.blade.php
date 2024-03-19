@@ -24,7 +24,6 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div>
-
                    <div class="bg-white">
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
@@ -33,8 +32,15 @@
                          <div class="float-right"> 
                           <div class="d-flex">
                             <p>Lương cơ bản: {{number_format($GetSalary)}}đ |</p>
-                            <p>| Tổng số giờ làm việc: {{$time}} |</p>
-                            <p>| Lương tạm thời: {{number_format($salary)}}$</p>
+                            <p>| Tổng số giờ làm việc: {{$time}}</p>
+                            <div class="ml-3">
+                            <form method="get">    
+                              <div class="form-group mb-3" style="display: flex">               
+                                <input type="date" class="form-control"  placeholder="Name" name="keyword">
+                                <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
+                              </div>
+                            </form> 
+                          </div>
                           </div>
                         </div>
                         <div style="clear: both;"></div>

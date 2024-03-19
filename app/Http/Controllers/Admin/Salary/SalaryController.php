@@ -20,9 +20,20 @@ class SalaryController extends Controller
     {
         $this->SalaryService = $SalaryService;
     }
-    public function ListSalaryStaffDetail($id)
+    public function check($request,$times){
+        if (isset($request->keyword) ) {
+           
+        }
+    }
+    public function ListSalaryStaffDetail(Request $request,$id)
     {
-        $GetTime = User_track::where('user_id', $id)->get();
+        if (isset($request->keyword)) {
+            $keyword = strtotime($request->keyword);
+            dd( $keyword);
+            $GetTime = User_track::where('user_id', $id)->whereDate('created_at', $keyword)->get();
+        }else{
+            $GetTime = User_track::where('user_id', $id)->get();
+        }
         // $GetTime = User_track::where('user_id', $id)->latest()->orderBy('id', 'desc')->first();
         $GetSalary = Salary::where('user_id', $id)->first('hourly_salary');
         if ($GetSalary) {
