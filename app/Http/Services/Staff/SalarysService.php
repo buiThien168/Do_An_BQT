@@ -15,7 +15,7 @@ class SalarysService
         return  $GetTime;
     }
     public function GetSalary(){
-        $GetSalary = Salary::where('user_id',Auth::user()->id)->first('hourly_salary');
+        $GetSalary = Salary::where('user_id',Auth::user()->id)->first('basic_salary');
         return $GetSalary;
     }
 }

@@ -65,10 +65,10 @@
                                                                             {{$item->name_position}}
                                                                         </td>
                                                                         <td>
-                                                                            @if($item->hourly_salary == null)
+                                                                            @if($item->basic_salary == null)
                                                                             Not update
                                                                             @else
-                                                                            {{number_format($item->hourly_salary)}} VND
+                                                                            {{number_format($item->basic_salary)}} VND
                                                                             @endif
                                                                         </td>
                                                                         <td>30 / tháng</td>
@@ -79,7 +79,7 @@
                                                                         {{$item->total_disciplines}} VND
                                                                         </td>
                                                                         <td>
-                                                                        {{ number_format($item->total_bonuses + $item->total_disciplines + $item->hourly_salary) }} VND
+                                                                        {{ number_format($item->total_bonuses + $item->total_disciplines + $item->basic_salary) }} VND
                                                                         </td>
                                                                         <td>
                                                                             <div class="form-check">

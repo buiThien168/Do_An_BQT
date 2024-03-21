@@ -20,7 +20,7 @@ class PayrollController extends Controller
         ->leftJoin('user_infomations','user_infomations.id','users.id')
         ->leftJoin('positions','positions.id','user_infomations.positions')
         ->leftJoin('level','level.id','user_infomations.level')
-        ->select('user_infomations.full_name','users.id','positions.name_position','salary.hourly_salary','salary.created','level.qualification_name')
+        ->select('user_infomations.full_name','users.id','positions.name_position','salary.basic_salary','salary.created','level.qualification_name')
         ->orderBy('users.id', 'DESC')
         ->where('user_infomations.full_name','!=',null)
         ;
@@ -52,7 +52,7 @@ class PayrollController extends Controller
     }
     public function PostEditPayroll($id,Request $request){
         $validate = $request->validate([
-            'hourly_salary' => 'required|integer',
+            'basic_salary' => 'required|integer',
         ]);
         $getPayroll = DB::table('salary')->where('user_id',$id)->first();
 
@@ -60,7 +60,7 @@ class PayrollController extends Controller
             DB::table('salary')->insert(
                 [   
                     'user_id'=>$id,
-                    'hourly_salary'=>$request->hourly_salary,
+                    'basic_salary'=>$request->basic_salary,
                     'created'=>time(),
                     'created_by'=>Auth::user()->id,
                 ]
@@ -68,7 +68,7 @@ class PayrollController extends Controller
         }else{
             DB::table('salary')->where('user_id',$id)->update(
                 [   
-                    'hourly_salary'=>$request->hourly_salary,
+                    'basic_salary'=>$request->basic_salary,
                     'updated_at'=>time(),
                     'updater'=>Auth::user()->id,
                 ]

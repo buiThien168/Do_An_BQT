@@ -32,7 +32,7 @@
                          <div class="float-right"> 
                           <div class="d-flex">
                             <p>Lương cơ bản: {{number_format($GetSalary)}}đ |</p>
-                            <p>| Tổng số giờ làm việc: {{$time}}</p>
+                            <p>| Tổng số công tháng {{$month}} : {{$totalWorkHours}}</p>
                             <div class="ml-3">
                             <form method="get">    
                               <div class="form-group mb-3" style="display: flex">               
@@ -52,7 +52,7 @@
                               <th width="20%">giờ vào</th>
                               <th width="20%">giờ ra</th>
                               <th width="20%">Thời gian ghi</th>
-                              <th width="27%">Công</th>
+                              <th width="27%">Điểm danh</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
@@ -74,9 +74,9 @@
                            <td>
                             {{-- {{number_format($item['salary'])}}$ --}}
                             @if($item['work_month']==2)
-                              0.5
+                              Nửa buổi
                             @else
-                              1
+                              Cả ngày
                             @endif
                            </td>
                          </tr>

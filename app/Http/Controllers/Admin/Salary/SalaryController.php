@@ -33,35 +33,45 @@ class SalaryController extends Controller
         }else{
             $GetTime = User_track::where('user_id', $id)->get();
         }
-        $GetSalary = Salary::where('user_id', $id)->first('hourly_salary');
+        $GetSalary = Salary::where('user_id', $id)->first('basic_salary');
         if ($GetSalary) {
             $countTime = 0;
+            $month = date('n');
+            
+            $totalWorkHours = 0;
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
                 if ($GetTime[$i]->type === 1) {
                     $timestamp1 = $GetTime[$i]->created_at->timestamp;
                     $timestamp2 = $GetTime[$i - 1]->created_at->timestamp;
-                    $countTime += ($timestamp1 - $timestamp2);
+                    $countTime = ($timestamp1 - $timestamp2);
+                    $workTimeFormatted = gmdate("H:i:s", $countTime);
+                    if ($GetTime[$i]->created_at->month == $month) {
+                        $totalWorkHours += ($GetTime[$i]->work_month == 1) ? 1 : 0.5;
+                    }
+
                     array_push($checktime, [
                         'checkin' => $GetTime[$i - 1]->created_at,
                         'checkout' => $GetTime[$i]->created_at,
-                        'time' => gmdate("H:i:s", $countTime),
+                        'time' => $workTimeFormatted,
                         'salary' => 0,
                         'work_month' => $GetTime[$i]->work_month
                     ]);
                 }
             }
             $time = gmdate("H:i:s", $countTime);
-            $salary = $countTime / 60 / 60 * $GetSalary->hourly_salary;
-            $mounth = date('n');
+            $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;
+            
             return view(
                 'Admin.Salary.ListSalaryStaffDetail',
                 [
                     'checktime' => $checktime,
                     'time' => $time,
                     'salary' => $salary,
-                    'mounth' => $mounth,
-                    'GetSalary' => $GetSalary->hourly_salary
+                    'mounth' => $month,
+                    'GetSalary' => $GetSalary->basic_salary,
+                    'totalWorkHours'=>$totalWorkHours,
+                    'month'=>$month
                 ]
             );
         } else {
@@ -70,18 +80,19 @@ class SalaryController extends Controller
                 'time' => '00:00:00',
                 'salary' => 0,
                 'month' => date('n'),
+                'totalWorkHours'=>0,
                 'GetSalary' => 0
             ]);
         }
     }
     public function ListSalaryStaff()
     {
-        // / 60 / 60 * $GetSalary->hourly_salary;
+        // / 60 / 60 * $GetSalary->basic_salary;
         $getStaff = $this->SalaryService->ListSalaryStaff();
         $checktime = array();
         for ($i = 0; $i < $getStaff->total(); $i++) {
             $GetTime = User_track::where('user_id', $getStaff[$i]->id)->get();
-            $GetSalary = Salary::where('user_id', $getStaff[$i]->id)->first('hourly_salary');
+            $GetSalary = Salary::where('user_id', $getStaff[$i]->id)->first('basic_salary');
             $total = 0;
             for ($j = 1; $j < count($GetTime); $j++) {
                 if ($GetTime[$j]->type == 1) {
@@ -120,7 +131,7 @@ class SalaryController extends Controller
     public function PostEditSalary($id, Request $request)
     {
         $validate = $request->validate([
-            'hourly_salary' => 'required|integer',
+            'basic_salary' => 'required|integer',
         ]);
         $this->SalaryService->PostEditSalary($id, $request);
         return redirect('admin/salary-management');
@@ -131,7 +142,7 @@ class SalaryController extends Controller
         return view(
             'Admin.Salary.Wage',
             [
-                'Wage'=>$Wage,
+                'Wage'=>$Wage
             ]
         );
     }

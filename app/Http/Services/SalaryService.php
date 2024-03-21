@@ -18,10 +18,12 @@ class SalaryService
             ->leftJoin('positions', 'user_infomations.positions', '=', 'positions.id')
             ->leftJoin('levels', 'user_infomations.level', '=', 'levels.id')
             ->select(
-                'user_infomations.nick_name',
+                'user_infomations.full_name',
                 'users.id',
                 'positions.name_position',
-                'salary.hourly_salary',
+                'salary.basic_salary',
+                'salary.perk_salary',
+                'salary.insuranc_salary',
                 'salary.created',
                 'levels.qualification_name'
             )
@@ -45,7 +47,9 @@ class SalaryService
         if ($getSalary == null) {
             Salary::create([
                 'user_id' => $id,
-                'hourly_salary' => $request->hourly_salary,
+                'basic_salary' => $request->basic_salary,
+                'perk_salary'=>$request->perk_salary,
+                'insuranc_salary'=>$request->insuranc_salary,
                 'created' => time(),
                 'created_by' => Auth::user()->id,
                 'updater' => null,
@@ -53,7 +57,7 @@ class SalaryService
         } else {
             Salary::where('user_id', $id)->update([
                 'user_id' => $id,
-                'hourly_salary' => $request->hourly_salary,
+                'basic_salary' => $request->basic_salary,
                 'updater' => Auth::user()->id,
             ]);
         }
@@ -63,7 +67,7 @@ class SalaryService
         $getStaff = User::leftJoin('user_infomations', 'users.id', '=', 'user_infomations.user_id')
             ->leftJoin('salary', 'users.id', '=', 'salary.user_id')
             ->leftJoin('positions', 'user_infomations.positions', '=', 'positions.id')
-            ->select('users.id', 'user_infomations.full_name', 'salary.hourly_salary', 'positions.name_position')
+            ->select('users.id', 'user_infomations.full_name', 'salary.basic_salary', 'positions.name_position')
             ->where('users.role', 2)
             ->orderBy('users.id', 'desc')
             ->paginate(15);
@@ -89,7 +93,7 @@ class SalaryService
             ->select(
                 'users.id',
                 'user_infomations.full_name',
-                'salary.hourly_salary',
+                'salary.basic_salary',
                 'positions.name_position',
                 DB::raw('IFNULL(bonuses.total_bonuses, 0) as total_bonuses'),
                 DB::raw('IFNULL(disciplines.total_disciplines, 0) as total_disciplines')

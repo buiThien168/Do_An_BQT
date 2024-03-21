@@ -16,7 +16,9 @@ class CreateSalariesTable extends Migration
         Schema::create('salary', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('hourly_salary')->nullable();
+            $table->bigInteger('basic_salary')->nullable();
+            $table->bigInteger('perk_salary')->nullable();
+            $table->bigInteger('insuranc_salary')->nullable();
             $table->bigInteger('created')->nullable();
             $table->bigInteger('created_by')->nullable();
             $table->timestamps();

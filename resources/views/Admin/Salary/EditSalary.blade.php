@@ -23,9 +23,16 @@
                     <div class="row m-0">
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Lương cơ bản</label>
-                        <input type="text" name="hourly_salary" class="form-control mr-2" value="{{ $getSalary != null ? $getSalary->hourly_salary : ""}}" autocomplete="off" required>
+                        <input type="text" name="basic_salary" class="form-control mr-2" value="{{ $getSalary != null ? $getSalary->basic_salary : ""}}" autocomplete="off" required>
                       </div>  
-                      
+                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                        <label class="fz85">Hỗ trợ</label>
+                        <input type="text" name="perk_salary" class="form-control mr-2" value="{{ $getSalary != null ? $getSalary->perk_salary : ""}}" autocomplete="off" required>
+                      </div> 
+                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                        <label class="fz85">Bảo hiểm</label>
+                        <input type="text" name="insuranc_salary" class="form-control mr-2" value="{{ $getSalary != null ? $getSalary->insuranc_salary : ""}}" autocomplete="off" required>
+                      </div>   
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
                         <button class="btn bg text-white">Cập nhật lương cơ bản</button>

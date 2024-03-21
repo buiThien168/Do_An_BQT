@@ -11,7 +11,9 @@ class Salary extends Model
     protected $table = 'salary';
     protected $fillable = [
         'user_id',
-        'hourly_salary',
+        'basic_salary',
+        'perk_salary',
+        'insuranc_salary',
         'created',
         'created_by',
         'updated_at',

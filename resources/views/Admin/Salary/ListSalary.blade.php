@@ -44,11 +44,13 @@
                             <thead>
                               <th width="3%">#</th>
                               <th width="5%">Mã NV</th>
-                              <th width="15%">Tên</th>
-                              <th width="15%">Chức vụ</th>
-                              <th width="15%">Trình độ chuyên môn</th>
-                              <th width="15%">Lương cơ bản</th>
-                              <th width="15%">Ngày tạo</th>
+                              <th width="10%">Tên</th>
+                              <th width="10%">Chức vụ</th>
+                              <th width="12%">Trình độ chuyên môn</th>
+                              <th width="12%">Lương cơ bản</th>
+                              <th width="12%">Hỗ trợ</th>
+                              <th width="12%">Bảo hiểm</th>
+                              <th width="10%">Ngày tạo</th>
                               <th width="20%">Hoạt động</th>
                             </thead>
                             <tbody>
@@ -58,7 +60,7 @@
                               <td>{{$idup++}}</td>
                               <td>L{{$item->id}}</td>
                               <td>
-                                {{$item->nick_name}}
+                                {{$item->full_name}}
                               </td>
                               <td>
                                 
@@ -71,10 +73,24 @@
 
                               </td>
                               <td>
-                                @if($item->hourly_salary == null)
+                                @if($item->basic_salary == null)
                                 Not update
                                 @else
-                                {{number_format($item->hourly_salary)}} VND
+                                {{number_format($item->basic_salary)}} VND
+                                @endif
+                              </td>
+                              <td>
+                                @if($item->perk_salary == null)
+                                Not update
+                                @else
+                                {{number_format($item->perk_salary)}} VND
+                                @endif
+                              </td>
+                              <td>
+                                @if($item->insuranc_salary == null)
+                                Not update
+                                @else
+                                {{number_format($item->insuranc_salary)}} VND
                                 @endif
                               </td>
                               <td>
@@ -85,7 +101,7 @@
                               <a href="{{url('/admin/user-management/detail')."/".$item->id}}">
                                 <button class="btn bg mr-2 text-white">Xem chi tiết</button>
                               </a>
-                               @if($item->hourly_salary == null)
+                               @if($item->basic_salary == null)
                               <a href="{{url('admin/salary-management/edit')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Cập nhật</button>
                               </a>
@@ -93,15 +109,9 @@
                               <a href="{{url('admin/salary-management/edit')."/".$item->id}}">
                                 <button class="btn btn-danger mr-2">Sửa</button>
                               </a>
-                              @endif
-                              
-                              
-                                                   
+                              @endif                
                             </td>
                           </tr>
-
-                          
-
                         @endforeach
 
 

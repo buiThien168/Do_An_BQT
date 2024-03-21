@@ -33,7 +33,7 @@ class SalaryController extends Controller
                         'checkin' => $GetTime[$i - 1]->created_at->timestamp,
                         'checkout' => $GetTime[$i]->created_at->timestamp,
                         'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
-                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->hourly_salary
+                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->basic_salary
                     ]);
                 }
             }
@@ -41,7 +41,7 @@ class SalaryController extends Controller
             if ($GetSalary == null) {
                 $salary = 0;
             } else {
-                $salary = $countTime / 60 / 60 * $GetSalary->hourly_salary;
+                $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;
             }
             $time = gmdate("H:i:s", $countTime);
             $mounth = date('n');
@@ -52,7 +52,7 @@ class SalaryController extends Controller
                     'time' => $time,
                     'salary' => $salary,
                     'mounth' => $mounth,
-                    'GetSalary' => $GetSalary->hourly_salary
+                    'GetSalary' => $GetSalary->basic_salary
                 ]
             );
         } else {
