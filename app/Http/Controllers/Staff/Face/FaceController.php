@@ -113,7 +113,7 @@ class FaceController extends Controller
                     if (Carbon::today()->isSameDay($checkType->created_at) && ($hoursDifference > 4)) {
                         $work_month = 1;
                     } else {
-                        $work_month = 2;
+                        $work_month = 0.5;
                     }
                     User_track::create([
                         'user_id' => $getUser->user_id,
@@ -141,7 +141,7 @@ class FaceController extends Controller
                 return;
             }
         }else{
-            echo "Staff " . $request->name . "Đã xác định thành công, vui lòng mời người tiếp theo";
+            echo "Staff " . $request->name . " đã xác định thành công, vui lòng mời người tiếp theo";
         }
         // create a new 
         // $getUser = User_infomation::where('full_name', $request->name)->first('user_id');

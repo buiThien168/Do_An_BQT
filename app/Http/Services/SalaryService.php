@@ -58,6 +58,8 @@ class SalaryService
             Salary::where('user_id', $id)->update([
                 'user_id' => $id,
                 'basic_salary' => $request->basic_salary,
+                'perk_salary'=>$request->perk_salary,
+                'insuranc_salary'=>$request->insuranc_salary,
                 'updater' => Auth::user()->id,
             ]);
         }
@@ -90,13 +92,22 @@ class SalaryService
                 '=',
                 'disciplines.user_id'
             )
+            ->leftJoin(
+                DB::raw('(SELECT user_id, SUM(work_month) as total_work_month FROM user_tracks WHERE MONTH(created_at) = MONTH(CURRENT_DATE()) GROUP BY user_id) as user_tracks'),
+                'users.id',
+                '=',
+                'user_tracks.user_id'
+            )
             ->select(
                 'users.id',
                 'user_infomations.full_name',
                 'salary.basic_salary',
+                'salary.perk_salary',
+                'salary.insuranc_salary',
                 'positions.name_position',
                 DB::raw('IFNULL(bonuses.total_bonuses, 0) as total_bonuses'),
-                DB::raw('IFNULL(disciplines.total_disciplines, 0) as total_disciplines')
+                DB::raw('IFNULL(disciplines.total_disciplines, 0) as total_disciplines'),
+                DB::raw('IFNULL(user_tracks.total_work_month, 0) as total_work_month')
             )
             ->where('users.role', 2)
             ->orderBy('users.id', 'desc')

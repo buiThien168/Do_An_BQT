@@ -73,7 +73,7 @@
                            </td>
                            <td>
                             {{-- {{number_format($item['salary'])}}$ --}}
-                            @if($item['work_month']==2)
+                            @if($item['work_month']==0.5)
                               Nửa buổi
                             @else
                               Cả ngày

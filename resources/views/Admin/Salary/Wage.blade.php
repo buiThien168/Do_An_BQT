@@ -38,6 +38,7 @@
                                                             </form>
                                                         </div>
                                                         <div style="clear: both;"></div>
+                                                        <div class="mb-3 font-weight-bold">Tháng  {{$month}}</div>
                                                         <div class="table-responsive">
                                                             <table class="table table-hover table-striped">
                                                                 <thead>
@@ -45,11 +46,13 @@
                                                                     <th width="5%">Mã NV</th>
                                                                     <th width="10%">Tên</th>
                                                                     <th width="10%">Chức vụ</th>
-                                                                    <th width="12%">Lương cơ bản</th>
-                                                                    <th width="8%">Số công</th>
-                                                                    <th width="10%">Tiền thưởng</th>
-                                                                    <th width="10%">Tiền Phạt</th>
-                                                                    <th width="15%">Tổng</th>
+                                                                    <th width="9%">Lương cơ bản</th>
+                                                                    <th width="9%">Hỗ trợ</th>
+                                                                    <th width="9%">Bảo hiểm</th>
+                                                                    <th width="9%">Tiền thưởng</th>
+                                                                    <th width="9%">Tiền Phạt</th>
+                                                                    <th width="9%">Số công</th>
+                                                                    <th width="9%">Tổng</th>
                                                                     <th width="20%">Hoạt động</th>
                                                                 </thead>
                                                                 <tbody>
@@ -71,15 +74,42 @@
                                                                             {{number_format($item->basic_salary)}} VND
                                                                             @endif
                                                                         </td>
-                                                                        <td>30 / tháng</td>
                                                                         <td>
-                                                                        {{$item->total_bonuses}} VND
+                                                                            {{number_format($item->perk_salary)}} VND
                                                                         </td>
                                                                         <td>
-                                                                        {{$item->total_disciplines}} VND
+                                                                            {{number_format($item->insuranc_salary)}} VND
                                                                         </td>
                                                                         <td>
-                                                                        {{ number_format($item->total_bonuses + $item->total_disciplines + $item->basic_salary) }} VND
+                                                                            {{number_format($item->total_bonuses)}} VND
+                                                                        </td>
+                                                                        <td>
+                                                                            {{number_format($item->total_disciplines)}} VND
+                                                                        </td>
+                                                                        <td>{{$item->total_work_month}} / tháng</td>
+                                                                        <td>
+                                                                            @if($item->total_work_month === $currentMonthDays)
+                                                                            {{ number_format($item->total_bonuses + $item->total_disciplines + 
+                                                                                $item->perk_salary +
+                                                                                $item->insuranc_salary +
+                                                                                $item->basic_salary) }} VND
+                                                                            @else
+                                                                            <?php
+                                                                            $daily_salary = $item->basic_salary / $currentMonthDays; 
+                                                                            $salary = $daily_salary * $item->total_work_month;
+                                                                            
+                                                                            
+                                                                            $total_salary = ($salary +  
+                                                                            $item->total_bonuses + 
+                                                                            $item->perk_salary) - 
+                                                                            $item->insuranc_salary - 
+                                                                            $item->total_disciplines
+
+                                                                            ;
+                                                                            echo number_format($total_salary) . " VND";
+                                                                            ?>
+                                                                            @endif
+                                                                        
                                                                         </td>
                                                                         <td>
                                                                             <div class="form-check">

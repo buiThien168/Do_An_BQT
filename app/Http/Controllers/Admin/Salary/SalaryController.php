@@ -139,10 +139,14 @@ class SalaryController extends Controller
     public function Wage()
     {
         $Wage = $this->SalaryService->Wage();
+        $month = date('n');
+        $currentMonthDays = Carbon::now()->daysInMonth;
         return view(
             'Admin.Salary.Wage',
             [
-                'Wage'=>$Wage
+                'Wage'=>$Wage,
+                'month'=>$month,
+                'currentMonthDays'=>$currentMonthDays
             ]
         );
     }

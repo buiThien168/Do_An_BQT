@@ -14,7 +14,7 @@ class AddColumnWorkMonth extends Migration
     public function up()
     {
         Schema::table('user_tracks', function (Blueprint $table) {
-            $table->bigInteger('work_month')->nullable();
+            $table->double('work_month')->nullable();
         });
     }
 
