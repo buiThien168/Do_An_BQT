@@ -161,10 +161,14 @@ class StaffManageController extends Controller
     public function ListStaff(Request $request)
     {
         $ListStaff = $this->UserService->ListStaffService($request);
+        $checkOnlineStaff = $this->UserService->checkOnlineStaffService($request);
+        $checkOffStaff = $this->UserService->checkOffStaffService($request);
         return view(
             'Admin.StaffManage.ListStaff',
             [
                 'GetListStaffs' => $ListStaff,
+                'checkOnlineStaff'=>$checkOnlineStaff,
+                'checkOffStaff' =>$checkOffStaff
             ]
         );
     }

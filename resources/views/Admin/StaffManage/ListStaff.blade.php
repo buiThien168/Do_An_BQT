@@ -16,7 +16,7 @@
     <div class="sidebar sidebar-offcanvas">
       <x-admin.layouts.side-bar />
     </div>
-    <div class="main-panel">
+    <div class="main-panel relative">
       <div class="content-wrapper">
         <div class="row">
           <div class="col-md-6 grid-margin stretch-card">
@@ -40,19 +40,19 @@
           <div class="col-md-6 grid-margin transparent">
             <div class="row">
               <div class="col-md-6 mb-4 stretch-card transparent">
-                <div class="card card-tale">
+                <div class="card card-tale" data-toggle="modal" data-target="#ModalOnline">
                   <div class="card-body">
                     <p class="mb-4">Nhân viên đi làm trong ngày</p>
-                    <p class="fs-30 mb-2">4006</p>
+                    <p class="fs-30 mb-2">{{ $checkOnlineStaff->count() }}</p>
                     <p>10.00% (30 days)</p>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 mb-4 stretch-card transparent">
-                <div class="card card-dark-blue">
+                <div class="card card-dark-blue" data-toggle="modal" data-target="#ModalOFF">
                   <div class="card-body">
                     <p class="mb-4">Nhân viên nghỉ phép</p>
-                    <p class="fs-30 mb-2">213</p>
+                    <p class="fs-30 mb-2">{{$checkOffStaff->count()}}</p>
                     <p>22.00% (30 days)</p>
                   </div>
                 </div>
@@ -209,5 +209,72 @@
     </div>
   </div>
 </div>
-
+{{-- ModalOnline --}}
+<div class="modal fade" id="ModalOnline" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <p class="ml-2 mt-3">Nhân viên đã điểm danh {{now()}}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="5%">#</th>
+            <th width="45%">Họ tên</th>
+            <th width="25%">Avatar</th>
+            <th width="25%">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <p style="display: none">{{$idupOn = 1}}</p>
+          @foreach($checkOnlineStaff as $item)
+            <tr>
+              <td>{{$idupOn++}}</td>
+              <td>{{$item->full_name}}</td>
+              <td>@if(isset($item->image))
+                <img src="{{ asset('images/staff')."/".$item->image}}">
+                @else
+                <img src="{{ asset('images/staff/default.png')}}">
+                @endif</td>
+              <td>{{$item->email}}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{-- End ModalOnline --}}
+{{-- ModalOff --}}
+<div class="modal fade" id="ModalOFF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <p class="ml-2 mt-3">Nhân viên không đi làm {{now()}}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="5%">#</th>
+            <th width="45%">Họ tên</th>
+            <th width="25%">Avatar</th>
+            <th width="25%">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <p style="display: none">{{$idupOn = 1}}</p>
+          @foreach($checkOffStaff as $item)
+            <tr>
+              <td>{{$idupOn++}}</td>
+              <td>{{$item->full_name}}</td>
+              <td>@if(isset($item->image))
+                <img src="{{ asset('images/staff')."/".$item->image}}">
+                @else
+                <img src="{{ asset('images/staff/default.png')}}">
+                @endif</td>
+              <td>{{$item->email}}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{-- End ModalOff --}}
 @endsection

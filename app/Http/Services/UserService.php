@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use App\Models\User_infomation;
+use App\Models\User_track;
+use Carbon\Carbon;
 
 class UserService
 {
@@ -69,6 +71,30 @@ class UserService
         }
         $GetListStaffs = $GetListStaffs->paginate(15);
         return $GetListStaffs;
+    }
+    public function checkOnlineStaffService($request){
+        $userTracksToday = User_track::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'user_tracks.user_id')
+        ->whereDate('user_tracks.created_at', Carbon::today())
+        ->select('user_tracks.*','user_infomations.full_name','user_infomations.image','user_infomations.email')
+        ->distinct()
+        ->get();
+        $uniqueUsers = $userTracksToday->unique('user_id');
+        return $uniqueUsers;
+        
+    }
+    public function checkOffStaffService($request){
+         $userTracksToday = User_track::whereDate('created_at', Carbon::today())->pluck('user_id');
+        // $userTracksToday = User_track::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'user_tracks.user_id')
+        // ->whereDate('user_tracks.created_at', Carbon::today())
+        // ->select('user_tracks.*','user_infomations.full_name','user_infomations.image','user_infomations.email')
+        // ->pluck('user_id');
+        $allUsers = User::where('role', 2)->pluck('id');
+        $usersNotCheckedToday = $allUsers->diff($userTracksToday);
+        // $usersDetails = User::whereIn('id', $usersNotCheckedToday)->get();
+        $usersDetails = User::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'users.id')->whereIn('users.id', $usersNotCheckedToday)
+        ->select('user_infomations.*')
+        ->get();
+        return $usersDetails;
     }
     public function StaffDetailServices($id)
     {
