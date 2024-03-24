@@ -44,8 +44,7 @@ class StaffWorkService
     public function FinishWork($id)
     {
         $FinishWork = Work::where('id', $id)->update([
-            'status' => 1,
-            'updated_at'=>time(),
+            'status' => 1
         ]);
         return $FinishWork;
     }
@@ -63,11 +62,10 @@ class StaffWorkService
     }
     public function PostUpdateProgress($id, $request)
     {
-        $PostUpdateProgress = Work_propress::insert([
+        $PostUpdateProgress = Work_propress::create([
             'user_id' => Auth::user()->id,
             'works' => $id,
-            'content' => $request->work_progress,
-            'created_at' => time(),
+            'content' => $request,
             'created_by' => Auth::user()->id
         ]);
         return $PostUpdateProgress;

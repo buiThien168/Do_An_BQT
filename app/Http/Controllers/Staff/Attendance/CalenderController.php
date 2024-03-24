@@ -49,9 +49,22 @@ class CalenderController extends Controller
         if ($checkEvent && Carbon::today()->isSameDay($checkEvent->start)) {
             switch ($request->type) {
                 case 'add':
-                    $event = "Bạn đã điểm danh ngày hôm nay";
-                    return response()->json($event);
-                    break;
+                    if($selectOption==1){
+                        $event = Event::insert([
+                            'user_id' => Auth::user()->id,
+                            'title' => $handleCheckTile,
+                            'start' => $request->start,
+                            'end' => $request->end,
+                            'type' => $handleCheckType
+                        ]);
+                        return response()->json($event);
+                        break;
+                    }else{
+                        $event = "Bạn đã điểm danh ngày hôm nay";
+                        return response()->json($event);
+                        break;
+                    }
+                    
                 case 'update':
                     $event = Event::find($request->id)->update([
                         'title' => $request->title,

@@ -53,9 +53,8 @@
                             <h5 class="card-title float-left mb-2 tx">Danh sách lương</h5>
                             <div class="float-right">
                               <div class="d-flex">
-                                <p>Tiền công: {{number_format($GetSalary)}}$ |</p>
-                                <p>| Tổng số giờ làm việc: {{$time}} |</p>
-                                <p>| Lương tạm thời: {{number_format($salary)}}$</p>
+                                <p>Lương cơ bản: {{number_format($GetSalary)}}$ |</p>
+                                <p>| Tổng số công tháng {{$month}} : {{$totalWorkHours}}</p>
                               </div>
                             </div>
                             <div style="clear: both;"></div>
@@ -67,7 +66,7 @@
                                   <th width="20%">Giờ vào</th>
                                   <th width="20%">Giờ ra</th>
                                   <th width="20%">Thời gian</th>
-                                  <th width="27%">Tlương tạm thời</th>
+                                  <th width="27%">Điểm danh</th>
                                 </thead>
                                 <tbody>
                                   <p style="display: none">{{$idup = 1}}</p>
@@ -87,7 +86,11 @@
                                       {{$item['time']}}
                                     </td>
                                     <td>
-                                      {{number_format($item['salary'])}}đ
+                                      @if($item['work_month']==0.5)
+                                      Nửa buổi
+                                    @else
+                                      Cả ngày
+                                    @endif
                                     </td>
                                   </tr>
                                   @endforeach

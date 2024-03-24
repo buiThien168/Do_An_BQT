@@ -19,8 +19,18 @@ class WorkController extends Controller
         $this->StaffWorkService = $StaffWorkService;
     }
     public function FinishWork($id){
-        $this->StaffWorkService->FinishWork($id);
-        return redirect('workflow-management');
+        $request = "Hoàn thành";
+        try{
+            DB::beginTransaction();
+            $this->StaffWorkService->FinishWork($id);
+            $this->StaffWorkService->PostUpdateProgress($id,$request);
+            DB::commit();
+            return redirect('workflow-management');
+        }catch(\Exception $e){
+            DB::rollBack();
+        }
+
+      
     }
 
     public function WorkDetail($id){
@@ -89,7 +99,7 @@ class WorkController extends Controller
         $validate = $request->validate([
             'work_progress' => 'required',
         ]);
-        $this->StaffWorkService->PostUpdateProgress($id,$request);
+        $this->StaffWorkService->PostUpdateProgress($id,$request->work_progress);
         return redirect('workflow-management/job-details/'.$id);
     }
 

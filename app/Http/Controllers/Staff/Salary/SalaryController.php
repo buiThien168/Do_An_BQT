@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Staff\Salary;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Staff\SalarysService;
+use App\Models\Salary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\User_track;
 
 class SalaryController extends Controller
 {
@@ -21,51 +23,110 @@ class SalaryController extends Controller
 
     public function ListSalary(Request $request)
     {
-        $GetTime = $this->SalarysService->GetTime();
-        $GetSalary = $this->SalarysService->GetSalary();
+        
+        if (isset($request->keyword)) {
+            $keyword = $request->keyword;
+            $GetTime = User_track::where('user_id', Auth::user()->id)->whereDate('created_at', $keyword)->get();
+        }else{
+            $GetTime = User_track::where('user_id', Auth::user()->id)->get();
+        }
+        $GetSalary = Salary::where('user_id', Auth::user()->id)->first('basic_salary');
         if ($GetSalary) {
             $countTime = 0;
+            $month = date('n');
+            
+            $totalWorkHours = 0;
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
-                if ($GetTime[$i]->type == 1) {
-                    $countTime += $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp;
+                if ($GetTime[$i]->type === 1) {
+                    $timestamp1 = $GetTime[$i]->created_at->timestamp;
+                    $timestamp2 = $GetTime[$i - 1]->created_at->timestamp;
+                    $countTime = ($timestamp1 - $timestamp2);
+                    $workTimeFormatted = gmdate("H:i:s", $countTime);
+                    if ($GetTime[$i]->created_at->month == $month) {
+                        $totalWorkHours += ($GetTime[$i]->work_month == 1) ? 1 : 0.5;
+                    }
+
                     array_push($checktime, [
-                        'checkin' => $GetTime[$i - 1]->created_at->timestamp,
-                        'checkout' => $GetTime[$i]->created_at->timestamp,
-                        'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
-                        'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->basic_salary
+                        'checkin' => $GetTime[$i - 1]->created_at,
+                        'checkout' => $GetTime[$i]->created_at,
+                        'time' => $workTimeFormatted,
+                        'salary' => 0,
+                        'work_month' => $GetTime[$i]->work_month
                     ]);
                 }
             }
-
-            if ($GetSalary == null) {
-                $salary = 0;
-            } else {
-                $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;
-            }
             $time = gmdate("H:i:s", $countTime);
-            $mounth = date('n');
+            $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;
+            
             return view(
                 'Staff.Salary.ListSalary',
                 [
                     'checktime' => $checktime,
                     'time' => $time,
                     'salary' => $salary,
-                    'mounth' => $mounth,
-                    'GetSalary' => $GetSalary->basic_salary
+                    'mounth' => $month,
+                    'GetSalary' => $GetSalary->basic_salary,
+                    'totalWorkHours'=>$totalWorkHours,
+                    'month'=>$month
                 ]
             );
         } else {
-            return view(
-                'Staff.Salary.ListSalary',
-                [
-                    'checktime' => [],
-                    'time' => '00:00:00',
-                    'salary' => 0,
-                    'month' => date('n'),
-                    'GetSalary' => 0
-                ]
-            );
+            return view('Staff.Salary.ListSalary', [
+                'checktime' => [],
+                'time' => '00:00:00',
+                'salary' => 0,
+                'month' => date('n'),
+                'totalWorkHours'=>0,
+                'GetSalary' => 0
+            ]);
         }
+
+        //  $GetTime = $this->SalarysService->GetTime();
+        // $GetSalary = $this->SalarysService->GetSalary();
+        // if ($GetSalary) {
+        //     $countTime = 0;
+        //     $checktime = array();
+        //     for ($i = 1; $i < count($GetTime); $i++) {
+        //         if ($GetTime[$i]->type == 1) {
+        //             $countTime += $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp;
+        //             array_push($checktime, [
+        //                 'checkin' => $GetTime[$i - 1]->created_at->timestamp,
+        //                 'checkout' => $GetTime[$i]->created_at->timestamp,
+        //                 'time' => gmdate("H:i:s", $GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp),
+        //                 'salary' => ($GetTime[$i]->created_at->timestamp - $GetTime[$i - 1]->created_at->timestamp) / 60 / 60 * $GetSalary->basic_salary
+        //             ]);
+        //         }
+        //     }
+
+        //     if ($GetSalary == null) {
+        //         $salary = 0;
+        //     } else {
+        //         $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;
+        //     }
+        //     $time = gmdate("H:i:s", $countTime);
+        //     $mounth = date('n');
+        //     return view(
+        //         'Staff.Salary.ListSalary',
+        //         [
+        //             'checktime' => $checktime,
+        //             'time' => $time,
+        //             'salary' => $salary,
+        //             'mounth' => $mounth,
+        //             'GetSalary' => $GetSalary->basic_salary
+        //         ]
+        //     );
+        // } else {
+        //     return view(
+        //         'Staff.Salary.ListSalary',
+        //         [
+        //             'checktime' => [],
+        //             'time' => '00:00:00',
+        //             'salary' => 0,
+        //             'month' => date('n'),
+        //             'GetSalary' => 0
+        //         ]
+        //     );
+        // }
     }
 }
