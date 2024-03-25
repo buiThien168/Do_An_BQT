@@ -13,6 +13,7 @@ class Event extends Model
         'work',
         'title',
         'start',
-        'end'
+        'end',
+        'type'
     ];
 }

@@ -18,9 +18,10 @@ class CalenderController extends Controller
     public function Calender(Request $request)
     {
         if ($request->ajax()) {
-            $data = Event::whereDate('start', '>=', $request->start)
-                ->whereDate('end', '<=', $request->end)
-                ->get(['id', 'title', 'work', 'start', 'end', 'type']);
+            $data = Event::where('user_id', Auth::user()->id)
+            ->whereDate('start', '>=', $request->start)
+            ->whereDate('end', '<=', $request->end)
+            ->get(['id', 'title', 'work', 'start', 'end', 'type']);
             return response()->json($data);
         }
         return view('Staff.Attendance.Calender');
@@ -45,11 +46,11 @@ class CalenderController extends Controller
         $handleCheckType = $this->handleCheckType($selectOption, $selectBreaks);
         $handleCheckTile = $this->handleCheckTile($selectOption, $request);
         $checkEvent = Event::where('user_id', Auth::user()->id)->latest()->orderBy('id', 'desc')->first();
-        if ($checkEvent && Carbon::today()->isSameDay($checkEvent->start)) {
+        if ($checkEvent && (Carbon::today()->isSameDay($checkEvent->create_at) && Carbon::today()->isSameDay($request->start) && $checkEvent->type==0)) {
             switch ($request->type) {
                 case 'add':
-                    if($selectOption==1){
-                        $event = Event::insert([
+                    if($selectOption==1 && ($handleCheckType == 2 && $checkEvent->type !=2) ){
+                        $event = Event::create([
                             'user_id' => Auth::user()->id,
                             'title' => $handleCheckTile,
                             'start' => $request->start,
@@ -58,22 +59,37 @@ class CalenderController extends Controller
                         ]);
                         return response()->json($event);
                         break;
+                    }else if($selectOption==0) {
+                        if ($checkEvent) {
+                            $event='Cập nhật thành công';
+                            $checkEvent->update([
+                                'title' => $handleCheckTile,
+                                'type' => $handleCheckType
+                            ]);
+                            return response()->json($event);
+                            break;
+                        } else {
+                            $event='Cập nhật không thành công';
+                            return response()->json($event);
+                            break;
+                        }   
                     }else{
-                        $event = "Bạn đã điểm danh ngày hôm nay";
+                        $event='Cập nhật thất bại';
                         return response()->json($event);
                         break;
                     }
                     
-                case 'update':
-                    $event = Event::find($request->id)->update([
-                        'title' => $request->title,
-                        'start' => $request->start,
-                        'end' => $request->end,
-                        'type' => $handleCheckType
-                    ]);
-                    return response()->json($event);
-                    break;
-                case 'delete':
+                // case 'update':
+                //     $event = 'ádasd';
+                //     // $event = Event::find($request->id)->update([
+                //     //     'title' => $request->title,
+                //     //     'start' => $request->start,
+                //     //     'end' => $request->end,
+                //     //     'type' => $handleCheckType
+                //     // ]);
+                //     return response()->json($event);
+                //     break;
+                // case 'delete':
                     $event = Event::find($request->id)->delete();
                     return response()->json($event);
                     break;
@@ -81,17 +97,24 @@ class CalenderController extends Controller
                 default:
                     break;
             }
-        } else if(Carbon::today()->isSameDay($request->start)) {
-            $event = Event::insert([
-                'user_id' => Auth::user()->id,
-                'title' => $handleCheckTile,
-                'start' => $request->start,
-                'end' => $request->end,
-                'type' => $handleCheckType
-            ]);
-            return response()->json($event);
-        }else if(!Carbon::today()->isSameDay($request->start) && $selectOption==1){
-            $event = Event::insert([
+        } else if((!Carbon::today()->isSameDay($request->start) && $selectOption==1) ) {
+            if($checkEvent->created_at === $request->start){
+                $event='Cập nhật thất bại';
+                return response()->json($event);
+            }else{
+                $event = 'cập nhật thành công';
+                Event::create([
+                    'user_id' => Auth::user()->id,
+                    'title' => $handleCheckTile,
+                    'start' => $request->start,
+                    'end' => $request->end,
+                    'type' => $handleCheckType
+                ]);
+                return response()->json($event);
+            }
+           
+        }else if(Carbon::today()->isSameDay($request->start)){
+            $event = Event::create([
                 'user_id' => Auth::user()->id,
                 'title' => $handleCheckTile,
                 'start' => $request->start,
@@ -100,7 +123,7 @@ class CalenderController extends Controller
             ]);
             return response()->json($event);
         }else{
-            $event='oki';
+            $event='Điểm danh thất bại';
             return response()->json($event);
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff\Face;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Staff\StaffFaceService;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +14,7 @@ use App\Models\User;
 use App\Models\User_infomation;
 use App\Models\User_track;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Contracts\Session\Session as SessionSession;
 // use Session;
 use Illuminate\Support\Facades\Session;
@@ -129,16 +131,32 @@ class FaceController extends Controller
             } else {
                 $type = 0;
                 $work_month = 0;
-                User_track::create([
-                    'user_id' => $getUser->user_id,
-                    'type' => $type,
-                    'work_month' => $work_month
-                ]);
-                Session::put('first_name', $request->name);
-                $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');
-                echo $time;
-                sleep(1);
-                return;
+                try{
+                    DB::beginTransaction();
+                    User_track::create([
+                        'user_id' => $getUser->user_id,
+                        'type' => $type,
+                        'work_month' => $work_month
+                    ]);
+                    $start = now()->format('Y-m-d H:i:s');
+                    $end = now()->format('Y-m-d H:i:s');
+                    Event::create([
+                        'user_id' => $getUser->user_id,
+                        'title' => 'Điểm danh',
+                        'start' => $start,
+                        'end' => $end,
+                        'type' => 0
+                    ]);
+                    Session::put('first_name', $request->name);
+                    $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');
+                    echo $time;
+                    sleep(1);
+                    DB::commit();
+                    return;
+                }catch(Exception $e){
+                    DB::rollBack();
+                    return redirect()->back()->with('msg', 'Error');
+                }
             }
         }else{
             echo "Staff " . $request->name . " đã xác định thành công, vui lòng mời người tiếp theo";

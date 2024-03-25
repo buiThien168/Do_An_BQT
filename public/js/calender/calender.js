@@ -11,10 +11,10 @@ $(document).ready(function () {
         selectHelper: true,
         eventRender: function (event, element) {
             var eventTitle = '';
-            if (event.type === 1) {
+            if (event.type === 2) {
                 element.css('background-color', '#2C3E50');
                 eventTitle = 'Xin nghỉ (nửa buổi): ';
-            } else if(event.type === 2) {
+            } else if(event.type === 1) {
                 element.css('background-color', '#007bff');
                 eventTitle = 'Xin nghỉ (cả ngày): ';
             }else{
@@ -53,111 +53,89 @@ $(document).ready(function () {
                     },
                     success: function (data) {
                         calendar.fullCalendar('refetchEvents');
-                        alert("Điểm danh thành công");
+                        $('#selectOption').val('');
+                        $('#selectBreaks').val('');
+                        $('#inputAttendes').val('');
+                        $('#inputBreaks').val('');
+                        alert(data);
                     }
                 })
                 submitBtn.removeEventListener('click', submitFunction);
                 $('#myModal').modal('hide');
             }
             submitBtn.addEventListener('click', submitFunction);
-            // submitBtn.addEventListener('click', function () {
-            //     var selectOption = $('#selectOption').val();
-            //     var selectBreaks = $('#selectBreaks').val();
-            //     var inputAttendes = $('#inputAttendes').val();
-            //     var inputBreaks = $('#inputBreaks').val();
-            //     console.log(selectOption)
-            //     // $.ajax({
-            //     //     url: "/attendance/post-calender",
-            //     //     type: "POST",
-            //     //     headers: {
-            //     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     //     },
-            //     //     data: {
-            //     //         selectOption: selectOption,
-            //     //         selectBreaks: selectBreaks,
-            //     //         inputAttendes: inputAttendes,
-            //     //         inputBreaks: inputBreaks,
-            //     //         start: start,
-            //     //         end: end,
-            //     //         type: 'add'
-            //     //     },
-            //     //     success: function (data) {
-            //     //         calendar.fullCalendar('refetchEvents');
-            //     //         alert("Điểm danh thành công");
-            //     //     }
-            //     // })
-            //     $('#myModal').modal('hide');
-            // })
         },
         editable: true,
-        eventResize: function (event, delta) {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url: "/attendance/post-calender",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success: function (response) {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event updated");
-                }
-            })
-        },
-        eventDrop: function (event, delta) {
-            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-            var title = event.title;
-            var id = event.id;
-            $.ajax({
-                url: "/attendance/post-calender",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    title: title,
-                    start: start,
-                    end: end,
-                    id: id,
-                    type: 'update'
-                },
-                success: function (response) {
-                    calendar.fullCalendar('refetchEvents');
-                    alert("Event updated");
-                }
-            })
-        },
-        eventClick: function (event) {
-            if (confirm("Are you sure you want to remove it?")) {
-                var id = event.id;
-                $.ajax({
-                    url: "/attendance/post-calender",
-                    type: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        id: id,
-                        type: "delete"
-                    },
-                    success: function (response) {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event deleted");
-                    }
-                })
-            }
-        }
+        // eventResize: function (event, delta) {
+        //     var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+        //     var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+        //     var title = event.title;
+        //     var id = event.id;
+        //     $.ajax({
+        //         url: "/attendance/post-calender",
+        //         type: "POST",
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         data: {
+        //             title: title,
+        //             start: start,
+        //             end: end,
+        //             id: id,
+        //             type: 'update'
+        //         },
+        //         success: function (response) {
+        //             calendar.fullCalendar('refetchEvents');
+        //             alert("Event updated");
+        //         }
+        //     })
+        // },
+        // eventDrop: function (event, delta) {
+        //     let exampleModal = new bootstrap.Modal(document.getElementById('myModals'));
+        //     exampleModal.show();
+        //     var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+        //     var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+        //     var title = event.title;
+        //     var id = event.id;
+        //     $.ajax({
+        //         url: "/attendance/post-calender",
+        //         type: "POST",
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         data: {
+        //             title: title,
+        //             start: start,
+        //             end: end,
+        //             id: id,
+        //             type: 'update'
+        //         },
+        //         success: function (response) {
+        //             calendar.fullCalendar('refetchEvents');
+        //             alert("Event updated");
+        //         }
+        //     })
+        // },
+        // eventClick: function (event) {
+        //     if (confirm("Are you sure you want to remove it?")) {
+        //         var id = event.id;
+        //         $.ajax({
+        //             url: "/attendance/post-calender",
+        //             type: "POST",
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             data: {
+        //                 id: id,
+        //                 type: "delete"
+        //             },
+        //             success: function (response) {
+        //                 calendar.fullCalendar('refetchEvents');
+        //                 alert("Event deleted");
+        //             }
+        //         })
+        //     }
+        // }
     });
     let selectOption = document.getElementById('selectOption');
     let breaks = document.getElementById('breaks');
