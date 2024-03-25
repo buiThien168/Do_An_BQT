@@ -40,7 +40,6 @@ class CalenderController extends Controller
     }
     public function PostCalender(Request $request)
     {
-
         $selectOption = $request->selectOption;
         $selectBreaks = $request->selectBreaks;
         $handleCheckType = $this->handleCheckType($selectOption, $selectBreaks);
@@ -82,8 +81,7 @@ class CalenderController extends Controller
                 default:
                     break;
             }
-        } else {
-            
+        } else if(Carbon::today()->isSameDay($request->start)) {
             $event = Event::insert([
                 'user_id' => Auth::user()->id,
                 'title' => $handleCheckTile,
@@ -91,6 +89,18 @@ class CalenderController extends Controller
                 'end' => $request->end,
                 'type' => $handleCheckType
             ]);
+            return response()->json($event);
+        }else if(!Carbon::today()->isSameDay($request->start) && $selectOption==1){
+            $event = Event::insert([
+                'user_id' => Auth::user()->id,
+                'title' => $handleCheckTile,
+                'start' => $request->start,
+                'end' => $request->end,
+                'type' => $handleCheckType
+            ]);
+            return response()->json($event);
+        }else{
+            $event='oki';
             return response()->json($event);
         }
     }

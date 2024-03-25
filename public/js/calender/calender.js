@@ -10,23 +10,28 @@ $(document).ready(function () {
         selectable: true,
         selectHelper: true,
         eventRender: function (event, element) {
+            var eventTitle = '';
             if (event.type === 1) {
-                element.css('background-color', 'yellow');
+                element.css('background-color', '#2C3E50');
+                eventTitle = 'Xin nghỉ (nửa buổi): ';
             } else if(event.type === 2) {
-                element.css('background-color', 'red');
+                element.css('background-color', '#007bff');
+                eventTitle = 'Xin nghỉ (cả ngày): ';
             }else{
-                element.css('background-color', 'green');
+                element.css('background-color', '#ffc107');
+                eventTitle = 'Đã điểm danh: ';
             }
+            element.find('.fc-title').prepend('<span class="event-type">' + eventTitle + '</span>');
 
         },
         select: function (start, end, allDay) {
             let exampleModal = new bootstrap.Modal(document.getElementById('myModals'));
             exampleModal.show();
             var submitBtn = document.getElementById('submitBtn');
-            // Corrected typo in addEventListener
             var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
             var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-            submitBtn.addEventListener('click', function () {
+            submitBtn.removeEventListener('click', submitFunction);
+            function submitFunction() {
                 var selectOption = $('#selectOption').val();
                 var selectBreaks = $('#selectBreaks').val();
                 var inputAttendes = $('#inputAttendes').val();
@@ -51,8 +56,38 @@ $(document).ready(function () {
                         alert("Điểm danh thành công");
                     }
                 })
+                submitBtn.removeEventListener('click', submitFunction);
                 $('#myModal').modal('hide');
-            })
+            }
+            submitBtn.addEventListener('click', submitFunction);
+            // submitBtn.addEventListener('click', function () {
+            //     var selectOption = $('#selectOption').val();
+            //     var selectBreaks = $('#selectBreaks').val();
+            //     var inputAttendes = $('#inputAttendes').val();
+            //     var inputBreaks = $('#inputBreaks').val();
+            //     console.log(selectOption)
+            //     // $.ajax({
+            //     //     url: "/attendance/post-calender",
+            //     //     type: "POST",
+            //     //     headers: {
+            //     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     //     },
+            //     //     data: {
+            //     //         selectOption: selectOption,
+            //     //         selectBreaks: selectBreaks,
+            //     //         inputAttendes: inputAttendes,
+            //     //         inputBreaks: inputBreaks,
+            //     //         start: start,
+            //     //         end: end,
+            //     //         type: 'add'
+            //     //     },
+            //     //     success: function (data) {
+            //     //         calendar.fullCalendar('refetchEvents');
+            //     //         alert("Điểm danh thành công");
+            //     //     }
+            //     // })
+            //     $('#myModal').modal('hide');
+            // })
         },
         editable: true,
         eventResize: function (event, delta) {
