@@ -11,6 +11,7 @@ $(document).ready(function () {
         selectHelper: true,
         eventRender: function (event, element) {
             var eventTitle = '';
+            var startTime = moment(event.created_at).format('HH:mm');
             if (event.type === 2) {
                 element.css('background-color', '#2C3E50');
                 eventTitle = 'Xin nghỉ (nửa buổi): ';
@@ -19,7 +20,7 @@ $(document).ready(function () {
                 eventTitle = 'Xin nghỉ (cả ngày): ';
             }else{
                 element.css('background-color', '#ffc107');
-                eventTitle = 'Đã điểm danh: ';
+                eventTitle = 'Đã điểm danh: '+ startTime + ': ';
             }
             element.find('.fc-title').prepend('<span class="event-type">' + eventTitle + '</span>');
 

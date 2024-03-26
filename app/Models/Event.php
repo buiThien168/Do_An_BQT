@@ -14,6 +14,8 @@ class Event extends Model
         'title',
         'start',
         'end',
-        'type'
+        'type',
+        'created_at',
+        'check_event'
     ];
 }

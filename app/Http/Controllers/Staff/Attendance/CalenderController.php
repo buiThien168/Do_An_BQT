@@ -21,7 +21,7 @@ class CalenderController extends Controller
             $data = Event::where('user_id', Auth::user()->id)
             ->whereDate('start', '>=', $request->start)
             ->whereDate('end', '<=', $request->end)
-            ->get(['id', 'title', 'work', 'start', 'end', 'type']);
+            ->get(['id', 'title', 'work', 'start', 'end', 'type','created_at']);
             return response()->json($data);
         }
         return view('Staff.Attendance.Calender');
@@ -55,7 +55,8 @@ class CalenderController extends Controller
                             'title' => $handleCheckTile,
                             'start' => $request->start,
                             'end' => $request->end,
-                            'type' => $handleCheckType
+                            'type' => $handleCheckType,
+                            'check_event'=>0
                         ]);
                         return response()->json($event);
                         break;
@@ -108,7 +109,8 @@ class CalenderController extends Controller
                     'title' => $handleCheckTile,
                     'start' => $request->start,
                     'end' => $request->end,
-                    'type' => $handleCheckType
+                    'type' => $handleCheckType,
+                    'check_event'=>0
                 ]);
                 return response()->json($event);
             }
@@ -119,7 +121,8 @@ class CalenderController extends Controller
                 'title' => $handleCheckTile,
                 'start' => $request->start,
                 'end' => $request->end,
-                'type' => $handleCheckType
+                'type' => $handleCheckType,
+                'check_event'=>2
             ]);
             return response()->json($event);
         }else{

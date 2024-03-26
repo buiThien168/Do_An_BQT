@@ -49,13 +49,25 @@
       </div>
     </li>
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link" href="{{url('admin/workflow-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">Quản lý công việc</span>
       </a>
+    </li> --}}
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#congviec" aria-expanded="false" aria-controls="congviec">
+        <i class="icon-bar-graph menu-icon"></i>
+        <span class="menu-title">Quản lý công việc</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="congviec">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/workflow-management')}}">Công việc</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/take-leave')}}">Xin nghỉ</a></li>
+        </ul>
+      </div>
     </li>
-    
 
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#khenthuong" aria-expanded="false" aria-controls="khenthuong">

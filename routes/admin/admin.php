@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Dashboard\DoashboardControler;
 use App\Http\Controllers\Admin\Work\WorkController;
 use App\Http\Controllers\Admin\EmailCampaign\EmailCampaignController;
 use App\Http\Controllers\Admin\Face\FaceController;
+use App\Http\Controllers\Admin\Work\TakeLeaveController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -132,6 +133,16 @@ Route::prefix('admin')->group(function () {
         // quản lí công việc
         Route::prefix('workflow-management')->group(function () {
             Route::get('/', [WorkController::class, 'ListWork']);
+            Route::get('/add', [WorkController::class, 'AddWork']); 
+            Route::post('/add', [WorkController::class, 'PostAddWork']); 
+            Route::get('/edit/{id}', [WorkController::class, 'EditWork']); 
+            Route::post('/edit/{id}', [WorkController::class, 'PostEditWork']);  
+            Route::get('/delete/{id}', [WorkController::class, 'DeleteWork']);  
+            Route::get('/job-details/{id}', [WorkController::class, 'WorkDetail']);      
+        });
+        // xin nghỉ
+        Route::prefix('take-leave')->group(function () {
+            Route::get('/', [TakeLeaveController::class, 'ListLeave']);
             Route::get('/add', [WorkController::class, 'AddWork']); 
             Route::post('/add', [WorkController::class, 'PostAddWork']); 
             Route::get('/edit/{id}', [WorkController::class, 'EditWork']); 
