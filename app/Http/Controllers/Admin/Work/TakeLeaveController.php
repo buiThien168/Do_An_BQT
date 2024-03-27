@@ -13,12 +13,28 @@ class TakeLeaveController extends Controller
     }
     public function ListLeave(){
         $ListLeave =  $this->TakeLeaveService->ListLeave();
-        dd($ListLeave);
-        // return view('Staff.Work.ListWork',
-        //     [
-        //         'GetWork'=>$GetWork,
-        //     ]
-        // );
+        return view(
+            'Admin.Leave.List',
+            [
+                'GetListLeave' => $ListLeave,
+            ]
+        );
     
+    }
+    public function PostApproveLeave($id,Request $request){
+        $this->TakeLeaveService->PostApproveLeave($id,$request);
+        return back();
+    }
+    public function EditLeave($id){
+        $EditLeave = $this->TakeLeaveService->GetLeave($id);
+        return view('Admin.Leave.EditLeave',['EditLeave'=>$EditLeave,'id'=>$id]);
+    }
+    public function PostEditLeave($id ,Request $request){
+        $PostEditLeave = $this->TakeLeaveService->PostEditLeave($id,$request);
+        return redirect('admin/take-leave');
+    }
+    public function DeleteLeave($id,Request $request){
+        $this->TakeLeaveService->DeleteLeave($id);
+        return back();
     }
 }

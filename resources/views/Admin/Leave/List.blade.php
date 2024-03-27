@@ -29,13 +29,10 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách công việc</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách xin nghỉ</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
-                              <a href="{{url('admin/workflow-management/add')}}">
-                                <div class="btn btn-success mr-2" style="width: 140px;">Tạo công việc</div>      
-                              </a> 
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                             </div>
@@ -46,48 +43,51 @@
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="4%">Mã số</th>
-                              <th width="12%">Tên</th>
-                              <th width="9%">Chức vụ</th>
-                              <th width="18%">Công việc</th>
-                              <th width="18%">Ngày</th>
+                              <th width="20%">Tên</th>
+                              <th width="20%">Nội dung</th>
+                              <th width="18%">Ngày tạo</th>
+                              <th width="10%">Thời gian</th>
                               <th width="10%">Trạng thái</th>
-                              <th width="10%">Ngày tạo</th>
                               <th width="24%">Hoạt động</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
-                             @foreach($GetWork as $item)
+                             @foreach($GetListLeave as $item)
                              <tr>
                               <td>{{$idup++}}</td>
-                              <td>KT{{$item->id}}</td>
                               <td>
                                 {{$item->full_name}}
                               </td>
                               <td>
-                                {{$item->name_position}}
+                                {{$item->title}}
                               </td>
                               <td>
-                                {{$item->work_name}}
+                               From {{\Carbon\Carbon::parse($item->created_at)->setTimezone('Asia/Ho_Chi_Minh')->format('d-m-Y')}}
                               </td>
                               <td>
-                               From {{\Carbon\Carbon::parse($item->from)->setTimezone('Asia/Ho_Chi_Minh')->format('d-m-Y')}} To {{\Carbon\Carbon::parse($item->to)->setTimezone('Asia/Ho_Chi_Minh')->format('d-m-Y')}}
-                              </td>
+                                @if($item->type == 2)
+                                <span class="text-warning">Nửa buổi</span>
+                                @else
+                                 <span class="text-success">Cả ngày</span>
+                                @endif
+                               </td>
                               <td>
-                               @if($item->status == 0)
-                               <span class="text-warning">Xử lý</span>
+                               @if($item->check_event == 1)
+                               <span class="text-success">Đã duyệt</span>
                                @else
-                                <span class="text-success">Hoàn thành</span>
+                                <span class="text-warning">Chưa duyệt</span>
                                @endif
                               </td>
-                              <td>
-                               {{\Carbon\Carbon::parse($item->created)->format('d/m/Y')}}
-                             </td>
                              <td>
+                              @if($item->check_event == 0)
+                              <a href="{{url('admin/take-leave/PostApproveLeave')."/".$item->id}}">
+                                <button class="btn btn-success mr-2 text-white">Duyệt</button>
+                              </a>
+                              @endif
                               <a href="{{url('admin/workflow-management/job-details')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Xem</button>
                               </a>
-                              <a href="{{url('admin/workflow-management/edit')."/".$item->id}}">
+                              <a href="{{url('admin/take-leave/edit')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Sửa</button>
                               </a>                       
                               <button class="btn btn-danger"  data-toggle="modal" data-target="#exampleModalUnLock{{$item->id}}">Xóa</button>              
@@ -104,11 +104,11 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Bạn đồng ý Xóa công việc?</p>
+                                 <p>Bạn đồng ý xóa đơn nghỉ?</p>
                                </div>
                                <div class="p-2">
                                  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
-                                 <a  href="{{url('admin/workflow-management/delete')."/".$item->id}}">
+                                 <a  href="{{url('admin/take-leave/delete')."/".$item->id}}">
                                   <button type="button" class="btn btn-danger float-right mr-2">
                                     Xóa                
                                   </button>
@@ -134,7 +134,7 @@
             </div>
 
             <div class="float-right pr-3">
-             {{ $GetWork->links('pagination::bootstrap-4') }}
+             {{ $GetListLeave->links('pagination::bootstrap-4') }}
            </div>
            <div style="clear: both"></div>
          </div>

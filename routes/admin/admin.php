@@ -143,11 +143,10 @@ Route::prefix('admin')->group(function () {
         // xin nghỉ
         Route::prefix('take-leave')->group(function () {
             Route::get('/', [TakeLeaveController::class, 'ListLeave']);
-            Route::get('/add', [WorkController::class, 'AddWork']); 
-            Route::post('/add', [WorkController::class, 'PostAddWork']); 
-            Route::get('/edit/{id}', [WorkController::class, 'EditWork']); 
-            Route::post('/edit/{id}', [WorkController::class, 'PostEditWork']);  
-            Route::get('/delete/{id}', [WorkController::class, 'DeleteWork']);  
+            Route::get('/PostApproveLeave/{id}', [TakeLeaveController::class, 'PostApproveLeave']);
+            Route::get('/edit/{id}', [TakeLeaveController::class, 'EditLeave']); 
+            Route::post('/edit/{id}', [TakeLeaveController::class, 'PostEditLeave']);  
+            Route::get('/delete/{id}', [TakeLeaveController::class, 'DeleteLeave']);  
             Route::get('/job-details/{id}', [WorkController::class, 'WorkDetail']);      
         });
          // quản lí email
