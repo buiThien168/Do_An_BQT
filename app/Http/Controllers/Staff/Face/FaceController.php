@@ -98,6 +98,7 @@ class FaceController extends Controller
             $checkEvent = Event::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
             if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
                 // $checkTimestamp = $checkType->created_at;
+                dd("2");
                 $checkTimestamp = Carbon::parse($checkType->created_at);
                 $currentTime =  Carbon::now();
                 $minutesDifference = $currentTime->diffInMinutes($checkTimestamp);
@@ -110,6 +111,7 @@ class FaceController extends Controller
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
                 }else {
+                    dd("1");
                     $type = 1;
                     $work_month = 0;
                     $hoursDifference = $currentTime->diffInHours($checkTimestamp);
@@ -130,6 +132,7 @@ class FaceController extends Controller
                     return;
                 }
             } else {
+                dd("3");//bug 
                 $type = 0;
                 $work_month = 0;
                 try{
@@ -163,6 +166,7 @@ class FaceController extends Controller
                 }
             }
         }else{
+            dd('5');
             echo "Staff " . $request->name . " đã xác định thành công, vui lòng mời người tiếp theo";
         }
         // create a new 
