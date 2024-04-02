@@ -112,7 +112,6 @@
           drawBox.draw(canvas)
         })
 
-        console.log(results);
         if (results.length > 0 && results[0]._label) {
           var data = new FormData();
           data.append("name", results[0]._label);
@@ -123,7 +122,6 @@
           });
           $.ajax({
             type: 'POST',
-            // url: '{{ url('face-recognition') }}',
             url: '/face-recognition',
             processData: false,
             contentType: false,

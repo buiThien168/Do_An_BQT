@@ -98,7 +98,6 @@ class FaceController extends Controller
             $checkEvent = Event::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
             if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
                 // $checkTimestamp = $checkType->created_at;
-                dd("2");
                 $checkTimestamp = Carbon::parse($checkType->created_at);
                 $currentTime =  Carbon::now();
                 $minutesDifference = $currentTime->diffInMinutes($checkTimestamp);
@@ -111,7 +110,6 @@ class FaceController extends Controller
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
                 }else {
-                    dd("1");
                     $type = 1;
                     $work_month = 0;
                     $hoursDifference = $currentTime->diffInHours($checkTimestamp);
@@ -132,7 +130,7 @@ class FaceController extends Controller
                     return;
                 }
             } else {
-                dd("3");//bug 
+
                 $type = 0;
                 $work_month = 0;
                 try{
@@ -142,9 +140,20 @@ class FaceController extends Controller
                         'type' => $type,
                         'work_month' => $work_month
                     ]);
-                    if(!Carbon::today()->isSameDay($checkEvent->create_at) || (Carbon::today()->isSameDay($checkEvent->create_at) && $checkEvent->type != 0) ){
-                        $start = now()->format('Y-m-d H:i:s');
-                        $end = now()->format('Y-m-d H:i:s');
+                    $start = now()->format('Y-m-d H:i:s');
+                    $end = now()->format('Y-m-d H:i:s');
+                    if($checkEvent){
+                        if(!Carbon::today()->isSameDay($checkEvent->create_at) || (Carbon::today()->isSameDay($checkEvent->create_at) && $checkEvent->type != 0) ){
+                            Event::create([
+                                'user_id' => $getUser->user_id,
+                                'title' => 'Điểm danh',
+                                'start' => $start,
+                                'end' => $end,
+                                'type' => 0,
+                                'check_event'=>2
+                            ]);
+                        }
+                    }else{
                         Event::create([
                             'user_id' => $getUser->user_id,
                             'title' => 'Điểm danh',
@@ -154,6 +163,7 @@ class FaceController extends Controller
                             'check_event'=>2
                         ]);
                     }
+                    
                     Session::put('first_name', $request->name);
                     $time = $request->name . " - Giờ vào " . Carbon::now('Asia/Ho_Chi_Minh');
                     echo $time;
@@ -166,7 +176,6 @@ class FaceController extends Controller
                 }
             }
         }else{
-            dd('5');
             echo "Staff " . $request->name . " đã xác định thành công, vui lòng mời người tiếp theo";
         }
         // create a new 
