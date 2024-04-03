@@ -28,7 +28,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Chi tiết lương</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách chi tiết chấm công</h5>
                          <div class="float-right"> 
                           <div class="d-flex">
                             <p>Lương cơ bản: {{number_format($GetSalary)}}đ |</p>

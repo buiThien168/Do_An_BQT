@@ -34,7 +34,7 @@ class StaffManageController extends Controller
     public function PostEditStaff($id, Request $request)
     {
         $validate = $request->validate([
-            'nick_name' => 'required|max:255',
+            'full_name' => 'required|max:255',
             'phone' => 'required|digits:10',
             'email' => 'required|email',
             'sex' => 'required|integer',
@@ -106,7 +106,7 @@ class StaffManageController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'full_name' => 'required|max:255',
-            'nick_name' => 'required|max:255',
+            'full_name' => 'required|max:255',
             'image' => 'image|mimes:jpeg,jpg,png,bmp,gif,svg|max:2048',
             'phone' => 'required|digits:10',
             'email' => 'required|email',

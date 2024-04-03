@@ -45,12 +45,11 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div>
-
                     <div class="bg-white">
                       <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body px-0">
-                            <h5 class="card-title float-left mb-2 tx">Danh sách lương</h5>
+                            <h5 class="card-title float-left mb-2 tx">Quản lý lịch trình</h5>
                             <div class="float-right">
                               <div class="d-flex">
                                 <p>Lương cơ bản: {{number_format($GetSalary)}}$ |</p>

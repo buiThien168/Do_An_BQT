@@ -104,6 +104,11 @@ Route::prefix('admin')->group(function () {
             Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']); 
             Route::get('wage', [SalaryController::class, 'Wage']);       
         });
+        // quan ly lịch trình
+        Route::prefix('schedule')->group(function () {
+            Route::get('payroll', [SalaryController::class, 'ListSalaryStaff']);  
+            Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']);     
+        });
         // oki
         Route::prefix('bonus')->group(function () {
             Route::get('/', [BonusController::class, 'ListBonus']);

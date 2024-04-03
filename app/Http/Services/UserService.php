@@ -125,7 +125,7 @@ class UserService
             $date_ranges = null;
         }
         $EditStaffService = User_infomation::where('user_id', $id)->update([
-            'nick_name' => $request->nick_name,
+            'full_name' => $request->full_name,
             'email' => $request->email,
             'sex' => $request->sex,
             'date_of_birth' => date(strtotime($request->date_of_birth)),

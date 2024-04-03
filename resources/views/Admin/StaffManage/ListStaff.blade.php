@@ -131,7 +131,7 @@
                                     <img src="{{ asset('images/staff/default.png')}}">
                                     @endif
                                   </td>
-                                  <td>{{$item->nick_name}}</td>
+                                  <td>{{$item->full_name}}</td>
                                   <td>
                                     @if($item->sex == 0)
                                     Nam

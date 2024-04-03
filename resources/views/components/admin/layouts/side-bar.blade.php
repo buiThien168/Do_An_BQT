@@ -36,25 +36,31 @@
 
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#salary" aria-expanded="false" aria-controls="salary">
-        <i class="icon-columns menu-icon"></i>
+        <i class="ti-wallet menu-icon"></i>
         <span class="menu-title">Quản lý tiền lương</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="salary">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management')}}">Lương cơ bản</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management/payroll')}}">Chấm công</a></li>  
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/salary-management/wage')}}">Bảng lương</a></li> 
         </ul>
       </div>
     </li>
 
-    {{-- <li class="nav-item">
-      <a class="nav-link" href="{{url('admin/workflow-management')}}">
-        <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Quản lý công việc</span>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#schedule" aria-expanded="false" aria-controls="schedule">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title">Quản lý lịch trình</span>
+        <i class="menu-arrow"></i>
       </a>
-    </li> --}}
+      <div class="collapse" id="schedule">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/schedule/payroll')}}">Chấm công</a></li>  
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/take-leave')}}">Xin nghỉ</a></li>
+        </ul>
+      </div>
+    </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#congviec" aria-expanded="false" aria-controls="congviec">
         <i class="icon-bar-graph menu-icon"></i>
@@ -64,7 +70,6 @@
       <div class="collapse" id="congviec">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/workflow-management')}}">Công việc</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/take-leave')}}">Xin nghỉ</a></li>
         </ul>
       </div>
     </li>

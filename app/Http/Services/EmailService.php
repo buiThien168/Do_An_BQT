@@ -24,10 +24,9 @@ class EmailService
     }
     public function PostAddEmailTemplate($request)
     {
-        $PostAddEmailTemplate = Admin_mail_template::insert([
+        $PostAddEmailTemplate = Admin_mail_template::create([
             'template_title' => $request->template_title,
             'template_content' => $request->template_content,
-            'created_at' => time(),
             'updated_by' => Auth::user()->id
         ]);
         return $PostAddEmailTemplate;

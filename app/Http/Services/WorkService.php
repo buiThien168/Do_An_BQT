@@ -117,7 +117,6 @@ class WorkService
             'note'=>$request->note,
             'from'=>date(strtotime($request->from)),
             'to'=>date(strtotime($request->to)),
-            'updated_at'=>time(),
             'updater'=>Auth::user()->id
         ]);
         return $PostEditWork;

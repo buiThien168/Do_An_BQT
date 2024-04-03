@@ -40,7 +40,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url('salary-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Quản lý tiền lương</span>
+        <span class="menu-title">Quản lý lịch trình</span>
       </a>
     </li>
 
