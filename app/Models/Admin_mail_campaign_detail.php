@@ -16,7 +16,6 @@ class Admin_mail_campaign_detail extends Model
         'user_email',
         'receipt_status',
         'receipt_time',
-        'created_at',
         'created_by',
     ];
 }

@@ -58,7 +58,6 @@ class EmailService
         $getEmailTemplate = Admin_mail_template::where('id', $id)->update([
             'template_title' => $request->template_title,
             'template_content' => $request->template_content,
-            'updated_at' => time(),
             'updated_by' => Auth::user()->id
         ]);
         return $getEmailTemplate;
@@ -108,7 +107,13 @@ class EmailService
             $userAll = $request->list_users;
         }
         foreach ($userAll as $value) {
-            $getEmailUser = User_infomation::where('user_id', $value->id)->first();
+           
+            if($request->send_email_all){
+                $getEmailUser = User_infomation::where('user_id', $value->id)->first();
+              
+            }else{
+                $getEmailUser = User_infomation::where('user_id', $value)->first();
+            }
             try {
                 //Bỏ thông tin mail config vào swift smtp
                 $transport = (new \Swift_SmtpTransport($getEmailConfig->mail_host, $getEmailConfig->mail_port))
@@ -134,12 +139,11 @@ class EmailService
             ->select('users.id', 'user_infomations.email')->get();
         for ($i = 0; $i < count($getAllUser); $i++) {
             $getIdUserMail = User_infomation::where('user_id', '=', $getAllUser[$i]->id)->first();
-            $insertMailSend = Admin_mail_campaign_detail::insert([
+            $insertMailSend = Admin_mail_campaign_detail::create([
                 'admin_template_id' => $request->admin_template_id,
                 'admin_mail_config_id' => 1,
                 'user_id' => $getAllUser[$i]->id,
                 'user_email' => $getAllUser[$i]->email,
-                'created_at' => time(),
                 'created_by' => Auth::user()->id
             ]);
         }
@@ -149,13 +153,13 @@ class EmailService
     {
         foreach ($request->list_users as $value) {
             $getIdUserMail = User_infomation::where('user_id', '=', $value)->first();
-            $insertMailSend = Admin_mail_campaign_detail::insert([
+            $insertMailSend = Admin_mail_campaign_detail::create([
                 'admin_template_id' => $request->admin_template_id,
                 'admin_mail_config_id' => 1,
                 'user_id' => $getIdUserMail->user_id,
                 'user_email' => $getIdUserMail->email,
-                'created_at' => time(),
                 'created_by' => Auth::user()->id
+                
             ]);
         }
         return $insertMailSend;
