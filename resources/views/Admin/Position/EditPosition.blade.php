@@ -17,7 +17,7 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Chỉnh sửa vị trí</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Chỉnh sửa bộ phận</h5>
                    <form id="form-add-department" method="post" action="{{url('admin/position-management/edit')."/".$id}}">
                     @csrf
                     <div class="row m-0">
@@ -31,7 +31,7 @@
                       </div> 
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                        <button class="btn bg text-white">Chỉnh sửa chức vụ</button>
+                        <button class="btn bg text-white">Chỉnh sửa bộ phận</button>
                       </div>
                     </div>
                   </form>

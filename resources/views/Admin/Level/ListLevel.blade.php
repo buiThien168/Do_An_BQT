@@ -34,7 +34,7 @@
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
                               <a href="{{url('admin/level-management/add')}}">
-                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm bằng cấp</div>      
+                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm chuyên môn</div>      
                               </a>                
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
@@ -108,13 +108,13 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Xóa bằng cấp</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Xóa chuyên môn</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Bạn đồng ý Xóa bằng cấp {{$item->qualification_name}}?</p>
+                                 <p>Bạn đồng ý xóa chuyên môn {{$item->qualification_name}}?</p>
                                </div>
                                <div class="p-2">
                                  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>

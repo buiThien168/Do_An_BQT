@@ -25,8 +25,8 @@
       </a>
       <div class="collapse" id="nhanvien">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/department-manager')}}">Bộ phận</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('admin/position-management')}}">Chức vụ</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/department-manager')}}">Phòng</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/position-management')}}">Bộ phận</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/level-management')}}">Trình độ chuyên môn</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/professional-management')}}">Chuyên môn hóa</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/manage-employee-type')}}">Loại nhân viên</a></li>

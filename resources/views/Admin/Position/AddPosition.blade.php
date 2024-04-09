@@ -17,7 +17,7 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Thêm vị trí</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Thêm bộ phận</h5>
                    <form  method="post" action="{{url('admin/position-management/add')}}">
                     @csrf
                     <div class="row m-0">
@@ -31,7 +31,7 @@
                       </div> 
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                        <button class="btn bg text-white">Thêm vị trí</button>
+                        <button class="btn bg text-white">Thêm bộ phận</button>
                       </div>
                     </div>
                   </form>

@@ -17,12 +17,12 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Thêm bộ phận</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Thêm phòng</h5>
                    <form  method="post" action="{{url('admin/department-manager/add')}}">
                     @csrf
                     <div class="row m-0">
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Tên bộ phận</label>
+                        <label class="fz85">Tên phòng</label>
                         <input type="text" name="room_name" class="form-control mr-2" autocomplete="off" required>
                       </div>  
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
@@ -31,7 +31,7 @@
                       </div> 
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                        <button class="btn bg text-white">Thêm bộ phận</button>
+                        <button class="btn bg text-white">Thêm phòng</button>
                       </div>
                     </div>
                   </form>

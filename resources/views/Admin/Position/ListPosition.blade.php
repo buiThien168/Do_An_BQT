@@ -29,12 +29,12 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách chức vụ</h5>
+                         <h5 class="card-title float-left mb-2 tx">Danh sách bộ phận</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex"> 
                               <a href="{{url('admin/position-management/add')}}">
-                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm chức vụ</div>      
+                                <div class="btn btn-success mr-2" style="width: 120px;">Thêm bộ phân</div>      
                               </a>                
                               <input type="text" class="form-control"  placeholder="Name" name="keyword">
                               <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
@@ -108,13 +108,13 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Xóa vị trí</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Xóa bộ phận</h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                 <p>Bạn đồng ý Xóa vị trí {{$item->name_position}}?</p>
+                                 <p>Bạn đồng ý Xóa bộ phận {{$item->name_position}}?</p>
                                </div>
                                <div class="p-2">
                                  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>

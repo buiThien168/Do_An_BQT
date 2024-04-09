@@ -17,7 +17,7 @@
               <div class="col-12 col-xl-12 mb-4 mb-xl-0 p-0">
                 <div>
                   <div class="bg-white p-2">
-                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Chỉnh sửa bằng cấp</h5>
+                   <h5 class="card-title mb-4 font-weight-bold ml-2 mt-2 tx">Chỉnh sửa chuyên môn</h5>
                    <form  method="post" action="{{url('admin/level-management/edit')."/".$id}}">
                     @csrf
                     <div class="row m-0">
@@ -31,7 +31,7 @@
                       </div> 
                      
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
-                        <button class="btn bg text-white">Chỉnh sửa bằng cấp</button>
+                        <button class="btn bg text-white">Chỉnh sửa chuyên môn</button>
                       </div>
                     </div>
                   </form>

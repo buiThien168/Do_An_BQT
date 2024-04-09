@@ -22,30 +22,30 @@ class UserManageController extends Controller
         $GetUsers=$this->UserService->ListUserServices();
         return view('Admin.UserManage.ListUser',['GetUsers'=>$GetUsers ]);
     }
-    public function BlockUnBlockUser($id){
-        dd($id);
-        if(isset($id)){
-            $FindUserById = User::find($id);
-            if($FindUserById != null){
-                if($FindUserById->active == 0){
-                    $FindUserById->active=1;
-                    $FindUserById->updated_at=now();
-                    $FindUserById->save();
-                    return back();
-                }else if($FindUserById->active == 1){
-                    $FindUserById->active=0;
-                    $FindUserById->save();
-                    return back();
-                }else{
-                    return Redirect::to('/404');
-                }               
-            }else{
-                return Redirect::to('/404');
-            }
-        }else{
-            return Redirect::to('/404');
-        }
-    }
+    // public function BlockUnBlockUser($id){
+    //     dd($id);
+    //     if(isset($id)){
+    //         $FindUserById = User::find($id);
+    //         if($FindUserById != null){
+    //             if($FindUserById->active == 0){
+    //                 $FindUserById->active=1;
+    //                 $FindUserById->updated_at=now();
+    //                 $FindUserById->save();
+    //                 return back();
+    //             }else if($FindUserById->active == 1){
+    //                 $FindUserById->active=0;
+    //                 $FindUserById->save();
+    //                 return back();
+    //             }else{
+    //                 return Redirect::to('/404');
+    //             }               
+    //         }else{
+    //             return Redirect::to('/404');
+    //         }
+    //     }else{
+    //         return Redirect::to('/404');
+    //     }
+    // }
 
     public function SearchUser(Request $request){
         if(isset($request->keyword)){

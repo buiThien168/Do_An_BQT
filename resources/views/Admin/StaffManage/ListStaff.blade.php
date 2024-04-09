@@ -63,7 +63,7 @@
                 <div class="card card-light-blue">
                   <div class="card-body">
                     <p class="mb-4">Nhân Viên</p>
-                    <p class="fs-30 mb-2">20 User</p>
+                    <p class="fs-30 mb-2">{{$GetListStaffs->count()}} User</p>
                   </div>
                 </div>
               </div>
