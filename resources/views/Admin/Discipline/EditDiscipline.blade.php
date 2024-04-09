@@ -46,9 +46,9 @@
   </div>
 </div>   
 </div>
-<script src="{{ asset('index/js/jquery-3.6.0.js') }}"></script>
-<script src="{{ asset('index/js/validate/jquery.validate.min.js') }}" ></script>
-<script src="{{ asset('index/js/validate/validate.js') }}"></script>
+<script src="{{ secure_asset('index/js/jquery-3.6.0.js') }}"></script>
+<script src="{{ secure_asset('index/js/validate/jquery.validate.min.js') }}" ></script>
+<script src="{{ secure_asset('index/js/validate/validate.js') }}"></script>
 @endsection
 
 

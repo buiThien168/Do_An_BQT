@@ -21,7 +21,7 @@
                       @forelse($getImages as $item)
                       <div class="col-2">
                         <div class="shadow-sm p-2 bg-white">
-                          <img src="{{ asset('storage/public/face-data')."/".$item->name."/".$item->image}}" width="100%">
+                          <img src="{{ secure_asset('storage/public/face-data')."/".$item->name."/".$item->image}}" width="100%">
                         </div>
                       </div>
                       @empty

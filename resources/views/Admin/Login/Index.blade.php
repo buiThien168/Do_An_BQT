@@ -2,7 +2,7 @@
 @section('Title', 'Đăng nhập Admin')
 @section('Content')
 
-<link rel="stylesheet" href="{{ asset('index/css/reponsive.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('index/css/reponsive.css') }}">
 @include('Admin.Layouts.Header')
 <div class="box-content d-flex" style="padding-top: 60px;width: 80%;margin: auto;">
   <div class="form-login-box bg-white mt-4 p-3" style="width: 30%;margin: auto;">
@@ -21,7 +21,7 @@
    </form>
  </div>
 </div>
-<script src="{{ asset('index/js/jquery-3.6.0.js') }}"></script>
-<script src="{{ asset('index/js/validate/jquery.validate.min.js') }}" ></script>
-<script src="{{ asset('index/js/validate/validate.js') }}"></script>
+<script src="{{ secure_asset('index/js/jquery-3.6.0.js') }}"></script>
+<script src="{{ secure_asset('index/js/validate/jquery.validate.min.js') }}" ></script>
+<script src="{{ secure_asset('index/js/validate/validate.js') }}"></script>
 @endsection

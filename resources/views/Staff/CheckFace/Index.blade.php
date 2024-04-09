@@ -45,8 +45,8 @@
     background-repeat: no-repeat;
   }
 </style>
-<script defer src="{{ asset('face-api/face-api.min.js') }}"></script>
-<script defer src="{{ asset('face-api/script.js') }}"></script>
+<script defer src="{{ secure_asset('face-api/face-api.min.js') }}"></script>
+<script defer src="{{ secure_asset('face-api/script.js') }}"></script>
 <div class="container-fluid p-0" style="height: 100vh; background: #4B49AC">
   <div class="p-4">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -207,8 +207,8 @@
     background-repeat:no-repeat;
   }
 </style>
-<script defer src="{{ asset('face-api/face-api.min.js')}}"></script>
-<script defer src="{{ asset('face-api/script.js')}}"></script>
+<script defer src="{{ secure_asset('face-api/face-api.min.js')}}"></script>
+<script defer src="{{ secure_asset('face-api/script.js')}}"></script>
 <div class="container-fluid p-0 " style="height:100vh;background:#4B49AC">
   <div class=" p-4">
     <meta name="csrf-token" content="{{ csrf_token() }}">

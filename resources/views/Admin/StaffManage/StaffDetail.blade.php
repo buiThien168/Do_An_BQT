@@ -30,9 +30,9 @@
               <div class="col-12 col-md-3 col-xl-3 mb-4 mb-xl-0 pr-4 pl-0">
                 <div class="bg-white shadow-sm w-100">
                   @if(isset($GetStaffs->image))
-                  <img  src="{{ asset('images/staff')."/".$GetStaffs->image}}" style="object-fit: cover;" width="100%" height="100%">
+                  <img  src="{{ secure_asset('images/staff')."/".$GetStaffs->image}}" style="object-fit: cover;" width="100%" height="100%">
                   @else
-                  <img  src="{{ asset('images/staff/default.png')}}" style="object-fit: cover;" width="100%" height="100%">
+                  <img  src="{{ secure_asset('images/staff/default.png')}}" style="object-fit: cover;" width="100%" height="100%">
                   @endif
                 </div>
               </div>

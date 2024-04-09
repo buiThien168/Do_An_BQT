@@ -9,18 +9,18 @@
   <title>@yield('Title')</title>
   @section('styles_')
   <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css')}}">
-  <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css')}}">
-  <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('vendors/feather/feather.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('vendors/css/vendor.bundle.base.css')}}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
-  <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('js/theme-manage/select.dataTables.min.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ secure_asset('js/theme-manage/select.dataTables.min.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="{{ asset('css/theme-manage/style.css')}}">
-  <link rel="stylesheet" href="{{ asset('Index/css/style.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('css/theme-manage/style.css')}}">
+  <link rel="stylesheet" href="{{ secure_asset('Index/css/style.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css" integrity="sha512-72McA95q/YhjwmWFMGe8RI3aZIMCTJWPBbV8iQY3jy1z9+bi6+jHnERuNrDPo/WGYEzzNs4WdHNyyEr/yXJ9pA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -51,30 +51,30 @@
   @show
 </body>
 <!-- plugins:js -->
-<script src="{{ asset('vendors/js/vendor.bundle.base.js')}}"></script>
+<script src="{{ secure_asset('vendors/js/vendor.bundle.base.js')}}"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="{{ asset('vendors/chart.js/Chart.min.js')}}"></script>
-{{-- <script src="{{ asset('vendors/datatables.net/jquery.dataTables.js')}}"></script> --}}
-<script src="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
-<script src="{{ asset('js/theme-manage/dataTables.select.min.js')}}"></script>
+<script src="{{ secure_asset('vendors/chart.js/Chart.min.js')}}"></script>
+{{-- <script src="{{ secure_asset('vendors/datatables.net/jquery.dataTables.js')}}"></script> --}}
+<script src="{{ secure_asset('vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/dataTables.select.min.js')}}"></script>
 
 <!-- End plugin js for this page -->
 <!-- inject:js -->
-<script src="{{ asset('js/theme-manage/off-canvas.js')}}"></script>
-<script src="{{ asset('js/theme-manage/hoverable-collapse.js')}}"></script>
-<script src="{{ asset('js/theme-manage/template.js')}}"></script>
-<script src="{{ asset('js/theme-manage/settings.js')}}"></script>
-<script src="{{ asset('js/theme-manage/todolist.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/off-canvas.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/hoverable-collapse.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/template.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/settings.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/todolist.js')}}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="{{ asset('js/theme-manage/dashboard.js')}}"></script>
-<script src="{{ asset('js/theme-manage/Chart.roundedBarCharts.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/dashboard.js')}}"></script>
+<script src="{{ secure_asset('js/theme-manage/Chart.roundedBarCharts.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-<script src="{{ asset('js/calender/calender.js')}}"></script>
+<script src="{{ secure_asset('js/calender/calender.js')}}"></script>
 <!-- End custom js for this page-->
 @section('js')
 </html>

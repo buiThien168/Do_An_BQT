@@ -60,9 +60,9 @@
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
           @if(Auth::user()->userInformation->image == null)
-          <img src="{{ asset('images/avatars/default-admin.png')}}" />
+          <img src="{{ secure_asset('images/avatars/default-admin.png')}}" />
           @else
-          <img src="{{ asset('images/staff/' . Auth::user()->userInformation->image) }}" />
+          <img src="{{ secure_asset('images/staff/' . Auth::user()->userInformation->image) }}" />
           @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">

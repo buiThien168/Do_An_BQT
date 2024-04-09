@@ -58,9 +58,9 @@
                               <td>NV{{$item->user_id}}</td>
                               <td>
                                 @if(isset($item->image))
-                                <img src="{{ asset('images/staff')."/".$item->image}}">
+                                <img src="{{ secure_asset('images/staff')."/".$item->image}}">
                                 @else
-                                <img src="{{ asset('images/staff/default.png')}}">
+                                <img src="{{ secure_asset('images/staff/default.png')}}">
                                 @endif
                               </td>
                               <td>

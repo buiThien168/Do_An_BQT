@@ -22,7 +22,7 @@
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card tale-bg">
               <div class="card-people mt-auto">
-                <img src="{{asset('images/avatars/people.svg')}}" alt="people">
+                <img src="{{secure_asset('images/avatars/people.svg')}}" alt="people">
                 <div class="weather-info">
                   <div class="d-flex">
                     <div>
@@ -126,9 +126,9 @@
                                   <td>NV{{$item->user_id}}</td>
                                   <td>
                                     @if(isset($item->image))
-                                    <img src="{{ asset('images/staff')."/".$item->image}}">
+                                    <img src="{{ secure_asset('images/staff')."/".$item->image}}">
                                     @else
-                                    <img src="{{ asset('images/staff/default.png')}}">
+                                    <img src="{{ secure_asset('images/staff/default.png')}}">
                                     @endif
                                   </td>
                                   <td>{{$item->full_name}}</td>
@@ -230,9 +230,9 @@
               <td>{{$idupOn++}}</td>
               <td>{{$item->full_name}}</td>
               <td>@if(isset($item->image))
-                <img src="{{ asset('images/staff')."/".$item->image}}">
+                <img src="{{ secure_asset('images/staff')."/".$item->image}}">
                 @else
-                <img src="{{ asset('images/staff/default.png')}}">
+                <img src="{{ secure_asset('images/staff/default.png')}}">
                 @endif</td>
               <td>{{$item->email}}</td>
             </tr>
@@ -264,9 +264,9 @@
               <td>{{$idupOn++}}</td>
               <td>{{$item->full_name}}</td>
               <td>@if(isset($item->image))
-                <img src="{{ asset('images/staff')."/".$item->image}}">
+                <img src="{{ secure_asset('images/staff')."/".$item->image}}">
                 @else
-                <img src="{{ asset('images/staff/default.png')}}">
+                <img src="{{ secure_asset('images/staff/default.png')}}">
                 @endif</td>
               <td>{{$item->email}}</td>
             </tr>
