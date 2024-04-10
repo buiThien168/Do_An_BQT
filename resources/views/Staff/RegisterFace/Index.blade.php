@@ -14,7 +14,7 @@
       <div class="shadow-smbox" style="margin: auto;width: 660px;padding: 10px;">
         <p class="fz95 tx font-weight-bold text-center">Lấy mẫu khuôn mặt</p>
         <div id="ok"></div>
-        <video id="player" controls autoplay width="640px" height="480px">
+        <video id="player" controls autoplay width="640px" height="480px" class="facess">
         </video>
         <button id="capture" class="d-none">sj</button>
         <p id="status" class="fz95 tx mt-2 text-center">Loading</p>
@@ -66,6 +66,16 @@
 
 
       }
+      @media (min-width: 200px) and (max-width: 365px) {
+        .facess {
+            width: 45% !important; /* iPhone 6, 6S, 7, 8, SE (2nd gen) */
+            height: 275px !important;
+        }
+        .fz95 {
+          font-size: 95%;
+          margin-right: 48vh;
+        }
+      }
     </style>
     <script type="text/javascript">
       var countFace = 0;
@@ -81,7 +91,7 @@
       console.log('click')
       countFace++;
       $('#status').text(countFace+'/3 st sampling');
-      if(countFace==3){
+      if(countFace==1000){
        window.location.href = "{{url('identity-management')}}";
      }
    },7000);
