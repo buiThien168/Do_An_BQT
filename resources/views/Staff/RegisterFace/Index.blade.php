@@ -91,7 +91,7 @@
       console.log('click')
       countFace++;
       $('#status').text(countFace+'/3 st sampling');
-      if(countFace==1000){
+      if(countFace==3){
        window.location.href = "{{url('identity-management')}}";
      }
    },7000);
