@@ -101,7 +101,7 @@ class FaceController extends Controller
                 $checkTimestamp = Carbon::parse($checkType->created_at);
                 $currentTime =  Carbon::now();
                 $minutesDifference = $currentTime->diffInMinutes($checkTimestamp);
-                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && $minutesDifference > 30) {
+                if ($checkType->type == 0 && Carbon::today()->isSameDay($checkType->created_at) && $minutesDifference < 120) {
                     Session::put('first_name', "da_hop_le_");
                     echo "Staff " . $request->name . " Đã hợp lệ xin cảm ơn!";
                     return;
