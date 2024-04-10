@@ -22,7 +22,7 @@ class BonusService
             ->leftJoin('user_infomations', 'user_infomations.user_id', '=', 'users.id')
             ->leftJoin('positions', 'positions.id', '=', 'user_infomations.positions')
             ->leftJoin('levels', 'levels.id', '=', 'user_infomations.level')
-            ->select('user_infomations.nick_name', 'positions.name_position', 'bonuses.*')
+            ->select('user_infomations.full_name', 'positions.name_position', 'bonuses.*')
             ->orderBy('bonuses.id', 'DESC')
             ->where('bonuses.deleted', 0);
         if (isset($request->keyword)) {
@@ -73,7 +73,6 @@ class BonusService
         $PostEditBonus = Bonus::where('id', $id)->update([
             'note' => $request->note,
             'value' => $request->value,
-            'updated_at' => time(),
             'updater' => Auth::user()->id,
         ]);
         return $PostEditBonus;

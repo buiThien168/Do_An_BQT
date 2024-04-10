@@ -50,7 +50,6 @@ class SalaryService
                 'basic_salary' => $request->basic_salary,
                 'perk_salary'=>$request->perk_salary,
                 'insuranc_salary'=>$request->insuranc_salary,
-                'created' => time(),
                 'created_by' => Auth::user()->id,
                 'updater' => null,
             ]);

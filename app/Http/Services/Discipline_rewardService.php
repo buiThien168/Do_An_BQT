@@ -21,7 +21,7 @@ class Discipline_rewardService
         ->leftJoin('user_infomations','user_infomations.user_id','=','users.id')
         ->leftJoin('positions','positions.id','=','user_infomations.positions')
         ->leftJoin('levels','levels.id','=','user_infomations.level')
-        ->select('user_infomations.nick_name','positions.name_position','disciplines.*')
+        ->select('user_infomations.full_name','positions.name_position','disciplines.*')
         ->orderBy('disciplines.id', 'DESC')
         ->where('disciplines.deleted',0);
         if(isset($request->keyword)){

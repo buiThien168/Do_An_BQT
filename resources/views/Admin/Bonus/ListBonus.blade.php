@@ -61,7 +61,7 @@
                               <td>{{$idup++}}</td>
                               <td>KT{{$item->id}}</td>
                               <td>
-                                {{$item->nick_name}}
+                                {{$item->full_name}}
                               </td>
                               <td>
                                 {{$item->name_position}}
