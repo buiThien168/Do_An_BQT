@@ -114,12 +114,43 @@
                                                                         <td>
                                                                             <div class="form-check">
                                                                                 <label class="form-check-label">
-                                                                                    <input class="checkbox" type="checkbox" name="email_notification">
+                                                                                    <input 
+                                                                                    class="checkbox" type="checkbox" 
+                                                                                    name="email_notification"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#exampleModalSendMail{{$item->id}}"
+                                                                                    id="checkboxs"
+                                                                                    >
                                                                                     Gửi thông báo
                                                                                 </label>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
+                                                                    <div class="modal fade mt-5" id="exampleModalSendMail{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                          <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                              <h5 class="modal-title" id="exampleModalLabel">Gửi email</h5>
+                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                              </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                             <p>Bạn đồng ý gửi bảng lương tới {{$item->full_name}}?</p>
+                                                                           </div>
+                                                                           <div class="p-2">
+                                                                             <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
+                                                                             <a  href="">
+                                                                              <button type="button" class="btn btn-success float-right mr-2">
+                                                                              Gửi                
+                                                                              </button>
+                                                                            </a>
+                                            
+                                            
+                                                                            <div style="clear: both"></div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
                                                                     @endforeach
                                                                 </tbody>
                                                             </table>

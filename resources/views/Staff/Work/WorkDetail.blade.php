@@ -58,7 +58,7 @@
                 <div>
                   <div class="bg-white p-2">
                     <h5 class="card-title mb-4 font-weight-bold mt-2 tx">Thông tin việc làm</h5>
-                    <p><i class="fa fa-briefcase mr-2 tx" aria-hidden="true"></i>{{$GetWork->work_name}} - {{$GetWork->note}} - @if($GetWork->status == 0)
+                    <p><i class="fa fa-briefcase mr-2 tx" aria-hidden="true"></i>{{$GetWork->work_name}} - <a href="{{$GetWork->note}}" target="_blank">{{$GetWork->note}}</a> - @if($GetWork->status == 0)
                       Processing
                       @else
                       <Finished @endif</p>

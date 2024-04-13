@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\User;
 use App\Models\User_infomation;
 use App\Models\User_track;
+use App\Models\Work;
 use Carbon\Carbon;
 
 class UserService
@@ -81,6 +82,14 @@ class UserService
         $uniqueUsers = $userTracksToday->unique('user_id');
         return $uniqueUsers;
         
+    }
+    public function checkWorkSuccessService(){
+        $checkWork = Work::Where('status',1)->get();
+        return $checkWork;
+    }
+    public function checkWorkService(){
+        $checkWork = Work::get();
+        return $checkWork;
     }
     public function checkOffStaffService($request){
          $userTracksToday = User_track::whereDate('created_at', Carbon::today())->pluck('user_id');

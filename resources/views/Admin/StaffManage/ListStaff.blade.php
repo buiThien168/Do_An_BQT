@@ -51,7 +51,7 @@
               <div class="col-md-6 mb-4 stretch-card transparent">
                 <div class="card card-dark-blue" data-toggle="modal" data-target="#ModalOFF">
                   <div class="card-body">
-                    <p class="mb-4">Nhân viên nghỉ phép</p>
+                    <p class="mb-4">Nhân viên chưa điểm danh</p>
                     <p class="fs-30 mb-2">{{$checkOffStaff->count()}}</p>
                     <p>22.00% (30 days)</p>
                   </div>
@@ -70,9 +70,9 @@
               <div class="col-md-6 stretch-card transparent">
                 <div class="card card-light-danger">
                   <div class="card-body">
-                    <p class="mb-4">Khen thưởng</p>
-                    <p class="fs-30 mb-2">47033</p>
-                    <p>0.22% (30 days)</p>
+                    <p class="mb-4">Công việc hoàn thành</p>
+                    <p class="fs-30 mb-2">{{$checkWorkSuccessService->count()}}</p>
+                    <p>{{$checkWork->count()}} work</p>
                   </div>
                 </div>
               </div>
