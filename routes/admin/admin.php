@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
             Route::get('lock-mine-employee/{id}', [UserManageController::class, 'BlockUnBlockUser']);
             Route::get('search', [UserManageController::class, 'SearchUser'])->name('account-management-search');
         });
-        // quản lí bộ phận
+        // quản lí phong
         Route::prefix('department-manager')->group(function () {
             Route::get('/', [DepartmentController::class, 'ListDepartment']); 
             Route::get('/add', [DepartmentController::class, 'AddDepartment']); 
@@ -55,7 +55,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [DepartmentController::class, 'PostEditDepartment']);
             Route::get('/see-employee/{id}', [DepartmentController::class, 'ListStaff']);          
         });
-         // quản lí chức vụ
+         // quản lí bộ phận
         Route::prefix('position-management')->group(function () {
             Route::get('/', [PositionController::class, 'ListPosition']); 
             Route::get('/add', [PositionController::class, 'AddPosition']); 
