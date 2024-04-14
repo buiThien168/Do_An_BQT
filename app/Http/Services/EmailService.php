@@ -96,7 +96,6 @@ class EmailService
     {
         $id_template = $request->admin_template_id;
         $getEmailTemplate = Admin_mail_template::where('id', '=', $id_template)->first();
-        dd($getEmailTemplate);
         $getEmailConfig = Admin_mail_config::where('id', '=', 1)->first();
         $getAllUser = User::leftJoin('user_infomations', 'user_infomations.user_id', 'users.id')
         ->where('users.role', 2)

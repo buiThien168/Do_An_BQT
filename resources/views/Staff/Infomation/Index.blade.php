@@ -46,7 +46,7 @@
                       <div class="row m-0">
                         <div class="col-6 p-0 pl-2 mb-2 px-2">
                           <label class="fz95">Họ và tên</label>
-                          <input type="text" value="{{$getInfo->name}}" name="phone" class="form-control mr-2" disabled>
+                          <input type="text" value="{{$getInfo->full_name}}" name="phone" class="form-control mr-2" disabled>
                         </div>
                         <div class="col-6 p-0 pr-2 mb-2 px-2">
                           <label class="fz95">E-mail</label>

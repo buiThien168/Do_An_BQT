@@ -2,6 +2,9 @@
 
 namespace App\Http\Services;
 
+use App\Models\Admin_mail_campaign_detail;
+use App\Models\Admin_mail_config;
+use App\Models\Admin_mail_template;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\User;
@@ -113,5 +116,43 @@ class SalaryService
             ->paginate(15);
 
         return $getStaff;
+    }
+    public function sendMail($id,$request)
+    {
+        $template_title = "Bảng Lương Tháng 5";
+        $getEmailTemplate = "";
+        $getEmailConfig = Admin_mail_config::where('id', '=', 1)->first();
+        $getEmailUser = User_infomation::where('user_id',$id)->first();
+        try {
+            //Bỏ thông tin mail config vào swift smtp
+            $transport = (new \Swift_SmtpTransport($getEmailConfig->mail_host, $getEmailConfig->mail_port))
+                ->setUsername($getEmailConfig->mail_username)->setPassword($getEmailConfig->mail_password)->setEncryption($getEmailConfig->mail_encryption);
+            $mailer = new \Swift_Mailer($transport);
+            //thiết lập Title, Content mail gửi
+            $message = (new \Swift_Message($template_title))
+                ->setFrom($getEmailConfig->mail_username)
+                ->setTo($getEmailUser->email)
+                ->addPart(
+                    $getEmailTemplate,
+                    'text/html'
+                );
+            $mailer->send($message);
+        } catch (\Swift_TransportException $transportExp) {
+        }
+    }
+    public function PostAddEmailCampaign($id,$request)
+    {
+        foreach ($request->list_users as $value) {
+            $getIdUserMail = User_infomation::where('user_id', '=', $value)->first();
+            $insertMailSend = Admin_mail_campaign_detail::create([
+                'admin_template_id' => $request->admin_template_id,
+                'admin_mail_config_id' => 1,
+                'user_id' => $getIdUserMail->user_id,
+                'user_email' => $getIdUserMail->email,
+                'created_by' => Auth::user()->id
+                
+            ]);
+        }
+        return $insertMailSend;
     }
 }

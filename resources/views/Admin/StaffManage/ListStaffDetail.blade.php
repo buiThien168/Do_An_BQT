@@ -71,7 +71,7 @@
                                 @endif
                               </td>
                               <td>
-                                {{$item->nick_name}}
+                                {{$item->full_name}}
                               </td>
                               <td>
                                 @if($item->sex == 0)

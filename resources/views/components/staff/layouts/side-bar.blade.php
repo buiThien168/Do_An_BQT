@@ -16,7 +16,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url('workflow-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Quản lý công việc</span>
+        <span class="menu-title">Theo dõi công việc</span>
       </a>
     </li>
     <li class="nav-item">
@@ -40,7 +40,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url('salary-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
-        <span class="menu-title">Quản lý lịch trình</span>
+        <span class="menu-title">Xem lịch trình</span>
       </a>
     </li>
 
@@ -61,7 +61,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{url('identity-management')}}">
         <i class="icon-paper menu-icon"></i>
-        <span class="menu-title">Quản lý danh tính</span>
+        <span class="menu-title">Thông tin khuôn mặt</span>
       </a>
     </li>
     <li class="nav-item">

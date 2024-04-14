@@ -126,29 +126,59 @@
                                                                             </div>
                                                                         </td>
                                                                     </tr>
-                                                                    <div class="modal fade mt-5" id="exampleModalSendMail{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal fade mt-5" id="exampleModalSendMail{{$item->id}}" tabindex="-1" role="dialog"
+                                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                         <div class="modal-dialog" role="document">
-                                                                          <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                              <h5 class="modal-title" id="exampleModalLabel">Gửi email</h5>
-                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                              </button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                             <p>Bạn đồng ý gửi bảng lương tới {{$item->full_name}}?</p>
-                                                                           </div>
-                                                                           <div class="p-2">
-                                                                             <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy bỏ</button>
-                                                                             <a  href="">
-                                                                              <button type="button" class="btn btn-success float-right mr-2">
-                                                                              Gửi                
-                                                                              </button>
-                                                                            </a>
-                                            
-                                            
-                                                                            <div style="clear: both"></div>
-                                                                          </div>
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Gửi email tới {{$item->full_name}}?</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form method="post" action="{{url('admin/salary-management/send_mail')."/".$item->id}}">
+                                                                                        @csrf
+                                                                                        <div class="row m-0">
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Lương cơ bản</label>
+                                                                                                <input type="text" name="basic_salary" class="form-control mr-2"
+                                                                                                    value="{{ $item->basic_salary != null ? $item->basic_salary : ""}}" autocomplete="off"
+                                                                                                    required>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Hỗ trợ</label>
+                                                                                                <input type="text" name="perk_salary" class="form-control mr-2"
+                                                                                                    value="{{ $item != null ? $item->perk_salary : ""}}" autocomplete="off" required>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Bảo hiểm</label>
+                                                                                                <input type="text" name="insuranc_salary" class="form-control mr-2"
+                                                                                                    value="{{ $item != null ? $item->insuranc_salary : ""}}" autocomplete="off" required>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Tiền thưởng</label>
+                                                                                                <input type="text" name="total_bonuses" class="form-control mr-2"
+                                                                                                    value="{{ $item != null ? $item->total_bonuses : ""}}" autocomplete="off" required>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Tiền phạt</label>
+                                                                                                <input type="text" name="total_disciplines" class="form-control mr-2"
+                                                                                                    value="{{ $item != null ? $item->total_disciplines : ""}}" autocomplete="off" required>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                                                                                                <label class="fz85">Số công</label>
+                                                                                                <input type="text" name="total_work_month" class="form-control mr-2"
+                                                                                                    value="{{ $item != null ? $item->total_work_month : ""}}" autocomplete="off" required>
+                                                                                            </div>
+                                                                                            <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
+                                                                                                <button class="btn bg text-white">Gửi</button>
+                                                                                              </div>
+                                                                                        </div>   
+                                                                                    </form>
+                                                                                    <div style="clear: both"></div>
+                                                                                </div>
+                                                                           
                                                                         </div>
                                                                       </div>
                                                                     @endforeach

@@ -102,7 +102,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit/{id}', [SalaryController::class, 'PostEditSalary']);
             Route::get('payroll', [SalaryController::class, 'ListSalaryStaff']);  
             Route::get('payroll/detail/{id}', [SalaryController::class, 'ListSalaryStaffDetail']); 
-            Route::get('wage', [SalaryController::class, 'Wage']);       
+            Route::get('wage', [SalaryController::class, 'Wage']); 
+            Route::post('/send_mail/{id}', [SalaryController::class, 'send_mail']);      
         });
         // quan ly lịch trình
         Route::prefix('schedule')->group(function () {

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\User_track;
 use Carbon\Carbon;
+use Exception;
+
 class SalaryController extends Controller
 {
 
@@ -149,5 +151,17 @@ class SalaryController extends Controller
                 'currentMonthDays'=>$currentMonthDays
             ]
         );
+    }
+    public function send_mail($id,Request $request){
+        try{
+            DB::beginTransaction();
+            $this->SalaryService->sendMail($id,$request);
+            $this->SalaryService->PostAddEmailCampaign($id,$request);
+            DB::commit();
+            return redirect()->back()->with('msg', 'Gửi thư thành công');
+        }catch(Exception $e){
+            DB::rollBack();
+            return redirect()->back()->with('msg', 'Error');
+        }
     }
 }
