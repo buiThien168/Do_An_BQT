@@ -93,7 +93,11 @@ class SalaryController extends Controller
         $getStaff = $this->SalaryService->ListSalaryStaff();
         $checktime = array();
         for ($i = 0; $i < $getStaff->total(); $i++) {
+            if (isset($getStaff[$i])) {
             $GetTime = User_track::where('user_id', $getStaff[$i]->id)->get();
+            if ($GetTime->isEmpty()) {
+                $GetTime = [];
+            }
             $GetSalary = Salary::where('user_id', $getStaff[$i]->id)->first('basic_salary');
             $total = 0;
             for ($j = 1; $j < count($GetTime); $j++) {
@@ -111,6 +115,7 @@ class SalaryController extends Controller
                 'id' => $getStaff[$i]->id,
                 'salary' => $total
             ]);
+        }
         }
         return view('Admin.Salary.ListSalaryStaff', ['getStaff' => $getStaff, 'checktime' => $checktime]);
     }
