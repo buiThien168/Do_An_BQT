@@ -22,7 +22,7 @@
                     @csrf
                     <div class="row m-0">
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Chức danh</label>
+                        <label class="fz85">Bộ phận</label>
                         <input type="text" name="name_position" class="form-control mr-2" autocomplete="off" required>
                       </div>  
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
