@@ -30,6 +30,8 @@
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/level-management')}}">Trình độ chuyên môn</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/professional-management')}}">Chuyên môn hóa</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('admin/manage-employee-type')}}">Loại nhân viên</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/educational-management')}}">Trình độ học vấn</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('admin/manage-employee-type')}}">Hợp đồng</a></li>
         </ul>
       </div>
     </li>

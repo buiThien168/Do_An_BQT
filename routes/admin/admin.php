@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Discipline\DisciplineController;
 use App\Http\Controllers\Admin\Infomation\InfomationController;
 use App\Http\Controllers\Admin\ChangePassword\ChangePasswordController;
 use App\Http\Controllers\Admin\Dashboard\DoashboardControler;
+use App\Http\Controllers\Admin\Educational\EducationalController;
 use App\Http\Controllers\Admin\Work\WorkController;
 use App\Http\Controllers\Admin\EmailCampaign\EmailCampaignController;
 use App\Http\Controllers\Admin\Face\FaceController;
@@ -64,6 +65,16 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{id}', [PositionController::class, 'EditPosition']); 
             Route::post('/edit/{id}', [PositionController::class, 'PostEditPosition']); 
             Route::get('/see-employee/{id}', [PositionController::class, 'ListStaff']);         
+        });
+         // quản lí trình độ học vấn
+         Route::prefix('educational-management')->group(function () {
+            Route::get('/', [EducationalController::class, 'ListEducation']); 
+            Route::get('/add', [EducationalController::class, 'AddEducation']); 
+            Route::post('/add', [EducationalController::class, 'PostAddEducation']);   
+            Route::get('/delete/{id}', [EducationalController::class, 'DeleteEducation']); 
+            Route::get('/edit/{id}', [EducationalController::class, 'EditEducation']); 
+            Route::post('/edit/{id}', [EducationalController::class, 'PostEditEducation']); 
+            Route::get('/see-employee/{id}', [EducationalController::class, 'ListEducationStaff']);         
         });
          // quản lí trình độ chuyên môn
         Route::prefix('level-management')->group(function () {
