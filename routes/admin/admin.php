@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Bonus\BonusController;
 use App\Http\Controllers\Admin\Discipline\DisciplineController;
 use App\Http\Controllers\Admin\Infomation\InfomationController;
 use App\Http\Controllers\Admin\ChangePassword\ChangePasswordController;
+use App\Http\Controllers\Admin\Contract\contractController;
 use App\Http\Controllers\Admin\Dashboard\DoashboardControler;
 use App\Http\Controllers\Admin\Educational\EducationalController;
 use App\Http\Controllers\Admin\Work\WorkController;
@@ -185,6 +186,16 @@ Route::prefix('admin')->group(function () {
                 Route::get('add', [EmailCampaignController::class, 'AddEmailCampaign']);
                 Route::post('add', [EmailCampaignController::class, 'PostAddEmailCampaign']);
             });   
+        });
+         // quản lí họp đồng
+         Route::prefix('contract-management')->group(function () {
+            Route::get('/', [contractController::class, 'ListContract']); 
+            Route::get('/add', [EducationalController::class, 'AddEducation']); 
+            Route::post('/add', [EducationalController::class, 'PostAddEducation']);   
+            Route::get('/delete/{id}', [EducationalController::class, 'DeleteEducation']); 
+            Route::get('/edit/{id}', [EducationalController::class, 'EditEducation']); 
+            Route::post('/edit/{id}', [EducationalController::class, 'PostEditEducation']); 
+            Route::get('/see-employee/{id}', [EducationalController::class, 'ListEducationStaff']);         
         }); 
         // quản lí danh tính
         Route::prefix('identity-management')->group(function () {
