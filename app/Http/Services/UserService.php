@@ -113,12 +113,14 @@ class UserService
             ->leftJoin('rooms', 'rooms.id', '=', 'user_infomations.rooms')
             ->leftJoin('positions', 'positions.id', '=', 'user_infomations.positions')
             ->leftJoin('users', 'users.id', '=', 'user_infomations.user_id')
+            ->leftJoin('educationals','educationals.id','user_infomations.educational')
             ->select(
                 'user_infomations.*',
                 'employee_types.name as employee_types',
                 'levels.qualification_name as levels',
                 'specializes.name_specializes as specializes',
                 'rooms.room_name as rooms',
+                'educationals.name_education as educationals',
                 'positions.name_position as positions',
                 'users.phone as phone'
             )

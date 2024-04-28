@@ -59,9 +59,11 @@
                 <p class=" mb-2">Ở lại: {{$GetStaffs->staying}}</p>
                 <p class=" mb-2">Loại nhân viên: {{$GetStaffs->employee_types}}</p>
                 <p class=" mb-2">Trình độ chuyên môn: {{$GetStaffs->levels}}</p>
+                <p class=" mb-2">Trình độ học vấn: {{$GetStaffs->educationals  }}</p>
                 <p class=" mb-2">Chuyên môn hóa: {{$GetStaffs->specializes}}</p>
                 <p class=" mb-2">Phòng: {{$GetStaffs->rooms}}</p>
                 <p class=" mb-2">Chức vụ: {{$GetStaffs->positions  }}</p>
+                
               </div>
             </div>
           </div>
