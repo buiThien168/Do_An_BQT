@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\StaffManage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\UserService;
+use App\Models\educational;
 use App\Models\Employee_type;
 use App\Models\Level;
 use App\Models\Position;
@@ -55,6 +56,7 @@ class StaffManageController extends Controller
             'specializes' => 'required|integer',
             'rooms' => 'required|integer',
             'positions' => 'required|integer',
+            'educational' => 'required|integer',
         ]);
         try{
             DB::beginTransaction();
@@ -88,7 +90,8 @@ class StaffManageController extends Controller
         $specializes = Specialize::get();
         $rooms = Room::get();
         $positions = Position::get();
-        return view('Admin.StaffManage.EditStaff', ['getStaff' => $getStaff, 'employee_type' => $employee_type, 'level' => $level, 'specializes' => $specializes, 'rooms' => $rooms, 'positions' => $positions, 'id' => $id]);
+        $educational = educational::get();
+        return view('Admin.StaffManage.EditStaff', ['getStaff' => $getStaff, 'employee_type' => $employee_type, 'level' => $level, 'specializes' => $specializes, 'rooms' => $rooms, 'positions' => $positions, 'id' => $id,'educational' => $educational]);
     }
     // form nhân viên
     public function AddStaff()
@@ -99,7 +102,8 @@ class StaffManageController extends Controller
         $specializes = Specialize::get();
         $rooms = Room::get();
         $positions = Position::get();
-        return view('Admin.StaffManage.AddStaff', ['employee_type' => $employee_type, 'level' => $level, 'specializes' => $specializes, 'rooms' => $rooms, 'positions' => $positions]);
+        $educational = educational::get();
+        return view('Admin.StaffManage.AddStaff', ['employee_type' => $employee_type, 'level' => $level, 'specializes' => $specializes, 'rooms' => $rooms, 'positions' => $positions,'educational' => $educational]);
     }
     // Thêm nhân viên
     public function PostAddStaff(Request $request)
@@ -129,6 +133,7 @@ class StaffManageController extends Controller
             'specializes' => 'required|integer',
             'rooms' => 'required|integer',
             'positions' => 'required|integer',
+            'educational' => 'required|integer'
         ]);
         
         if ($validator->fails()) {

@@ -160,7 +160,15 @@
 
                         </select>
                       </div> 
-                      
+                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                        <label class="fz85">Trình độ học vấn</label>
+                        <select name="educational" class="form-control" id="exampleFormControlSelect1">
+                          @foreach($educational as $item)
+                          <option value="{{$item->id}}">{{$item->name_education}}</option>
+                          @endforeach
+
+                        </select>
+                      </div>
                       <div class="col-12 p-0 pr-2 mb-2 text-center mt-3">
                         <button class="btn bg text-white">Thêm người dùng</button>
                       </div>

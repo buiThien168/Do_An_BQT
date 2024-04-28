@@ -156,6 +156,15 @@
 
                         </select>
                       </div> 
+                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                        <label class="fz85">Trình độ học vấn</label>
+                        <select name="educational" class="form-control" id="exampleFormControlSelect1">
+                          @foreach($educational as $item)
+                          <option value="{{ $item->id }}" {{ $item->id == $getStaff->educational ? 'selected' : '' }}>{{ $item->name_education }}</option>
+                          @endforeach
+
+                        </select>
+                      </div> 
                       <div class="col-12 p-0  text-center">
                         @if (\Session::has('msg'))
                         <span class="text-success mt-2">{!! \Session::get('msg') !!}</span>
