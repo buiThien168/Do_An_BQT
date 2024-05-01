@@ -28,7 +28,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body px-0">
-                         <h5 class="card-title float-left mb-2 tx">Danh sách lương cơ bản</h5>
+                         <h5 class="card-title float-left mb-2 tx">Hợp đồng</h5>
                          <div class="float-right"> 
                           <form method="get">    
                             <div class="form-group mb-3" style="display: flex">               
@@ -42,12 +42,11 @@
                           <table class="table table-hover table-striped">
                             <thead>
                               <th width="3%">#</th>
-                              <th width="5%">Mã NV</th>
-                              <th width="10%">Tên</th>
-                              <th width="10%">Tên</th>
-                              <th width="10%">Chức vụ</th>
-                              <th width="12%">Trình độ chuyên môn</th>
-                              <th width="20%">Hoạt động</th>
+                              <th width="10%">Mã NV</th>
+                              <th width="20%">Họ tên</th>
+                              <th width="20%">SĐT</th>
+                              <th width="20%">Gmail</th>
+                              <th width="30%">Hoạt động</th>
                             </thead>
                             <tbody>
                              <p style="display: none">{{$idup = 1}}</p>
@@ -62,18 +61,21 @@
                               <td>{{$item->email}}</td>
                               
                              <td>
-                              <a href="{{url('/admin/user-management/detail')."/".$item->id}}">
-                                <button class="btn bg mr-2 text-white">Xem chi tiết</button>
-                              </a>
-                               @if($item->basic_salary == null)
-                              <a href="{{url('admin/salary-management/edit')."/".$item->id}}">
+                             @if($item->contracts == 0)
+                              <a href="{{url('admin/contract-management/edit')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Cập nhật</button>
                               </a>
                               @else
-                              <a href="{{url('admin/salary-management/edit')."/".$item->id}}">
+                              <a href="{{url('admin/contract-management/edit')."/".$item->id}}">
                                 <button class="btn btn-danger mr-2">Sửa</button>
+                              </a>    
+                              @endif 
+                              <a href="{{url('admin/salary-management/edit')." /".$item->id}}">
+                                <button class="btn bg mr-2 text-white">Xem hợp đồng</button>
                               </a>
-                              @endif                
+                              <a href="{{url('admin/contract-management/export')."/".$item->id}}">
+                                <button class="btn bg mr-2 text-white">Xuất excel</button>
+                              </a>            
                             </td>
                           </tr>
                         @endforeach

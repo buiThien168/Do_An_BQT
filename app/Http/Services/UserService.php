@@ -56,6 +56,7 @@ class UserService
         $userInformation->positions = $request->positions;
         $userInformation->status = 0;
         $userInformation->educational = $request->educational;
+        $userInformation->educational = 0;
         $userInformation->save();
     }
     public function ListStaffService($request)

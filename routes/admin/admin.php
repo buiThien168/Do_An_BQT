@@ -189,13 +189,12 @@ Route::prefix('admin')->group(function () {
         });
          // quản lí họp đồng
          Route::prefix('contract-management')->group(function () {
-            Route::get('/', [contractController::class, 'ListContract']); 
-            Route::get('/add', [EducationalController::class, 'AddEducation']); 
-            Route::post('/add', [EducationalController::class, 'PostAddEducation']);   
-            Route::get('/delete/{id}', [EducationalController::class, 'DeleteEducation']); 
-            Route::get('/edit/{id}', [EducationalController::class, 'EditEducation']); 
-            Route::post('/edit/{id}', [EducationalController::class, 'PostEditEducation']); 
-            Route::get('/see-employee/{id}', [EducationalController::class, 'ListEducationStaff']);         
+            Route::get('/', [contractController::class, 'ListContract']);   
+            Route::get('/delete/{id}', [contractController::class, 'DeleteEducation']); 
+            Route::get('/export/{id}', [contractController::class, 'exportWord']);
+            Route::get('/edit/{id}', [contractController::class, 'EditContract']); 
+            Route::post('/edit/{id}', [contractController::class, 'PostContract']); 
+            Route::get('/see-employee/{id}', [contractController::class, 'ListEducationStaff']);         
         }); 
         // quản lí danh tính
         Route::prefix('identity-management')->group(function () {
