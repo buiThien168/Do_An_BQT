@@ -62,44 +62,50 @@
                         <p class="font-weight-bold">| Thông tin đại diện bên A</p>
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Họ tên</label>
-                        <input type="text" value="{{ $getContract != null ? $getContract->name_A : $getUser->full_name}}" name="name_A" class="form-control mr-2" autocomplete="off" >
+                        <label class="fz85">Mã số thuế</label>
+                        <input type="text" name="tax_code" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->tax_code : ""}}">
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Ngày sinh</label>
-                        <input type="date" name="birth_A" value="{{ $getContract != null ? \Carbon\Carbon::parse($getContract->birth_A)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d') : \Carbon\Carbon::parse($getUser->date_of_birth)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" class="form-control mr-2" autocomplete="off" >
+                        <label class="fz85">Đại diện</label>
+                        <input type="text" name="name_A" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->name_A : ""}}">
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Số điện thoại</label>
-                        <input type="number" name="phone_number_A" class="form-control mr-2" autocomplete="off" value="{{ $getContract != null ? $getContract->phone_number_A : $getUser->user->phone}}">
+                        <input type="number" name="phone_number_A" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->phone_number_A : ""}}">
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Email</label>
-                        <input type="email" name="email_A" class="form-control mr-2" autocomplete="off" 
-                        value="{{ $getContract != null ? $getContract->email_A : $getUser->email}}">
+                        <label class="fz85">Địa chỉ</label>
+                        <input type="text" name="address_A" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->address_A : ""}}">
                       </div>
+                      
                       <div class="col-12 px-2 mt-3">
                         <p class="font-weight-bold">| Thông tin đại diện bên B</p>
                       </div>  
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Họ tên</label>
-                        <input type="text" name="name_B" class="form-control mr-2" autocomplete="off" 
-                        value="{{ $getContract != null ? $getContract->name_B : ""}}">
+                        <input type="text" value="{{ $getContract != null ? $getContract->name_B : $getUser->full_name}}" name="name_B" class="form-control mr-2" autocomplete="off" >
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Ngày sinh</label>
-                        <input type="date" name="birth_B" class="form-control mr-2" autocomplete="off" 
-                        value="{{ $getContract != null ? \Carbon\Carbon::parse($getContract->birth_B)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d') : ""}}">
+                        <input type="date" name="birth_B" value="{{ $getContract != null ? \Carbon\Carbon::parse($getContract->birth_B)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d') : \Carbon\Carbon::parse($getUser->date_of_birth)->setTimezone('Asia/Ho_Chi_Minh')->format('Y-m-d')}}" class="form-control mr-2" autocomplete="off" >
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
                         <label class="fz85">Số điện thoại</label>
-                        <input type="number" name="phone_number_B" class="form-control mr-2" autocomplete="off" 
-                        value="{{ $getContract != null ? $getContract->phone_number_B : ""}}">
+                        <input type="number" name="phone_number_B" class="form-control mr-2" autocomplete="off" value="{{ $getContract != null ? $getContract->phone_number_B : $getUser->user->phone}}">
                       </div>
                       <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
-                        <label class="fz85">Email</label>
-                        <input type="email" name="email_B" class="form-control mr-2" autocomplete="off" 
-                        value="{{ $getContract != null ? $getContract->email_B : ""}}">
+                        <label class="fz85">Địa chỉ</label>
+                        <input type="text" name="address_B" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->address_B : $getUser->hometown}}">
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-4 p-0 px-2 mb-2">
+                        <label class="fz85">CCCD</label>
+                        <input type="text" name="CCCD_B" class="form-control mr-2" autocomplete="off" 
+                        value="{{ $getContract != null ? $getContract->CCCD_B : ""}}">
                       </div>
                       <div class="col-12 px-2 mt-3">
                         <p class="font-weight-bold">| Thông tin khác</p>

@@ -170,6 +170,7 @@ class StaffManageController extends Controller
         $checkOffStaff = $this->UserService->checkOffStaffService($request);
         $checkWorkSuccessService = $this->UserService->checkWorkSuccessService($request);
         $checkWork = $this->UserService->checkWorkService($request);
+        $this->ListContract();
         return view(
             'Admin.StaffManage.ListStaff',
             [
@@ -180,6 +181,22 @@ class StaffManageController extends Controller
                 'checkWork'=>$checkWork
             ]
         );
+    }
+    public function ListContract(){
+        $GetUsers = $this->UserService->ListUser();
+        foreach ($GetUsers as $item) {
+            $start_date = $item->start_date;
+            $end_date = $item->start_end;
+            if($start_date !=null && $end_date!=null){
+                $current_time = time();
+                $time_left = $end_date - $current_time;
+                if ($time_left <= 604800) {
+                    User_infomation::where('user_id',$item->id)->update([
+                        'contracts'=>2,
+                    ]);
+                }
+            }
+        }
     }
     // chi tiết nhân viên
     public function StaffDetail($id)

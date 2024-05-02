@@ -70,17 +70,39 @@
                                 <button class="btn btn-danger mr-2">Sửa</button>
                               </a>    
                               @endif 
-                              <a href="{{url('admin/salary-management/edit')." /".$item->id}}">
-                                <button class="btn bg mr-2 text-white">Xem hợp đồng</button>
+                              @if($item->contracts == 0)
+                              <a href="#">
+                                <button class="btn btn-secondary mr-2 text-white">Chưa cập nhật</button>
                               </a>
+                              @elseif($item->contracts == 2)
+                              <a href="#">
+                                <?php
+                                  $start_date = $item->start_date;
+                                  $end_date = $item->start_end;
+                                  $current_time = time();
+                                  $time_left = $end_date - $current_time;
+                                  $days_left = 0;
+                                  if ($time_left > 0) {
+                                  $days_left = floor($time_left / (60 * 60 * 24));
+                                  }
+                                  ?>
+                                <?php if ($days_left > 0): ?>
+                                <button class="btn btn-warning mr-2 text-white">
+                                  Còn lại <?php echo $days_left; ?> ngày
+                                </button>
+                                <?php endif; ?>
+                              </a>
+                             @else
+                             <a href="#">
+                              <button class="btn btn-success mr-2">Còn hạn</button>
+                            </a> 
+                              @endif
                               <a href="{{url('admin/contract-management/export')."/".$item->id}}">
                                 <button class="btn bg mr-2 text-white">Xuất excel</button>
                               </a>            
                             </td>
                           </tr>
                         @endforeach
-
-
                       </tbody>
                     </table>
                   </div>

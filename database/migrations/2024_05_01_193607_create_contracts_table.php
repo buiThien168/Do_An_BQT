@@ -23,13 +23,14 @@ class CreateContractsTable extends Migration
             $table->bigInteger('start_date')->nullable();
             $table->bigInteger('start_end')->nullable();
             $table->string('name_A')->nullable();
-            $table->bigInteger('birth_A')->nullable();
+            $table->string('tax_code')->nullable();
             $table->string('phone_number_A')->nullable();
-            $table->string('email_A')->nullable();
+            $table->string('address_A')->nullable();
             $table->string('name_B')->nullable();
             $table->bigInteger('birth_B')->nullable();
             $table->string('phone_number_B')->nullable();
-            $table->string('email_B')->nullable();
+            $table->string('address_B')->nullable();
+            $table->string('CCCD_B')->nullable();
             $table->bigInteger('positions')->nullable();
             $table->bigInteger('basic_salary')->nullable();
             $table->bigInteger('employee_type')->nullable();
