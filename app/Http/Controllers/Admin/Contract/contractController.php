@@ -31,7 +31,7 @@ class contractController extends Controller
         return view('Admin.Contract.AddContract',['getContract'=>$getContract,'getUser'=>$getUser,'id' => $id,'employee_type'=>$employee_type,'positions'=>$positions,'educational'=>$educational]);
     }
     public function PostContract($id, Request $request){
-        // $this->ContractService->PostEditContract($id, $request);
+        $this->ContractService->PostEditContract($id, $request);
         $this->ContractService->PostEditUpdateContract($id, $request);
         return redirect('admin/contract-management');
     }
