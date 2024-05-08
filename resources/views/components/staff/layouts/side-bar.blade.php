@@ -70,5 +70,11 @@
         <span class="menu-title">Đăng ký khuôn mặt</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('contract')}}">
+        <i class="ti-briefcase"></i>
+        <span class="menu-title">Thông tin hợp đồng</span>
+      </a>
+    </li>
   </ul>
 </nav>

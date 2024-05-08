@@ -46,7 +46,7 @@ class CalenderController extends Controller
         $handleCheckType = $this->handleCheckType($selectOption, $selectBreaks);
         $handleCheckTile = $this->handleCheckTile($selectOption, $request);
         $checkEvent = Event::where('user_id', Auth::user()->id)->latest()->orderBy('id', 'desc')->first();
-        if ($checkEvent && (Carbon::today()->isSameDay($checkEvent->create_at) && Carbon::today()->isSameDay($request->start) && $checkEvent->type==0)) {
+        if ($checkEvent && (Carbon::today()->isSameDay($checkEvent->start) && Carbon::today()->isSameDay($request->start) && $checkEvent->type==0)) {
             switch ($request->type) {
                 case 'add':
                     if($selectOption==1 && ($handleCheckType == 2 && $checkEvent->type !=2) ){

@@ -7,6 +7,7 @@ use App\Http\Controllers\Staff\ChangePassword\ChangePasswordController;
 use App\Http\Controllers\Staff\Face\FaceController;
 use App\Http\Controllers\Staff\Work\WorkController;
 use App\Http\Controllers\Staff\Bonus\BonusController;
+use App\Http\Controllers\Staff\Contract\contractController;
 use App\Http\Controllers\Staff\Discipline\DisciplineController;
 use App\Http\Controllers\Staff\Salary\SalaryController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,10 @@ Route::group(['middleware' => 'checkuser'], function () {
         Route::post('/post-calender', [CalenderController::class, 'PostCalender']); 
     });
 
+    Route::prefix('contract')->group(function () {
+        Route::get('/', [contractController::class, 'contract']); 
+        Route::post('/post-calender', [contractController::class, 'PostCalender']); 
+    });
     Route::get('/register-faces', [FaceController::class, 'RegisterFace']);
     Route::post('/register-faces', [FaceController::class, 'PostRegisterFace']);
 

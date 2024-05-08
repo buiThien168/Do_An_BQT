@@ -13,7 +13,6 @@
     <x-staff.layouts.header-dashboard />
     <div class="container-fluid page-body-wrapper">
         <div class="theme-setting-wrapper">
-
         </div>
         <div class="sidebar sidebar-offcanvas">
             <x-staff.layouts.side-bar />
