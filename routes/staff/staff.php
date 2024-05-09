@@ -37,10 +37,11 @@ Route::group(['middleware' => 'checkuser'], function () {
         Route::get('/', [BonusController::class, 'ListBonus']);;        
     });
     Route::prefix('discipline')->group(function () {
-        Route::get('/', [DisciplineController::class, 'ListDiscipline']);       
+        Route::get('/', [DisciplineController::class, 'ListDiscipline']);
     });
     Route::prefix('salary-management')->group(function () {
         Route::get('/', [SalaryController::class, 'ListSalary']); 
+        Route::get('/take-leave', [DisciplineController::class, 'ListTakeLeave']);
 
     });
     Route::prefix('attendance')->group(function () {

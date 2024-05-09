@@ -200,10 +200,16 @@ class UserService
         $GetUsers = User::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'users.id')
             ->select('user_infomations.full_name', 'users.*', 'user_infomations.image', 'user_infomations.email')
             ->where('users.is_deleted', 0)
-            ->where('users.role', 2)
             ->orderBy('users.id', 'DESC')
             ->paginate(10);
         return $GetUsers;
+    }
+    public function StaffcheckRole($id,$role){
+        $roles = ($role == 1) ? '2' : '1';
+        $StaffcheckRole = User::where('id', $id)->update([
+            'role' => $roles
+        ]);
+        return $StaffcheckRole;
     }
     public function SearchUserServices($request)
     {

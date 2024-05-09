@@ -37,11 +37,25 @@
         </ul>
       </div>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link" href="{{url('salary-management')}}">
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">Xem lịch trình</span>
       </a>
+    </li> --}}
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#lichtrinh" aria-expanded="false" aria-controls="lichtrinh">
+        <i class="icon-bar-graph menu-icon"></i>
+        <span class="menu-title">Xem lịch trình</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="lichtrinh">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{{url('salary-management')}}">lịch trình</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('salary-management/take-leave')}}">Đơn xin nghỉ</a></li>
+          
+        </ul>
+      </div>
     </li>
 
     <li class="nav-item">
@@ -66,13 +80,13 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url('register-faces')}}">
-        <i class="icon-paper menu-icon"></i>
+        <i class="ti-user menu-icon"></i>
         <span class="menu-title">Đăng ký khuôn mặt</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{url('contract')}}">
-        <i class="ti-briefcase"></i>
+        <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Thông tin hợp đồng</span>
       </a>
     </li>

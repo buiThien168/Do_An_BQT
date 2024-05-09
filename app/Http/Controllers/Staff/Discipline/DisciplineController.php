@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff\Discipline;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Staff\StaffDisciplineService;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -95,6 +96,19 @@ class DisciplineController extends Controller
         ); 
         return redirect('Staff/discipline');
 
+    }
+    public function ListTakeLeave(){
+        $ListLeave =  Event::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'events.user_id')
+        ->where('events.type', '!=', '0')
+        ->where('events.user_id', Auth::user()->id)
+        ->select('user_infomations.full_name', 'events.*')
+        ->orderBy('events.id', 'DESC')->paginate(10);
+        return view(
+            'Staff.TakeLeave.List',
+            [
+                'GetListLeave' => $ListLeave,
+            ]
+        );
     }
     
 }

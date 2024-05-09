@@ -31,8 +31,6 @@ class AccountController extends Controller
         $name =  $request->name;
         $password =  md5($request->password);
         $user = User::where('name', '=', $name)->where('password', '=', $password)->first();
-        
-
         if($user){
             if($user->role==1){
                 Auth::login($user,true);

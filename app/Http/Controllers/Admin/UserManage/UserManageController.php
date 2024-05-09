@@ -22,6 +22,10 @@ class UserManageController extends Controller
         $GetUsers=$this->UserService->ListUserServices();
         return view('Admin.UserManage.ListUser',['GetUsers'=>$GetUsers ]);
     }
+    public function StaffcheckRole($id,$role){
+        $GetUsers=$this->UserService->StaffcheckRole($id,$role);
+        return redirect('admin/account-management');
+    }
     public function BlockUnBlockUser($id){
         dd($id);
         if(isset($id)){

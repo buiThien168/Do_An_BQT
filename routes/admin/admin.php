@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('account-management')->group(function () {
             Route::get('/', [UserManageController::class, 'ListUser']);
             Route::get('detail/{id}', [UserManageController::class, 'StaffDetail']);
+            Route::get('checkRole/{id}/{role}', [UserManageController::class, 'StaffcheckRole']);
             Route::get('lock-mine-employee/{id}', [UserManageController::class, 'BlockUnBlockUser']);
             Route::get('search', [UserManageController::class, 'SearchUser'])->name('account-management-search');
         });

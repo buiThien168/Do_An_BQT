@@ -43,7 +43,6 @@
                                 <thead>
                                   <th width="3%">#</th>
                                   <th width="5%">Mã số</th>
-
                                   <th width="8%">Tài khoản</th>
                                   <th width="8%">Điện thoại</th>
                                   <th width="12%">Email</th>
@@ -71,11 +70,26 @@
                                     <td>@if($item->active ==1)Active @else Locked @endif</td>
 
                                     <td>
-                                      <a href="{{url('admin/user-management/detail')."/".$item->id}}">
+                                      {{-- <a href="{{url('admin/user-management/detail')."/".$item->id}}">
                                         <button class="btn bg mr-2 text-white">Xem chi tiết</button>
-                                      </a>
+                                      </a> --}}
+                                      @if($item->role ==2) 
+                                      <a href="{{url('admin/account-management/checkRole')."/".$item->id."/".$item->role}}">
+                                        <button class="btn bg mr-2 text-white">Xét admin</button>
+                                      </a> 
+                                      @elseif($item->role ==1) 
+                                      <a href="{{url('admin/account-management/checkRole')."/".$item->id."/".$item->role}}">
+                                        @if($item->name != 'admin')
+                                        <button class="btn btn-secondary mr-2 text-white">Xét staff</button>
+                                        @endif
+                                        
+                                      </a> 
+                                      @endif
+                                      
                                       @if($item->active == 1)
+                                      @if($item->name != 'admin')
                                       <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalBlock{{$item->id}}">Khóa tạm thời</button>
+                                      @endif
                                       @elseif($item->active == 0)
                                       <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalUnLock{{$item->id}}">Mở khóa</button>
                                       @endif
