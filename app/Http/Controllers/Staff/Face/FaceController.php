@@ -95,7 +95,6 @@ class FaceController extends Controller
         $getUser = User_infomation::where('full_name', $request->name)->first('user_id');
         if (Session::get('first_name') != $request->name) {
             $checkType = User_track::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
-            $checkEvent = Event::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
             if ($checkType && Carbon::today()->isSameDay($checkType->created_at)) {
                 // $checkTimestamp = $checkType->created_at;
                 $checkTimestamp = Carbon::parse($checkType->created_at);
@@ -130,7 +129,6 @@ class FaceController extends Controller
                     return;
                 }
             } else {
-
                 $type = 0;
                 $work_month = 0;
                 try{
@@ -142,15 +140,16 @@ class FaceController extends Controller
                     ]);
                     $start = now()->format('Y-m-d H:i:s');
                     $end = now()->format('Y-m-d H:i:s');
+                    $checkEvent = Event::where('user_id', $getUser->user_id)->latest()->orderBy('id', 'desc')->first();
                     if($checkEvent){
-                        if(!Carbon::today()->isSameDay($checkEvent->create_at) || (Carbon::today()->isSameDay($checkEvent->create_at) && $checkEvent->type != 0) ){
+                        if(!Carbon::today()->isSameDay($checkEvent->start)){
                             Event::create([
-                                'user_id' => $getUser->user_id,
-                                'title' => 'Điểm danh',
-                                'start' => $start,
-                                'end' => $end,
-                                'type' => 0,
-                                'check_event'=>2
+                                        'user_id' => $getUser->user_id,
+                                        'title' => 'Điểm danh',
+                                        'start' => $start,
+                                        'end' => $end,
+                                        'type' => 0,
+                                    'check_event'=>2
                             ]);
                         }
                     }else{

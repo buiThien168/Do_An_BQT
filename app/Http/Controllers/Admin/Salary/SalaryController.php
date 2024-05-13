@@ -31,9 +31,20 @@ class SalaryController extends Controller
     {
         if (isset($request->keyword)) {
             $keyword = $request->keyword;
-            $GetTime = User_track::where('user_id', $id)->whereDate('created_at', $keyword)->get();
+            $keywordFormatted = date('Y-m', strtotime($keyword));
+            $GetTime = User_track::where('user_id', $id)
+                          ->whereYear('created_at', '=', date('Y', strtotime($keywordFormatted)))
+                          ->whereMonth('created_at', '=', date('m', strtotime($keywordFormatted)))
+                          ->get();
+            //$GetTime = User_track::where('user_id', $id)->whereDate('created_at', $keyword)->get();
         }else{
-            $GetTime = User_track::where('user_id', $id)->get();
+            //$GetTime = User_track::where('user_id', $id)->get();
+            $dateNow = date('Y-m', strtotime(now()));
+            $keywordFormattedNow = date('Y-m', strtotime($dateNow));
+            $GetTime = User_track::where('user_id', $id)
+            ->whereYear('created_at', '=', date('Y', strtotime($keywordFormattedNow)))
+            ->whereMonth('created_at', '=', date('m', strtotime($keywordFormattedNow)))
+            ->get();
         }
         $GetSalary = Salary::where('user_id', $id)->first('basic_salary');
         if ($GetSalary) {
@@ -41,6 +52,8 @@ class SalaryController extends Controller
             $month = date('n');
             
             $totalWorkHours = 0;
+            $dem=0;
+            $timeIn=null;
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
                 if ($GetTime[$i]->type === 1) {
@@ -60,6 +73,20 @@ class SalaryController extends Controller
                         'work_month' => $GetTime[$i]->work_month
                     ]);
                 }
+                if(Carbon::today()->isSameDay($GetTime[$i]->created_at)){
+                    $dem++;
+                    $timeIn=$GetTime[$i]->created_at;
+
+                }
+            }
+            if($dem==1){
+                array_push($checktime, [
+                    'checkin' => $timeIn,
+                    'checkout' => $timeIn,
+                    'time' => 0,
+                    'salary' => 0,
+                    'work_month' => 0
+                ]);
             }
             $time = gmdate("H:i:s", $countTime);
             $salary = $countTime / 60 / 60 * $GetSalary->basic_salary;

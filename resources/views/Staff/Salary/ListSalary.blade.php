@@ -55,6 +55,12 @@
                                 <p>Lương cơ bản: {{number_format($GetSalary)}}$ |</p>
                                 <p>| Tổng số công tháng {{$month}} : {{$totalWorkHours}}</p>
                               </div>
+                            <form method="get">  
+                                <div class="form-group mb-3" style="display: flex">               
+                                  <input type="month" class="form-control"  placeholder="Name" name="keyword">
+                                  <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
+                                </div>
+                            </form>
                             </div>
                             <div style="clear: both;"></div>
                             <div class="table-responsive">

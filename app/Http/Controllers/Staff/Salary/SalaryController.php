@@ -23,12 +23,21 @@ class SalaryController extends Controller
 
     public function ListSalary(Request $request)
     {
-        
         if (isset($request->keyword)) {
             $keyword = $request->keyword;
-            $GetTime = User_track::where('user_id', Auth::user()->id)->whereDate('created_at', $keyword)->get();
+            $keywordFormatted = date('Y-m', strtotime($keyword));
+            $GetTime = User_track::where('user_id', Auth::user()->id)
+                          ->whereYear('created_at', '=', date('Y', strtotime($keywordFormatted)))
+                          ->whereMonth('created_at', '=', date('m', strtotime($keywordFormatted)))
+                          ->get();
         }else{
-            $GetTime = User_track::where('user_id', Auth::user()->id)->get();
+            //$GetTime = User_track::where('user_id', Auth::user()->id)->get();
+            $dateNow = date('Y-m', strtotime(now()));
+            $keywordFormattedNow = date('Y-m', strtotime($dateNow));
+            $GetTime = User_track::where('user_id', Auth::user()->id)
+            ->whereYear('created_at', '=', date('Y', strtotime($keywordFormattedNow)))
+            ->whereMonth('created_at', '=', date('m', strtotime($keywordFormattedNow)))
+            ->get();
         }
         $GetSalary = Salary::where('user_id', Auth::user()->id)->first('basic_salary');
         if ($GetSalary) {
@@ -38,7 +47,7 @@ class SalaryController extends Controller
             $totalWorkHours = 0;
             $checktime = array();
             for ($i = 1; $i < count($GetTime); $i++) {
-                if ($GetTime[$i]->type === 1) {
+                if ($GetTime[$i]->type) {
                     $timestamp1 = $GetTime[$i]->created_at->timestamp;
                     $timestamp2 = $GetTime[$i - 1]->created_at->timestamp;
                     $countTime = ($timestamp1 - $timestamp2);
