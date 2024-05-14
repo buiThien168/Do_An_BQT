@@ -22,8 +22,6 @@ use App\Http\Controllers\Admin\Face\FaceController;
 use App\Http\Controllers\Admin\Work\TakeLeaveController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'checkadmin'], function () {
         Route::get('log-out', [AccountController::class, 'Logout']);
@@ -33,7 +31,6 @@ Route::prefix('admin')->group(function () {
             Route::get('detail/{id}', [StaffManageController::class, 'StaffDetail']);
             Route::get('lock-mine-employee/{id}', [StaffManageController::class, 'BlockUnBlockUser']);
             Route::get('search', [StaffManageController::class, 'SearchUser']);
-
             Route::get('add-employees', [StaffManageController::class, 'AddStaff']);
             Route::post('add-employees', [StaffManageController::class, 'PostAddStaff']);
             Route::get('edit/{id}', [StaffManageController::class, 'EditStaff']);

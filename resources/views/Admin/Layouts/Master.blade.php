@@ -67,5 +67,8 @@
   <script src="{{ asset('js/theme-manage/dashboard.js')}}"></script>
   <script src="{{ asset('js/theme-manage/Chart.roundedBarCharts.js')}}"></script>
   <!-- End custom js for this page-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
 </html>
 

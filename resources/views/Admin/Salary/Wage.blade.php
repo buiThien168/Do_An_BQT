@@ -30,12 +30,15 @@
                                                     <div class="card-body px-0">
                                                         <h5 class="card-title float-left mb-2 tx">Danh sách bảng lương</h5>
                                                         <div class="float-right">
+                                                        <div style="display: flex" >
                                                             <form method="get">
                                                                 <div class="form-group mb-3" style="display: flex">
                                                                     <input type="text" class="form-control" placeholder="Name" name="keyword">
                                                                     <button type="submit" class="btn bg text-white ml-2" style="width: 120px;">Tìm kiếm</button>
                                                                 </div>
                                                             </form>
+                                                            <button onclick="handleExport()" type="submit" class="btn bg bg-success text-white ml-2" style="width: 120px;height:30px;">Export</button>
+                                                        </div>
                                                         </div>
                                                         <div style="clear: both;"></div>
                                                         <div class="mb-3 font-weight-bold">Tháng  {{$month}}</div>
@@ -203,3 +206,24 @@
         </div>
     </div>
     @endsection
+    <script>
+        const wageData = @json($Wage);
+        const month = @json($month);
+        const currentMonthDays = @json($currentMonthDays);
+        function handleExport(){
+            const data = [];
+            for (let i = 0; i < wageData.data.length; i++) {
+                data.push({
+                    full_name: wageData.data[i].full_name, 
+                    name_position: wageData.data[i].name_position,  
+                    basic_salary: wageData.data[i].basic_salary,  
+                    perk_salary: wageData.data[i].perk_salary,  
+                    insuranc_salary: wageData.data[i].insuranc_salary,  
+                });
+            }
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+            XLSX.writeFile(workbook, "DataExport.xlsx");
+        }
+    </script>

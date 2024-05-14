@@ -238,43 +238,43 @@ class SalaryService
                     <td style="text-align: center;">1</td>
                     <td>Số ngày công tháng 03/2024</td>
                     <td style="text-align: center;">' . $stt_CONG . '</td>
-                    <td style="text-align: center;">' . $dongia_CONG . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_CONG . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_CONG) . ' VND</td>
+                    <td style="text-align: center;">' . number_format($thanh_tien_CONG) . ' VND</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">2</td>
                     <td>Số ngày nghỉ</td>
                     <td style="text-align: center;">' . $stt_NGHI . '</td>
-                    <td style="text-align: center;">' . $dongia_NGHI . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_NGHI . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_NGHI) . ' VND</td>
+                    <td style="text-align: center;"> - ' . number_format($thanh_tien_NGHI) . ' VND</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">3</td>
                     <td>Phụ cấp</td>
                     <td style="text-align: center;">' . $stt_PHU_CAP . '</td>
-                    <td style="text-align: center;">' . $dongia_PHU_CAO . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_PHU_CAP . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_PHU_CAO) . ' VND</td>
+                    <td style="text-align: center;">' . number_format($thanh_tien_PHU_CAP) . ' VND</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">4</td>
                     <td>Thưởng</td>
                     <td style="text-align: center;">' . $stt_THUONG . '</td>
-                    <td style="text-align: center;">' . $dongia_THUONG . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_THUONG . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_THUONG) . ' VND</td>
+                    <td style="text-align: center;">' . number_format($thanh_tien_THUONG) . ' VND</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">5</td>
                     <td>Phạt</td>
                     <td style="text-align: center;">' . $stt_PHAT . '</td>
-                    <td style="text-align: center;">' . $dongia_PHAT . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_PHAT . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_PHAT) . ' VND</td>
+                    <td style="text-align: center;">' . number_format($thanh_tien_PHAT) . ' VND</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">6</td>
                     <td>BHXH</td>
                     <td style="text-align: center;">' . $stt_BHXH . '</td>
-                    <td style="text-align: center;">' . $dongia_BHXH . ' VND</td>
-                    <td style="text-align: center;">' . $thanh_tien_BHXH . ' VND</td>
+                    <td style="text-align: center;">' . number_format($dongia_BHXH) . ' VND</td>
+                    <td style="text-align: center;">' . number_format($thanh_tien_BHXH) . ' VND</td>
                 </tr>
                 <tr>
                     <td colspan="2"  style="text-align: center;">TONG</td>
