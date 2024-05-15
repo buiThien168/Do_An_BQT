@@ -62,7 +62,6 @@ class Discipline_rewardService
             [   
                 'note'=>$request->note,
                 'value'=>$request->value,
-                'updated_at'=>time(),
                 'updater'=>Auth::user()->id,
             ]
         ); 

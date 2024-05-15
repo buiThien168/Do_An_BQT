@@ -44,7 +44,7 @@
                   <div class="card-body">
                     <p class="mb-4">Nhân viên đi làm trong ngày</p>
                     <p class="fs-30 mb-2">{{ $checkOnlineStaff->count() }}</p>
-                    <p>10.00% (30 days)</p>
+                    <p>{{now()}}</p>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                   <div class="card-body">
                     <p class="mb-4">Nhân viên chưa điểm danh</p>
                     <p class="fs-30 mb-2">{{$checkOffStaff->count()}}</p>
-                    <p>22.00% (30 days)</p>
+                    <p>{{now()}}</p>
                   </div>
                 </div>
               </div>

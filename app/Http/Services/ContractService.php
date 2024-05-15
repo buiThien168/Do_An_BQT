@@ -100,6 +100,9 @@ class ContractService
             ]);
         }
     }
+    public function getPrintStaff($id){
+
+    }
     public function PostEditUpdateContract($id, $request)
     {
         $start_date = strtotime($request->start_date);

@@ -35,6 +35,9 @@ class contractController extends Controller
         $this->ContractService->PostEditUpdateContract($id, $request);
         return redirect('admin/contract-management');
     }
+    public function printStaff($id){
+        $GetUsers=$this->ContractService->getUserServices($id);
+    }
     public function exportWord($id){
         $GetUsers=$this->ContractService->getUserServices($id);
         $phpWord = new PhpWord();

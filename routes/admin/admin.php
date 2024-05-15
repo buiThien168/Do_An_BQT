@@ -192,6 +192,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/export/{id}', [contractController::class, 'exportWord']);
             Route::get('/edit/{id}', [contractController::class, 'EditContract']); 
             Route::post('/edit/{id}', [contractController::class, 'PostContract']); 
+            Route::get('/print/{id}', [contractController::class, 'printStaff']);
             Route::get('/see-employee/{id}', [contractController::class, 'ListEducationStaff']);         
         }); 
         // quản lí danh tính

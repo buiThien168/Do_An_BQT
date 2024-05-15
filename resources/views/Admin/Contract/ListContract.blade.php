@@ -96,10 +96,10 @@
                              <a href="#">
                               <button class="btn btn-success mr-2">Còn hạn</button>
                             </a> 
-                              @endif
-                              <a href="{{url('admin/contract-management/export')."/".$item->id}}">
-                                <button class="btn bg mr-2 text-white">Xuất excel</button>
-                              </a>            
+                            <a href="{{url('admin/contract-management/export')."/".$item->id}}">
+                              <button class="btn bg mr-2 text-white">Xuất word</button>
+                            </a>
+                              @endif         
                             </td>
                           </tr>
                         @endforeach
