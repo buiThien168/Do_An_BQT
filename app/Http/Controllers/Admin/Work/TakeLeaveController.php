@@ -11,8 +11,8 @@ class TakeLeaveController extends Controller
     {
         $this->TakeLeaveService = $TakeLeaveService;
     }
-    public function ListLeave(){
-        $ListLeave =  $this->TakeLeaveService->ListLeave();
+    public function ListLeave(Request $request){
+        $ListLeave =  $this->TakeLeaveService->ListLeave($request);
         return view(
             'Admin.Leave.List',
             [

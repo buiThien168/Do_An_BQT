@@ -6,12 +6,17 @@ use App\Models\Event;
 
 class TakeLeaveService
 {
-    public function ListLeave()
+    public function ListLeave($request)
     {
         $ListLeave =  Event::leftJoin('user_infomations', 'user_infomations.user_id', '=', 'events.user_id')
         ->where('events.type', '!=', '0')
         ->select('user_infomations.full_name', 'events.*')
-        ->orderBy('events.id', 'DESC')->paginate(10);
+        ->orderBy('events.id', 'DESC');
+        if (isset($request->keyword)) {
+            $ListLeave = $ListLeave
+                ->where('user_infomations.full_name','like', '%'.$request->keyword.'%');
+        }
+        $ListLeave = $ListLeave->paginate(15);
         return $ListLeave;
     }
     public function PostApproveLeave($id,$request){

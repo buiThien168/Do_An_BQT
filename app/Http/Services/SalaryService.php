@@ -78,7 +78,7 @@ class SalaryService
             ->paginate(15);
         return  $getStaff;
     }
-    public function Wage()
+    public function Wage($request)
     {
         $getStaff = User::leftJoin('user_infomations', 'users.id', '=', 'user_infomations.user_id')
             ->leftJoin('salary', 'users.id', '=', 'salary.user_id')
@@ -113,8 +113,13 @@ class SalaryService
                 DB::raw('IFNULL(user_tracks.total_work_month, 0) as total_work_month')
             )
             ->where('users.role', 2)
-            ->orderBy('users.id', 'desc')
-            ->paginate(15);
+            ->orderBy('users.id', 'desc');
+            if (isset($request->keyword)) {
+                $getStaff = $getStaff
+                    ->where('user_infomations.nick_name','like', '%'.$request->keyword.'%');
+            }
+            $getStaff = $getStaff->paginate(15);
+           
 
         return $getStaff;
     }

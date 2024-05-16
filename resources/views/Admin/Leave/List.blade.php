@@ -84,9 +84,9 @@
                                 <button class="btn btn-success mr-2 text-white">Duyệt</button>
                               </a>
                               @endif
-                              <a href="{{url('admin/workflow-management/job-details')."/".$item->id}}">
+                              {{-- <a href="{{url('admin/workflow-management/job-details')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Xem</button>
-                              </a>
+                              </a> --}}
                               <a href="{{url('admin/take-leave/edit')."/".$item->id}}">
                                 <button class="btn btn-success mr-2 text-white">Sửa</button>
                               </a>                       

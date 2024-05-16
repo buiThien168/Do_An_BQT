@@ -170,9 +170,9 @@ class SalaryController extends Controller
         $this->SalaryService->PostEditSalary($id, $request);
         return redirect('admin/salary-management');
     }
-    public function Wage()
+    public function Wage(Request $request)
     {
-        $Wage = $this->SalaryService->Wage();
+        $Wage = $this->SalaryService->Wage($request);
         $month = date('n');
         $currentMonthDays = Carbon::now()->daysInMonth;
         return view(
