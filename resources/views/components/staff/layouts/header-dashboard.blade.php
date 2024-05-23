@@ -22,8 +22,8 @@
                 <i class="ti-info-alt mx-0"></i>
               </div>
             </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Application Error</h6>
+            <div class="preview-item-content" onclick="window.location.href='{{url('/time-keeping')}}'">
+              <h6 class="preview-subject font-weight-normal">Điểm danh</h6>
               <p class="font-weight-light small-text mb-0 text-muted">
                 Just now
               </p>
@@ -35,10 +35,10 @@
                 <i class="ti-settings mx-0"></i>
               </div>
             </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Settings</h6>
+            <div class="preview-item-content" onclick="window.location.href='{{url('/attendance')}}'">
+              <h6 class="preview-subject font-weight-normal">Thông tin điểm danh</h6>
               <p class="font-weight-light small-text mb-0 text-muted">
-                Private message
+                Tháng {{now()->format('m')}}
               </p>
             </div>
           </a>
@@ -48,10 +48,10 @@
                 <i class="ti-user mx-0"></i>
               </div>
             </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">New user registration</h6>
+            <div class="preview-item-content" onclick="window.location.href='{{url('contract')}}'">
+              <h6 class="preview-subject font-weight-normal">Hợp đồng</h6>
               <p class="font-weight-light small-text mb-0 text-muted">
-                2 days ago
+                chi tiết
               </p>
             </div>
           </a>

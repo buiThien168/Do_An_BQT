@@ -4,6 +4,9 @@
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="{{asset('css/logins/login.css')}}">
 @section('Content')
+<div id="alertSus" class="alert alert-warning" style="position: absolute;top: 8px;right: 12px;" hidden>
+  <strong>Cảnh báo!</strong> Vui lòng liên hệ admin để được cấp lại mật khẩu!.
+</div>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="row border rounded-5 p-3 bg-white shadow box-area">
     <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
@@ -36,7 +39,7 @@
           </div>
           <div class="input-group mb-5 d-flex justify-content-between">
             <div class="forgot">
-              <small><a href="#">Forgot Password?</a></small>
+              <small><a href="" onclick="handelSus()">Forgot Password?</a></small>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -50,76 +53,17 @@
         </form>
       </div>
     </div>
-
+    
   </div>
 </div>
-{{-- <div class="container-fluid p-0">
-  <div class="row m-0">
-    <div class="col-8 p-5 bg text-white">
-      <p class="text-center font-weight-bold mt-0 mb-5" style="font-size: 180%;">Xây dựng hệ thống quản lý và điều hành
-        công việc</p>
-      <div class="row m-0">
-        <div class="col-6 p-0">
-          <p class="font-weight-bold mt-4" style="font-size: 130%;">ADMIN</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý thông tin</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Người lao động manager</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>HRM</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý công việc</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý tiền lương và kỷ luật</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý chấm công</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Gửi email, thư thông báo</p>
-        </div>
-        <div class="col-6 p-0">
-          <p class="font-weight-bold mt-4" style="font-size: 130%;">STAFF</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý thông tin</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý công việc</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý tiền lương và kỷ luật</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Chấm công - Nhận dạng khuôn mặt</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Quản lý dữ liệu nhận dạng</p>
-          <p class="font-weight-bold mt-4" style="font-size: 130%;"><i class="fa fa-check mr-3"
-              aria-hidden="true"></i>Đăng ký khuôn mặt</p>
-        </div>
-      </div>
 
-
-
-    </div>
-    <div class="col-4 p-5">
-      <div style="height: calc(100vh - 100px)">
-        <form id="login-user-form" class="pt-5" action="{{url('/')}}" method="post">
-          @csrf
-          <p class="text-center font-weight-bold mt-1 tx" style="font-size: 110%">LOGIN</p>
-          <hr>
-          <p class="fz95 mb-1">Phone</p>
-          <input type="number" name="phone" class="form-control w-100" required>
-
-          <p class="fz95 mt-2 mb-1">Password</p>
-          <input type="password" name="password" class="form-control w-100" required>
-
-          <p class="float-right fz95 mt-2 tx cs">Forgot password</p>
-          <button type="submit" class="btn bg w-100 text-white cs">Log in</button>
-          @if (\Session::has('msg'))
-          <p class="text-danger mt-2 text-center mb-0 fz-95">{!! \Session::get('msg') !!}</p>
-          @endif
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div> --}}
-{{-- <script src="{{ asset('index/js/jquery-3.6.0.js') }}"></script>
-<script src="{{ asset('index/js/validate/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('index/js/validate/validate.js') }}"></script> --}}
 @endsection
+
+<script>
+  function handelSus(){
+    let alertSus = document.getElementById("alertSus");
+    if (alertSus) {
+      alertSus.removeAttribute("hidden");
+  }
+}
+</script>
