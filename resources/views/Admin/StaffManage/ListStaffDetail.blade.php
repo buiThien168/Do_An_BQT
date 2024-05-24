@@ -75,9 +75,9 @@
                               </td>
                               <td>
                                 @if($item->sex == 0)
-                                Male
+                                Nam
                                 @else
-                                Female
+                                Nữ
                                 @endif
                               </td>
                               <td>
