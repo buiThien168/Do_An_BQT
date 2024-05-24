@@ -51,7 +51,7 @@
       </a>
       <div class="collapse" id="lichtrinh">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('salary-management')}}">lịch trình</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url('salary-management')}}">Lịch trình</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('salary-management/take-leave')}}">Đơn xin nghỉ</a></li>
           
         </ul>

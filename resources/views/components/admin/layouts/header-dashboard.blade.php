@@ -22,37 +22,42 @@
                 <i class="ti-info-alt mx-0"></i>
               </div>
             </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Application Error</h6>
+            <div class="preview-item-content" onclick="window.location.href='{{url('admin/schedule/payroll')}}'">
+              <h6 class="preview-subject font-weight-normal">Chấm công</h6>
               <p class="font-weight-light small-text mb-0 text-muted">
-                Just now
+                Chi tiết chấm công
               </p>
             </div>
           </a>
           <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-warning">
-                <i class="ti-settings mx-0"></i>
+                <i class="ti-user mx-0"></i>
               </div>
             </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">Settings</h6>
+            <div class="preview-item-content" onclick="window.location.href='{{url('admin/contract-management')}}'">
+              <h6 class="preview-subject font-weight-normal">Hợp đồng</h6>
               <p class="font-weight-light small-text mb-0 text-muted">
-                Private message
+                Danh sách hợp đồng
               </p>
             </div>
           </a>
           <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-info">
-                <i class="ti-user mx-0"></i>
+                <i class="ti-settings mx-0"></i>
               </div>
             </div>
             <div class="preview-item-content">
-              <h6 class="preview-subject font-weight-normal">New user registration</h6>
-              <p class="font-weight-light small-text mb-0 text-muted">
-                2 days ago
-              </p>
+              <h6 class="preview-subject font-weight-normal">Settings</h6>
+              <div class="d-flex">
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                  <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
+                </div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                  <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
+                </div>
+              </div>
             </div>
           </a>
         </div>

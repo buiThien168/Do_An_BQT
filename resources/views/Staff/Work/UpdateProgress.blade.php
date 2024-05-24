@@ -25,7 +25,6 @@
                       <div class="col-12 col-sm-12 col-md-12 p-0 px-2 mb-2">
                         <label class="fz85">Tiến độ công việc</label>
                         <textarea class="form-control mr-2" name="work_progress" required>
-
                         </textarea>
                         
                       </div> 
